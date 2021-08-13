@@ -136,6 +136,8 @@ class ConfirmNotifyROEReceivedStep extends ComponentDialog {
 
         switch (intent) {
         // Proceed
+        // Not - adding these extra intent checks because of a bug with the french happy path
+        case 'promptConfirmSendEmailYes':
         case 'promptConfirmNotifyYes':
         case 'promptConfirmYes':
             console.log('INTENT: ', intent);
