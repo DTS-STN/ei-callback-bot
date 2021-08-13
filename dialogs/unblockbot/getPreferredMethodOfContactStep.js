@@ -164,7 +164,7 @@ class GetPreferredMethodOfContactStep extends ComponentDialog {
             return await stepContext.endDialog(unblockBotDetails);
         
         // Proceed with Both Messages
-        case 'promptConfirmChoiceText':
+        case 'promptConfirmChoiceBoth':
             console.log('INTENT: ', intent);
             unblockBotDetails.getPreferredMethodOfContactStep = true;
 
