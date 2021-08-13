@@ -62,10 +62,10 @@ class GetAndSendEmailStep extends ComponentDialog {
 
             // The current step is an error state
             if (unblockBotDetails.getAndSendEmailStep === -1) {
-                promptMsg = retryPromptMsg;
+                promptMsg = retryMsg;
             }
             else {
-                promptMsg = standardPromptMsg;
+                promptMsg = standardMsg;
             }
 
             return await stepContext.prompt(TEXT_PROMPT, promptMsg);

@@ -48,12 +48,6 @@ class ConfirmNotifyROEReceivedStep extends ComponentDialog {
         // Set the text for the retry prompt
         const retryMsg = i18n.__('confirmNotifyROEReceivedStepRetryMsg');
 
-        // Set the text for the prompt
-        const standardPromptMsg = '';
-
-        // Set the text for the retry prompt
-        const retryPromptMsg = '';
-
         // Check if the error count is greater than the max threshold
         if (unblockBotDetails.errorCount.confirmNotifyROEReceivedStep >= MAX_ERROR_COUNT) {
             // Throw the master error flag
@@ -78,10 +72,10 @@ class ConfirmNotifyROEReceivedStep extends ComponentDialog {
 
             // The current step is an error state
             if (unblockBotDetails.confirmNotifyROEReceivedStep === -1) {
-                promptMsg = retryPromptMsg;
+                promptMsg = retryMsg;
             }
             else {
-                promptMsg = standardPromptMsg;
+                promptMsg = standardMsg;
             }
             
             const promptOptions = i18n.__('confirmNotifyROEReceivedStepStandardPromptOptions');
@@ -105,15 +99,32 @@ class ConfirmNotifyROEReceivedStep extends ComponentDialog {
         // Get the user details / state machine
         const unblockBotDetails = stepContext.options;
 
-        // LUIZ Recogniser processing
-        const recognizer = new LuisRecognizer({
-            applicationId: process.env.LuisAppId,
-            endpointKey: process.env.LuisAPIKey,
-            endpoint: `https://${ process.env.LuisAPIHostName }.api.cognitive.microsoft.com`
-        }, {
-            includeAllIntents: true,
-            includeInstanceData: true
-        }, true);
+         // Language check 
+         var applicationId = '';
+         var endpointKey = '';
+         var endpoint = '';
+ 
+         // Then change LUIZ appID
+         if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' || 
+             stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
+             applicationId = process.env.LuisAppIdFR;
+             endpointKey = process.env.LuisAPIKeyFR;
+             endpoint = `https://${ process.env.LuisAPIHostNameFR }.api.cognitive.microsoft.com`;
+         } else {
+             applicationId = process.env.LuisAppIdEN;
+             endpointKey = process.env.LuisAPIKeyEN;
+             endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
+         }
+ 
+         // LUIZ Recogniser processing
+         const recognizer = new LuisRecognizer({
+             applicationId: applicationId,
+             endpointKey: endpointKey,
+             endpoint: endpoint
+         }, {
+             includeAllIntents: true,
+             includeInstanceData: true
+         }, true);
 
         // Call prompts recognizer
         const recognizerResult = await recognizer.recognize(stepContext.context);
@@ -125,15 +136,15 @@ class ConfirmNotifyROEReceivedStep extends ComponentDialog {
 
         switch (intent) {
         // Proceed
-        case 'promptConfirmNotifyMe':
-        case 'confirmChoicePositive':
+        case 'promptConfirmNotifyYes':
+        case 'promptConfirmYes':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmNotifyROEReceivedStep = true;
             return await stepContext.endDialog(unblockBotDetails);
 
         // Don't Proceed
-        case 'promptConfirmDontNotifyMe':
-        case 'confirmChoiceNegative':
+        case 'promptConfirmNotifyNo':
+        case 'promptConfirmNo':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmNotifyROEReceivedStep = false;
 

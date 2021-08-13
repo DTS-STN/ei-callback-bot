@@ -108,13 +108,28 @@ class ConfirmLookIntoStep extends ComponentDialog {
         // Get the user details / state machine
         const unblockBotDetails = stepContext.options;
 
-        // TODO: Check language and then change LUIZ appID
+        // Language check 
+        var applicationId = '';
+        var endpointKey = '';
+        var endpoint = '';
+
+        // Then change LUIZ appID
+        if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' || 
+            stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
+            applicationId = process.env.LuisAppIdFR;
+            endpointKey = process.env.LuisAPIKeyFR;
+            endpoint = `https://${ process.env.LuisAPIHostNameFR }.api.cognitive.microsoft.com`;
+        } else {
+            applicationId = process.env.LuisAppIdEN;
+            endpointKey = process.env.LuisAPIKeyEN;
+            endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
+        }
 
         // LUIZ Recogniser processing
         const recognizer = new LuisRecognizer({
-            applicationId: process.env.LuisAppId,
-            endpointKey: process.env.LuisAPIKey,
-            endpoint: `https://${ process.env.LuisAPIHostName }.api.cognitive.microsoft.com`
+            applicationId: applicationId,
+            endpointKey: endpointKey,
+            endpoint: endpoint
         }, {
             includeAllIntents: true,
             includeInstanceData: true
@@ -130,13 +145,13 @@ class ConfirmLookIntoStep extends ComponentDialog {
 
         switch (intent) {
         // Proceed
-        case 'confirmChoicePositive':
+        case 'promptConfirmYes':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmLookIntoStep = true;
             return await stepContext.endDialog(unblockBotDetails);
 
         // Don't Proceed
-        case 'confirmChoiceNegative':
+        case 'promptConfirmNo':
             console.log('INTENT: ', intent);
 
             await stepContext.context.sendActivity(closeMsg);

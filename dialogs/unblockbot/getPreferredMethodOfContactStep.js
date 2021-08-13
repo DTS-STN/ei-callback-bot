@@ -104,15 +104,33 @@ class GetPreferredMethodOfContactStep extends ComponentDialog {
         // Get the user details / state machine
         const unblockBotDetails = stepContext.options;
 
+        // Language check 
+        var applicationId = '';
+        var endpointKey = '';
+        var endpoint = '';
+
+        // Then change LUIZ appID
+        if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' || 
+            stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
+            applicationId = process.env.LuisAppIdFR;
+            endpointKey = process.env.LuisAPIKeyFR;
+            endpoint = `https://${ process.env.LuisAPIHostNameFR }.api.cognitive.microsoft.com`;
+        } else {
+            applicationId = process.env.LuisAppIdEN;
+            endpointKey = process.env.LuisAPIKeyEN;
+            endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
+        }
+
         // LUIZ Recogniser processing
         const recognizer = new LuisRecognizer({
-            applicationId: process.env.LuisAppId,
-            endpointKey: process.env.LuisAPIKey,
-            endpoint: `https://${ process.env.LuisAPIHostName }.api.cognitive.microsoft.com`
+            applicationId: applicationId,
+            endpointKey: endpointKey,
+            endpoint: endpoint
         }, {
             includeAllIntents: true,
             includeInstanceData: true
         }, true);
+
 
         // Call prompts recognizer
         const recognizerResult = await recognizer.recognize(stepContext.context);
@@ -127,8 +145,8 @@ class GetPreferredMethodOfContactStep extends ComponentDialog {
 
         switch (intent) {
         // Proceed with Email
-        case 'promptConfirmSendEmail':
-        case 'confirmChoiceEmail':
+        case 'promptConfirmSendEmailYes':
+        case 'promptConfirmChoiceEmail':
             console.log('INTENT: ', intent);
             unblockBotDetails.getPreferredMethodOfContactStep = true;
 
@@ -137,7 +155,7 @@ class GetPreferredMethodOfContactStep extends ComponentDialog {
             return await stepContext.endDialog(unblockBotDetails);
         
         // Proceed with Text Message
-        case 'confirmChoiceTextMessage':
+        case 'promptConfirmChoiceText':
             console.log('INTENT: ', intent);
             unblockBotDetails.getPreferredMethodOfContactStep = true;
 
@@ -146,7 +164,7 @@ class GetPreferredMethodOfContactStep extends ComponentDialog {
             return await stepContext.endDialog(unblockBotDetails);
         
         // Proceed with Both Messages
-        case 'confirmChoiceTextMessage':
+        case 'promptConfirmChoiceText':
             console.log('INTENT: ', intent);
             unblockBotDetails.getPreferredMethodOfContactStep = true;
 

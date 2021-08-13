@@ -120,11 +120,28 @@ class ConfirmSendEmailStep extends ComponentDialog {
         // Get the user details / state machine
         const unblockBotDetails = stepContext.options;
 
+        // Language check 
+        var applicationId = '';
+        var endpointKey = '';
+        var endpoint = '';
+
+        // Then change LUIZ appID
+        if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' || 
+            stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
+            applicationId = process.env.LuisAppIdFR;
+            endpointKey = process.env.LuisAPIKeyFR;
+            endpoint = `https://${ process.env.LuisAPIHostNameFR }.api.cognitive.microsoft.com`;
+        } else {
+            applicationId = process.env.LuisAppIdEN;
+            endpointKey = process.env.LuisAPIKeyEN;
+            endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
+        }
+
         // LUIZ Recogniser processing
         const recognizer = new LuisRecognizer({
-            applicationId: process.env.LuisAppId,
-            endpointKey: process.env.LuisAPIKey,
-            endpoint: `https://${ process.env.LuisAPIHostName }.api.cognitive.microsoft.com`
+            applicationId: applicationId,
+            endpointKey: endpointKey,
+            endpoint: endpoint
         }, {
             includeAllIntents: true,
             includeInstanceData: true
@@ -141,15 +158,15 @@ class ConfirmSendEmailStep extends ComponentDialog {
 
         switch (intent) {
         // Proceed
-        case 'confirmChoicePositive':
-        case 'promptConfirmSendEmail':
+        case 'promptConfirmYes':
+        case 'promptConfirmSendEmailYes':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmSendEmailStep = true;
             return await stepContext.endDialog(unblockBotDetails);
 
             // Don't Proceed
-        case 'confirmChoiceNegative':
-        case 'promptConfirmDontSendEmail':
+        case 'promptConfirmNo':
+        case 'promptConfirmSendEmailNo':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmSendEmailStep = false;
 

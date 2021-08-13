@@ -9,14 +9,14 @@
 	"confirmLookIntoStepRetryMsg": "Désolé, voulez-vous que je jette un coup d'oeil à votre dossier?",
 	"confirmLookIntoStepErrorMsg": "Désolé Mary, je ne suis pas en mesure de vous aider.",
 	"confirmLookIntoStepStandardPromptOptions": [
-		"Oui, s'il vous plaît!",
+		"Oui",
 		"Non merci"
 	],
 	"confirmLookIntoStepCloseMsg": "D'accord, pas de problème. Dites-le-moi si vous changez d'avis!",
 
 	"confirmSendEmailStepStandardMsg": "Je vois que vous avez rempli votre demande le 12 février et que la demande elle-même semble bonne. Cependant, nous n'avons toujours pas reçu de relevé d'emploi de votre ancien employeur, Initech.",
-    "confirmSendEmailStepRetryMsg": "Si vous voulez, je peux envoyer un courriel de suivi à Initech de la part du gouvernement du Canada. Cela règle généralement le problème 😉",
-    "confirmSendEmailStepQueryMsg": "Désolé, voulez-vous que j'envoie un courriel à votre ancien employeur?",
+    "confirmSendEmailStepRetryMsg": "Désolé, voulez-vous que j'envoie un courriel à votre ancien employeur?",
+    "confirmSendEmailStepQueryMsg": "Si vous voulez, je peux envoyer un courriel de suivi à Initech de la part du gouvernement du Canada. Cela règle généralement le problème 😉",
     "confirmSendEmailStepErrorMsg": "Désolé Mary, je ne suis pas en mesure de vous aider.",
     "confirmSendEmailStepStandardPromptOptions": [
         "Oui",
