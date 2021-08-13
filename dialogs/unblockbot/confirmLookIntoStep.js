@@ -113,6 +113,9 @@ class ConfirmLookIntoStep extends ComponentDialog {
         var endpointKey = '';
         var endpoint = '';
 
+        console.log("ACTIVITY: ", stepContext.context.activity);
+        console.log("STEPCONTEXT: ", stepContext);
+
         // Then change LUIZ appID
         if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' || 
             stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
@@ -146,6 +149,7 @@ class ConfirmLookIntoStep extends ComponentDialog {
         switch (intent) {
         // Proceed
         case 'promptConfirmYes':
+        case 'promptConfirmSendEmailYes':
             console.log('INTENT: ', intent);
             unblockBotDetails.confirmLookIntoStep = true;
             return await stepContext.endDialog(unblockBotDetails);
