@@ -13,21 +13,24 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com"
+        "url": "https://github.com/DTS-STN/Virtual-Assistant-Bot-Framework"
     },
     "dependencies": {
-        "botbuilder": "~4.14.0",
+        "botbuilder": "~4.14.1",
+        "botbuilder-ai": "~4.14.1",
+        "botbuilder-dialogs": "~4.14.1",
         "dotenv": "^10.0.0",
+        "i18n": "^0.13.3",
         "path": "^0.12.7",
         "restify": "~8.5.1"
     },
     "devDependencies": {
-        "eslint": "^7.0.0",
+        "eslint": "^7.32.0",
         "eslint-config-standard": "^16.0.3",
-        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-import": "^2.24.0",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.1.0",
         "eslint-plugin-standard": "^5.0.0",
-        "nodemon": "~2.0.4"
+        "nodemon": "~2.0.12"
     }
 }

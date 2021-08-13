@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 const path = require('path');
 
 const dotenv = require('dotenv');
@@ -14,10 +13,11 @@ const restify = require('restify');
 
 // Import required bot services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bot.
-const { BotFrameworkAdapter } = require('botbuilder');
+const { BotFrameworkAdapter, ConversationState, MemoryStorage, UserState } = require('botbuilder');
+const { DialogSet } = require('botbuilder-dialogs');
 
 // This bot's main dialog.
-const { EchoBot } = require('./bot');
+const { VirtualAssistantBot } = require('./bot/virtualAssistantBot');
 
 // Create HTTP server
 const server = restify.createServer();
@@ -33,13 +33,6 @@ const adapter = new BotFrameworkAdapter({
     appId: process.env.MicrosoftAppId,
     appPassword: process.env.MicrosoftAppPassword
 });
-
-/*
-const adapter = new BotFrameworkAdapter({
-    appId: null,
-    appPassword: null
-});
-*/
 
 // Catch-all for errors.
 const onTurnErrorHandler = async (context, error) => {
@@ -65,14 +58,32 @@ const onTurnErrorHandler = async (context, error) => {
 // Set the onTurnError for the singleton BotFrameworkAdapter.
 adapter.onTurnError = onTurnErrorHandler;
 
+// Define the state store for your bot.
+// See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
+// A bot requires a state storage system to persist the dialog and user state between messages.
+const memoryStorage = new MemoryStorage();
+
+// Create conversation state with in-memory storage provider.
+const conversationState = new ConversationState(memoryStorage);
+
+// Create the Dialog State for the bot 
+const dialogs = new DialogSet(conversationState.createProperty('DialogState'));
+
+// Create the User State for the bot 
+const userState = new UserState(memoryStorage);
+
 // Create the main dialog.
-const myBot = new EchoBot();
+const myVirtualAssistantBot = new VirtualAssistantBot(
+    conversationState,
+    userState,
+    dialogs,
+);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         // Route to main dialog.
-        await myBot.run(context);
+        await myVirtualAssistantBot.run(context);
     });
 });
 
@@ -89,6 +100,6 @@ server.on('upgrade', (req, socket, head) => {
     streamingAdapter.useWebSocket(req, socket, head, async (context) => {
         // After connecting via WebSocket, run this logic for every request sent over
         // the WebSocket connection.
-        await myBot.run(context);
+        await myVirtualAssistantBot.run(context);
     });
 });
