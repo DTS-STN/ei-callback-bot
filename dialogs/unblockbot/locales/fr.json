@@ -1,13 +1,13 @@
 {
 	"unBlockBotDialogWelcomeMsg": "Bonjour Marie, je suis votre assistant virtuel!",
-	"unblockBotDialogMasterErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: https://www.canada.ca/fr/faux-lien.html",
+	"unblockBotDialogMasterErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
 	
     "mainDialogFeedbackMsg": "Avant de partir, puis-je vous demander d'évaluer le service que vous avez reçu aujourd'hui?",
 	"mainDialogGreatDayMsg": "D'accord, passez une belle journée!",
 	
     "confirmLookIntoStepStandardMsg": "J'ai regardé votre demande et je vois que votre dossier est bloqué. Voulez-vous que je l'examine?",
 	"confirmLookIntoStepRetryMsg": "Désolé, voulez-vous que je jette un coup d'oeil à votre dossier?",
-	"confirmLookIntoStepErrorMsg": "Désolé Mary, je ne suis pas en mesure de vous aider.",
+	"confirmLookIntoStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
 	"confirmLookIntoStepStandardPromptOptions": [
 		"Oui",
 		"Non merci"
@@ -17,7 +17,7 @@
 	"confirmSendEmailStepStandardMsg": "Je vois que vous avez rempli votre demande le 12 février et que la demande elle-même semble bonne. Cependant, nous n'avons toujours pas reçu de relevé d'emploi de votre ancien employeur, Initech.",
     "confirmSendEmailStepRetryMsg": "Désolé, voulez-vous que j'envoie un courriel à votre ancien employeur?",
     "confirmSendEmailStepQueryMsg": "Si vous voulez, je peux envoyer un courriel de suivi à Initech de la part du gouvernement du Canada. Cela règle généralement le problème 😉",
-    "confirmSendEmailStepErrorMsg": "Désolé Mary, je ne suis pas en mesure de vous aider.",
+    "confirmSendEmailStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
     "confirmSendEmailStepStandardPromptOptions": [
         "Oui",
         "Non"
@@ -30,7 +30,7 @@
 
     "confirmNotifyROEReceivedStepStandardMsg": "Voulez-vous que je vous informe lorsque nous aurons reçu le relevé d'emploi?",
     "confirmNotifyROEReceivedStepRetryMsg": "Désolé, Voulez-vous que je vous informe lorsque nous aurons reçu le relevé d'emploi?",
-    "confirmNotifyROEReceivedStepErrorMsg": "Désolé Mary, je ne suis pas en mesure de vous aider.",
+    "confirmNotifyROEReceivedStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
     "confirmNotifyROEReceivedStepStandardPromptOptions": [
         "Oui, informez-moi",
         "Non, ne m'informez pas"
