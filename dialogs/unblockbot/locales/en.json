@@ -1,6 +1,6 @@
 {
     "unBlockBotDialogWelcomeMsg": "Hi Mary, I’m your virtual concierge!",
-    "unblockBotDialogMasterErrorMsg": "Well this is awkward. Looks like we're having some issues today...",
+    "unblockBotDialogMasterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: https://www.canada.ca/en/fake-link.html.",
 
     "mainDialogFeedbackMsg": "Before you go, could I ask you to rate the service you received today?",
     "mainDialogGreatDayMsg": "Ok, have a great day!",
