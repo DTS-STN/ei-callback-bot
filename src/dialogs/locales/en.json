@@ -1,0 +1,47 @@
+{
+
+    "callbackBotDialogWelcomeMsg": "Hi Mary, I’m your virtual concierge!",
+    "callbackBotDialogMasterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
+    "callbackBotDialogStepStandardMsg":" Do you want to our agent contact you later?",
+    "mainDialogFeedbackMsg": "Before you go, could I ask you to rate the service you received today?",
+    "mainDialogGreatDayMsg": "Ok, have a great day!",
+    "confirmCallbackStandardPromptOptions": [
+        "Yes please!",
+        "No thanks"
+    ],
+    "confirmCallbackStandardMsg": "Can you tell me your phone number that the agent can reach you?",
+    "confirmCallbackStepRetryMsg": "Sorry, do you want me to setup a callback?",
+    "confirmCallbackStepErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
+    "confirmCallbackStepStandardPromptOptions": [
+        "Yes please!",
+        "No thanks"
+    ],
+    "confirmCallbackStepCloseMsg": "Ok, no problem. Let me know if you change your mind!",
+
+    "confirmCallbackDetailsStepStandardMsg": "So, here is your callback appointment details:",
+
+
+    "confirmAuthWordStepStandardMsg": "This is your auth token for verification",
+    "confirmAuthWordMsg": "Please remember this code",
+    "getUserPhoneNumberStepStandardMsg": "Ok, what phone number that the agent can reach you?",
+    "getUserPhoneNumberStepRetryMsg": "Sorry, do you want me to record your phone number?",
+    "getUserPhoneNumberStepConfirmMsg": "Ok, received your phone number!",
+    "getUserPhoneNumberConfirmMsg": "Ok, Phone number saved",
+     "getPreferredCallbackDateAndTimeStepConfirmMsg": "OK, date and time saved",
+    "getPreferredCallbackDateAndTimeStepPromptMsg": "Now Could you please choose the available date and time?",
+    "getPreferredCallbackDateAndTimeStepStandardMsg": "What's the best date and time to reach you?",
+
+    "getPreferredCallbackDateAndTimeStepRetryMsg": "Sorry, do you prefer email or text or both?",
+    "getPreferredMethodOfContactStepSendBothMsg": "Ok, I'll email you at mary@fakeaddress.com, and text you at 123-456-7890 once we've gotten your Record of Employment.",
+    "getPreferredCallbackDateAndTimeStepStandardPromptOptions": [
+        "Yes please!",
+        "No thanks"
+    ],
+    "getPreferredCallbackTimeStepStandardPromptOptions": [
+        "11 AM",
+        "12 PM",
+        "2 PM"
+    ]
+
+
+}
