@@ -34,7 +34,6 @@ const adapter = new BotFrameworkAdapter({
     //appPassword: process.env.MicrosoftAppPassword
 });
 
-
 // Catch-all for errors.
 const onTurnErrorHandler = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
