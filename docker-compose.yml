@@ -7,7 +7,7 @@ services:
     container_name: ${PROJECT}
     env_file: ./src/.env
     build:
-      context: ./src
+      context: .
       dockerfile: Dockerfile.dev
     environment:
       TZ: ${TZ}
@@ -15,10 +15,9 @@ services:
       MICROSOFT_APP_PASSWORD: ${MICROSOFT_APP_PASSWORD}
     ports:
       - "3978:3978"
-      - "9229:9229"
     volumes:
       # Binds the application folder from the host inside the container for fast changes
-      - ./src:/usr/src/app
+      - .:/usr/src/app
       # Ignores/Hides the node_modules from the bind on the host allowing the node_modules
       # from inside the container to be used instead
       - /usr/src/app/node_modules

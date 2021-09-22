@@ -5,12 +5,12 @@
     "declaration": true,
     "target": "es2017",
     "module": "commonjs",
-    "outDir": "./build",
+    "outDir": "./dist",
     "rootDirs": ["./src", "./resources"],
     "sourceMap": true,
     "watch": true,
     "incremental": true,
-    "tsBuildInfoFile": "./build/.tsbuildinfo",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "resolveJsonModule": true,         /* Include modules imported with .json extension. */
     "esModuleInterop": true,
     },
@@ -18,9 +18,8 @@
       "./**/*",
       "**/*.spec.ts"
   ],
-
     "exclude": [
-      "node_modules",
-      "./build/**/*"
+      "./node_modules",
+      "./dist/**/*"
     ]
   }
