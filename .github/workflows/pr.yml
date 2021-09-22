@@ -11,10 +11,6 @@ jobs:
     steps:
       - name: Checkout 🔔
         uses: actions/checkout@v2
-      - name: "Generate Build Number"
-        uses: einaregilsson/build-number@v1
-        with:
-          token: ${{ secrets.DTSROBOT_API_TOKEN }}
 
       - name: Login to Azure Cloud
         uses: azure/docker-login@v1
@@ -30,7 +26,7 @@ jobs:
           docker build -t mtscontainers.azurecr.io/dts-oas-callback-bot:latest .
           docker tag mtscontainers.azurecr.io/dts-oas-callback-bot:latest mtscontainers.azurecr.io/dts-oas-callback-bot:$BUILD_NUMBER
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:latest
-          docker push mtscontainers.azurecr.io/dts-oas-callback-bot:$BUILD_NUMBER
+          docker push mtscontainers.azurecr.io/dts-oas-callback-bot:${{ github.run_number }}
   # logout after build successful
       - name: Azure logout
         run: |
