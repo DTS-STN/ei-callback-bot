@@ -6,8 +6,8 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 #Build Status
 
-&lt;a href="https://teamcity.dts-stn.com/viewType.html?buildTypeId=5076&guest=1"&gt;
-&lt;img src="https://teamcity.dts-stn.com/app/rest/builds/buildType:(id:5076)/statusIcon"/&gt;
+&lt;a href="https://teamcity.dts-stn.com/viewType.html?buildTypeId=OasUnlockBot_DeployBdmDev&guest=1"&gt;
+&lt;img src="https://teamcity.dts-stn.com/app/rest/builds/buildType:(id:OasUnlockBot_DeployBdmDev)/statusIcon"/&gt;
 &lt;/a&gt;
 
 ## Prerequisites
