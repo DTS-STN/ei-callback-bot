@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_publish:
-  name: Build and push dev container
+    name: Build and push dev container
     runs-on: ubuntu-latest
     strategy:
       matrix:
