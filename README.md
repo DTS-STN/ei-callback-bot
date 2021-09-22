@@ -4,6 +4,12 @@ Bot Framework v4 echo bot sample
 
 This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
 
+#Build Status
+
+&lt;a href="https://teamcity.dts-stn.com/viewType.html?buildTypeId=5076&guest=1"&gt;
+&lt;img src="https://teamcity.dts-stn.com/app/rest/builds/buildType:(id:5076)/statusIcon"/&gt;
+&lt;/a&gt;
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org) version 10.14 or higher
