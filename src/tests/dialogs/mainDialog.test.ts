@@ -52,7 +52,7 @@ describe('MainDialog', () => {
     });
 
     describe('Should be able to get rate step', () => {
-        const testCases = ['help', '?'];
+        const testCases = ['close the dialog', '?'];
 
         testCases.map((testData) => {
             it(testData, async () => {
