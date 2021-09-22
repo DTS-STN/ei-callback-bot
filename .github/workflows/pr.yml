@@ -17,7 +17,7 @@ jobs:
           az login --service-principal -u ${{ secrets.AZURE_GITHUB_SPN_ID }} -p ${{ secrets.AZURE_GITHUB_SPN_PASS }} -t ${{ secrets.AZURE_TENANT_ID }}
           az acr login --name mtscontainers
           docker build -f Dockerfile.dev -t mtscontainers.azurecr.io/dts-oas-callback-bot:latest .
-          docker tag mtscontainers.azurecr.io/dts-oas-callback-bot:latest mtscontainers.azurecr.io/dts-oas-callback-bot: $GITHUB_RUN_NUMBER
+          docker tag mtscontainers.azurecr.io/dts-oas-callback-bot:latest mtscontainers.azurecr.io/dts-oas-callback-bot:$GITHUB_RUN_NUMBER
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:latest
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:$GITHUB_RUN_NUMBER
         env: 
