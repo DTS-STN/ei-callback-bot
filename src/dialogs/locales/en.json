@@ -1,5 +1,4 @@
 {
-
     "callbackBotDialogWelcomeMsg": "Hi Mary, I’m your virtual concierge!",
     "callbackBotDialogMasterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
     "callbackBotDialogStepStandardMsg":" Do you want to our agent contact you later?",
@@ -19,7 +18,6 @@
     "confirmCallbackStepCloseMsg": "Ok, no problem. Let me know if you change your mind!",
 
     "confirmCallbackDetailsStepStandardMsg": "So, here is your callback appointment details:",
-
 
     "confirmAuthWordStepStandardMsg": "This is your auth token for verification",
     "confirmAuthWordMsg": "Please remember this code",

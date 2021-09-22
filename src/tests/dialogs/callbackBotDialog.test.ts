@@ -30,8 +30,8 @@ class TestCallbackBotDialog extends CallbackBotDialog {
     }
 }
 
-describe('CancelAndHelpDialog', () => {
-    describe('Should be able to cancel', () => {
+describe('CallbackDialog', () => {
+    describe('Should be able to call greeting step', () => {
         const testCases = ['cancel', 'quit'];
 
         testCases.map((testData) => {
@@ -51,7 +51,66 @@ describe('CancelAndHelpDialog', () => {
         });
     });
 
-    describe('Should be able to get help', () => {
+    describe('Should be able to get phone number step', () => {
+        const testCases = ['help', '?'];
+
+        testCases.map((testData) => {
+            it(testData, async () => {
+                const sut = new TestCallbackBotDialog();
+                const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
+
+                // Execute the test case
+                let reply = await client.sendActivity('Hi');
+                assert.strictEqual(reply.text, 'Hi there');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+
+                reply = await client.sendActivity(testData);
+                assert.strictEqual(reply.text, 'Show help here');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+            });
+        });
+    });
+    describe('Should be able to get date and time step', () => {
+        const testCases = ['help', '?'];
+
+        testCases.map((testData) => {
+            it(testData, async () => {
+                const sut = new TestCallbackBotDialog();
+                const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
+
+                // Execute the test case
+                let reply = await client.sendActivity('Hi');
+                assert.strictEqual(reply.text, 'Hi there');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+
+                reply = await client.sendActivity(testData);
+                assert.strictEqual(reply.text, 'Show help here');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+            });
+        });
+    });
+
+    describe('Should be able to get confirm auth word step', () => {
+        const testCases = ['help', '?'];
+
+        testCases.map((testData) => {
+            it(testData, async () => {
+                const sut = new TestCallbackBotDialog();
+                const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
+
+                // Execute the test case
+                let reply = await client.sendActivity('Hi');
+                assert.strictEqual(reply.text, 'Hi there');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+
+                reply = await client.sendActivity(testData);
+                assert.strictEqual(reply.text, 'Show help here');
+                assert.strictEqual(client.dialogTurnResult.status, 'waiting');
+            });
+        });
+    });
+
+    describe('Should be able to get confirm details step', () => {
         const testCases = ['help', '?'];
 
         testCases.map((testData) => {
