@@ -20,6 +20,8 @@ jobs:
           docker tag mtscontainers.azurecr.io/dts-oas-callback-bot:latest mtscontainers.azurecr.io/dts-oas-callback-bot:$BUILD_NUMBER
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:latest
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:$GITHUB_RUN_NUMBER
+        env: 
+          GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER
   # logout after build successful
       - name: Azure logout
         run: |
