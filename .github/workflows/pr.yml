@@ -12,17 +12,10 @@ jobs:
       - name: Checkout 🔔
         uses: actions/checkout@v2
 
-      - name: Login to Azure Cloud
-        uses: azure/docker-login@v1
-        with:
-          login-server: mtscontainers.azurecr.io
-          username: ${{ secrets.AZURE_GITHUB_SPN_ID }}
-          password: ${{ secrets.AZURE_GITHUB_SPN_PASS }}
-
-
-
       - name: Docker Build and Push Images to Azure Repo
         run: |
+          az login --service-principal -u ${{ secrets.AZURE_GITHUB_SPN_ID }} -p ${{ secrets.AZURE_GITHUB_SPN_PASS }}
+          az acr login --name mtscontainers
           docker build -t mtscontainers.azurecr.io/dts-oas-callback-bot:latest .
           docker tag mtscontainers.azurecr.io/dts-oas-callback-bot:latest mtscontainers.azurecr.io/dts-oas-callback-bot:$BUILD_NUMBER
           docker push mtscontainers.azurecr.io/dts-oas-callback-bot:latest
