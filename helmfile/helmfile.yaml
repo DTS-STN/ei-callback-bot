@@ -5,7 +5,7 @@ environments:
   prod-blue:
   prod-green: 
   prototype:
-  {{ env "BRANCH" | default "main" }}:
+  {{ env "TARGET" | default "main" }}:
   
 
 releases:
