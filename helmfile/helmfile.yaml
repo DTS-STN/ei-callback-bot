@@ -5,6 +5,8 @@ environments:
   prod-blue:
   prod-green: 
   prototype:
+  {{ env "TARGET" | default "main" }}:
+  
 
 releases:
 
