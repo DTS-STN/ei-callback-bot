@@ -11,9 +11,9 @@ releases:
 
 # Namespace ingress
 
-  - name: oas-unlock-bot-api-{{ requiredEnv "BRANCH" }}
+  - name: oasubapi-{{ requiredEnv "BRANCH" }}
     chart: ../helm/charts/oas-unlock-bot
-    namespace: oas-unlock-bot-{{ requiredEnv "BRANCH" }}
+    namespace: oas-ub-{{ requiredEnv "BRANCH" }}
     values:
       - overrides/oas-unlock-bot-api.yaml.gotmpl
     labels:
