@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $BRANCH == *"/"* ]]; then
   export BRANCH=$(echo $BRANCH | awk -F'/' '{print $3}')
 fi
