@@ -5,16 +5,15 @@ environments:
   prod-blue:
   prod-green: 
   prototype:
-  {{ env "TARGET" | default "main" }}:
-  
+
 
 releases:
 
 # Namespace ingress
 
-  - name: oas-unlock-bot-api-{{ .Environment.Name }}
+  - name: oas-unlock-bot-api-{{ requiredEnv "BRANCH" }}
     chart: ../helm/charts/oas-unlock-bot
-    namespace: oas-unlock-bot-{{ .Environment.Name }}
+    namespace: oas-unlock-bot-{{ requiredEnv "BRANCH" }}
     values:
       - overrides/oas-unlock-bot-api.yaml.gotmpl
     labels:
