@@ -1,23 +1,5 @@
-variable "luis_app_id" {}
-variable "luis_location" {}
-variable "luis_instance_name" {
-}
- variable "sku_name" {}
- variable "subscription_id" {
-
- }
- variable "tenant_id" {
-
- }
- variable "client_id" {
-
- }
- variable "client_secret" {
-
- }
- variable "location" {
-
- }
- variable "resource_group_name" {
-
- }
+variable "luis_instance_name" {}
+variable "luis_sku_name" {}
+variable "location" {}
+variable "resource_group_name" {}
+variable "luis_authoring_instance_name" {}
