@@ -1,20 +1,3 @@
-
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 2.78"
-    }
-  }
-
-provider "azurerm" {
-features {}
-subscription_id = var.subscription_id
-tenant_id = var.tenant_id
-client_id = var.client_id
-client_secret = var.client_secret
-}
-
 resource "azurerm_resource_group" "oas_callback_luis" {
   name     = var.resource_group_name # please provide the value
   location = var.location
@@ -42,7 +25,7 @@ resource "azurerm_cognitive_account" "luis_authoring_oas_callback" {
 
   sku_name = var.sku_name
 }
-}
+
 
 
 
