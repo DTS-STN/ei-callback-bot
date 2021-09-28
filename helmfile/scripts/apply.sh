@@ -4,6 +4,6 @@ if [[ $BRANCH == *"/"* ]]; then
 fi
 echo "Deploying to: $BRANCH" 
 az account set -s $SUBSCRIPTION
-az aks get-credentials --admin --resource-group %env.RG_DEV% --name $K8S_CLUSTER_NAME
+az aks get-credentials --admin --resource-group $RG_DEV --name $K8S_CLUSTER_NAME
 cd ..
 helmfile -e $TARGET apply
