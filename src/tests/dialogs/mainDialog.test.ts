@@ -2,45 +2,30 @@
 import { MessageFactory } from 'botbuilder';
 import { ComponentDialog, TextPrompt, WaterfallDialog } from 'botbuilder-dialogs';
 import { DialogTestClient, DialogTestLogger } from 'botbuilder-testing';
+import { MainDialog } from '../../dialogs/mainDialog';
 
 const assert = require('assert');
 
 /**
- * An waterfall dialog derived from CancelAndHelpDialog for testing
+ * An waterfall dialog derived from MainDialog for testing
  */
-class TestMainDialog extends ComponentDialog {
-    constructor() {
-        super('TestMainDialog');
 
-        this.addDialog(new TextPrompt('TextPrompt'))
-            .addDialog(new WaterfallDialog('WaterfallDialog', [
-                this.promptStep.bind(this),
-                this.finalStep.bind(this)
-            ]));
-
-        this.initialDialogId = 'WaterfallDialog';
-    }
-
-    public async promptStep(stepContext) {
-        return await stepContext.prompt('TextPrompt', { prompt: MessageFactory.text('Hi there') });
-    }
-
-    public async finalStep(stepContext) {
-        return await stepContext.endDialog();
-    }
-}
 
 describe('MainDialog', () => {
     describe('Should be able to initial callback dialog', () => {
-        const testCases = ['cancel', 'quit'];
+        const testCases = require('./testData/MainDialogTestData');
+        const sut = new MainDialog();
 
         testCases.map((testData) => {
             it(testData, async () => {
-                const sut = new TestMainDialog();
+
                 const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
 
                 // Execute the test case
-                let reply = await client.sendActivity('Hi');
+
+                console.log('test 2',client.conversationState)
+                console.log('test 3',client.dialogTurnResult.result)
+                let reply = await client.sendActivity('Yes Please!');
                 assert.strictEqual(reply.text, 'Hi there');
                 assert.strictEqual(client.dialogTurnResult.status, 'waiting');
 
@@ -52,7 +37,7 @@ describe('MainDialog', () => {
     });
 
     describe('Should be able to get rate step', () => {
-        const testCases = ['close the dialog', '?'];
+        const testCases = ['', '?'];
 
         testCases.map((testData) => {
             it(testData, async () => {
@@ -60,7 +45,7 @@ describe('MainDialog', () => {
                 const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
 
                 // Execute the test case
-                let reply = await client.sendActivity('Hi');
+                let reply = await client.sendActivity('Yes Please!');
                 assert.strictEqual(reply.text, 'Hi there');
                 assert.strictEqual(client.dialogTurnResult.status, 'waiting');
 

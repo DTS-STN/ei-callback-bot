@@ -7,6 +7,7 @@ export class CallbackBotDetails {
         public confirmCallbackDetailsStep;
         public getUserPhoneNumberStep;
         public confirmAuthWordStep;
+        public getUserEmailStep;
         public errorCount;
         public getPreferredCallbackDateAndTimeStep;
         public phoneNumber;
@@ -21,13 +22,17 @@ export class CallbackBotDetails {
         // [STEP 1] Flag that confirms the user wants to set up a callback
         this.confirmCallbackStep = null;
 
-        // [STEP 2] Flag that get the user primary phone number
-        this.getUserPhoneNumberStep = null;
 
         // [STEP 3] Get user prefer date and time for the callback
         this.getPreferredCallbackDateAndTimeStep = null;
        // [STEP 4] send auth word to user
+
+        // [STEP 2] Flag that get the user primary phone number
+        this.getUserPhoneNumberStep = null;
+
+        this.getUserEmailStep = null;
         this.confirmAuthWordStep = null;
+
 
         // [STEP 5] Display of the final call back date time
         this.confirmCallbackDetailsStep = null;
@@ -42,7 +47,8 @@ export class CallbackBotDetails {
             getUserPhoneNumberStep: 0,
             getPreferredCallbackDateAndTimeStep: 0,
             confirmCallbackDetailsStep: 0,
-            confirmAuthWordStep:0
+            confirmAuthWordStep:0,
+            getUserEmailStep:0
         };
 
         // TODO: Refactor and add an object that tracks status perhaps something like below

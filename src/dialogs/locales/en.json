@@ -1,15 +1,18 @@
 {
-    "callbackBotDialogWelcomeMsg": "Hi Mary, I’m your virtual concierge!",
+    "callbackBotDialogWelcomeMsg": "Looks like you need more help.",
     "callbackBotDialogMasterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
-    "callbackBotDialogStepStandardMsg":" Do you want to our agent contact you later?",
+    "callbackBotDialogStepStandardMsg": "Ok, no problem. We are able to set up a callback with an officer from Service Canada, who'd be able to help you with your block over the phone. Does that sound good to you?",
+
     "mainDialogFeedbackMsg": "Before you go, could I ask you to rate the service you received today?",
     "mainDialogGreatDayMsg": "Ok, have a great day!",
+
     "confirmCallbackStandardPromptOptions": [
         "Yes please!",
         "No thanks"
     ],
     "confirmCallbackStandardMsg": "Can you tell me your phone number that the agent can reach you?",
     "confirmCallbackStepRetryMsg": "Sorry, do you want me to setup a callback?",
+
     "confirmCallbackStepErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
     "confirmCallbackStepStandardPromptOptions": [
         "Yes please!",
@@ -21,6 +24,7 @@
 
     "confirmAuthWordStepStandardMsg": "This is your auth token for verification",
     "confirmAuthWordMsg": "Please remember this code",
+
     "getUserPhoneNumberStepStandardMsg": "Ok, what phone number that the agent can reach you?",
     "getUserPhoneNumberStepRetryMsg": "Sorry, do you want me to record your phone number?",
     "getUserPhoneNumberStepConfirmMsg": "Ok, received your phone number!",
@@ -28,18 +32,26 @@
      "getPreferredCallbackDateAndTimeStepConfirmMsg": "OK, date and time saved",
     "getPreferredCallbackDateAndTimeStepPromptMsg": "Now Could you please choose the available date and time?",
     "getPreferredCallbackDateAndTimeStepStandardMsg": "What's the best date and time to reach you?",
-
+     "getCallbackScheduleStandardMsg": " Great - One of our officers will give you a call within the next 48 hours to help you with your missing record of employment.",
     "getPreferredCallbackDateAndTimeStepRetryMsg": "Sorry, do you prefer email or text or both?",
+    "getPreferredMethodOfContactStepStandardMsg": "What's the best way to reach you? I can do email or text message (or both).",
+    "getPreferredMethodOfContactStepRetryMsg": "Sorry, do you prefer email or text or both?",
+    "getPreferredMethodOfContactStepSendEmailMsg": "Ok, we'll email you at mary@fakeaddress.com once we've gotten your Record of Employment.",
+    "getPreferredMethodOfContactStepSendTextMsg": "Ok, I'll text you at 123-456-7890 once we've gotten your Record of Employment.",
     "getPreferredMethodOfContactStepSendBothMsg": "Ok, I'll email you at mary@fakeaddress.com, and text you at 123-456-7890 once we've gotten your Record of Employment.",
-    "getPreferredCallbackDateAndTimeStepStandardPromptOptions": [
-        "Yes please!",
-        "No thanks"
+    "getPreferredMethodOfContactStepStandardPromptOptions": [
+      "Email",
+      "Text message",
+      "Both"
     ],
-    "getPreferredCallbackTimeStepStandardPromptOptions": [
-        "11 AM",
-        "12 PM",
-        "2 PM"
-    ]
+    "getAndSendEmailStepStandardMsg": "Ok, what email address should I send it to?",
+    "getAndSendEmailStepRetryMsg": "Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again.",
+    "getAndSendEmailStepConfirmMsg": "Ok, email sent!",
+    "masterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here]."
 
 
-}
+
+  }
+
+
+

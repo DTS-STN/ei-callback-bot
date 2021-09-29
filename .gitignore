@@ -4,3 +4,4 @@ node_modules/
 .history
 .config/.env.local
 /dist
+**/.DS_Store
