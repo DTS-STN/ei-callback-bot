@@ -8,7 +8,7 @@ services:
     env_file: ./src/.env
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.local
     environment:
       TZ: ${TZ}
       MICROSOFT_APP_ID: ${MICROSOFT_APP_ID}
@@ -17,7 +17,7 @@ services:
       - "3978:3978"
     volumes:
       # Binds the application folder from the host inside the container for fast changes
-      - .:/usr/src/app
+      # - .:/usr/src/app
       # Ignores/Hides the node_modules from the bind on the host allowing the node_modules
       # from inside the container to be used instead
       - /usr/src/app/node_modules

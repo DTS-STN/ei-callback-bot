@@ -30,8 +30,8 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about how bots work.
 const adapter = new BotFrameworkAdapter({
-     // appId: process.env.MicrosoftAppId,
-    //appPassword: process.env.MicrosoftAppPassword
+     appId: process.env.MicrosoftAppId,
+     appPassword: process.env.MicrosoftAppPassword
 });
 
 // Catch-all for errors.
@@ -87,6 +87,13 @@ server.post('/api/messages', (req, res) => {
     });
 });
 
+// [OPTIONAL]
+// When deploying azure usually pings the web app server to know the status. The request can be ignored or answered, depending
+// on the implementation. In my case it was logging the errors so I prefer to just reply to the request.
+server.get('/', (req, res, next) => {
+    res.send(200);
+    next();
+});
 // Listen for Upgrade requests for Streaming.
 server.on('upgrade', (req, socket, head) => {
     // Create an adapter scoped to this WebSocket connection to allow storing session data.
