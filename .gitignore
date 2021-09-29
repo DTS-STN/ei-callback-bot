@@ -5,3 +5,4 @@ node_modules/
 .config/.env.local
 /dist
 **/.DS_Store
+.nyc_output
