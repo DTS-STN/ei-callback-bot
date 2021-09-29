@@ -1,6 +1,6 @@
-var nock = require('nock');
+const nock = require('nock');
 
-function setup() {
+ export function setupLUIS() {
   var model = '/?id=appId&subscription-key=subId&q=';
   nock('https://luis.url')
     .get(model + encodeURIComponent('set alarm test in 10 seconds'))
@@ -49,6 +49,3 @@ function setup() {
     });
 }
 
-module.exports = {
-  setup
-};

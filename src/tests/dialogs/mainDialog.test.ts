@@ -41,7 +41,7 @@ describe('MainDialog', () => {
 
         testCases.map((testData) => {
             it(testData, async () => {
-                const sut = new TestMainDialog();
+                const sut = new MainDialog();
                 const client = new DialogTestClient('test', sut, null, [new DialogTestLogger()]);
 
                 // Execute the test case
