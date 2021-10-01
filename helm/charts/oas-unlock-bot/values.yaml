@@ -56,10 +56,23 @@ persistence:
   volumeMount:
       path: /mnt/example
   storageClass: dtsstorageclass
-  size: 2Gi  
+  size: 2Gi
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+# secret is the required secrets for the oas-callback-bot container.
+secret:
+  # luisAppUrl:
+  # storageAccountName:
+  # storageAccountKey:
+  LuisAppIdFR:
+  LuisAPIKeyFR:
+  LuisAPIHostNameFR:
+  LuisAppIdEN:
+  LuisAPIKeyEN:
+  LuisAPIHostNameEN:
+  MicrosoftAppId:
+  MicrosoftAppPassword:

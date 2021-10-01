@@ -9,7 +9,7 @@ metadata:
   {{ with .Values.deployment.annotations }}
   annotations:
     {{ toYaml . | nindent 4 }}
-  {{ end }}   
+  {{ end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -27,6 +27,46 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: LuisAppIdFR
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAppIdFR
+          - name: LuisAPIKeyFR
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAPIKeyFR
+          - name: LuisAPIHostNameFR
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAPIHostNameFR
+          - name: LuisAppIdEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAppIdEN
+          - name: LuisAPIKeyEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAPIKeyEN
+          - name: LuisAPIHostNameEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: LuisAPIHostNameEN
+          - name: MicrosoftAppId
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: MicrosoftAppId
+          - name: MicrosoftAppPassword
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "fullname" . }}
+                key: MicrosoftAppPassword
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 10 }}
 {{- end }}
@@ -54,4 +94,4 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      
+
