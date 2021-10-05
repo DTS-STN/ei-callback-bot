@@ -22,6 +22,16 @@ spec:
         app.kubernetes.io/name: {{ include "name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+{{ if .Values.secrets.enabled }}
+      initContainers:
+        - name: init-secrets
+          image: {{ .Values.secrets.image }}
+          imagePullPolicy: Always
+          {{- if .Values.secrets.env }}
+          env:
+{{ toYaml .Values.secrets.env | indent 10 }}
+          {{ end }}     
+{{ end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

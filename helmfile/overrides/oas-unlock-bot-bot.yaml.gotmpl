@@ -1,0 +1,52 @@
+secrets:
+   enabled: true 
+   env:
+      - name: KEYVAULT_READ_USER
+        value: {{ requiredEnv "KEYVAULT_READ_USER" }}
+      - name: KEYVAULT_READ_PASSWORD
+        value: {{ requiredEnv "KEYVAULT_READ_PASSWORD" }}  
+      - name: SUBSCRIPTION_ID
+        value: {{ requiredEnv "SUBSCRIPTION_ID" }}  
+      - name: TENANT_ID
+        value: {{ requiredEnv "TENANT_ID" }}  
+      - name: KEYVAULT_NAME
+        value: {{ requiredEnv "KEYVAULT_NAME" }}  
+      - name: K8S_CLUSTER_NAME
+        value: {{ requiredEnv "K8S_CLUSTER_NAME" }}             
+      - name: K8S_RG_NAME
+        value: {{ requiredEnv "K8S_RG_NAME" }}   
+      - name: NAMESPACE
+        value: {{ .Release.Namespace }}
+      - name: SINGLE_SECRET
+        value: "true"        
+      - name: SINGLE_SECRET_NAME
+        value: oas-unlock-bot-az-credentials     
+      - name: SECRET_LIST
+        value: "bdm-dev-terraform-sp-id,bdm-dev-terraform-sp-pass"    
+image:
+  repository: mtscontainers.azurecr.io/oas-bot
+  tag: "{{ env "DOCKER_TAG" | default "latest" }}" 
+  pullPolicy: Always
+extraEnv:
+    - name: MICROSOFT_APP_ID
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials 
+          key: bdm-dev-terraform-sp-id
+    - name: MICROSOFT_APP_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials 
+          key: bdm-dev-terraform-sp-id      
+ingress:
+    enabled: false
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+healthChecks:
+    livenessDelay: 15
+    readinessDelay: 15
+    livenessPath: /
+    readinessPath: /
+port: 3978
