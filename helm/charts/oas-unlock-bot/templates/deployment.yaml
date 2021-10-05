@@ -30,53 +30,13 @@ spec:
           {{- if .Values.secrets.env }}
           env:
 {{ toYaml .Values.secrets.env | indent 10 }}
-          {{ end }}     
+          {{ end }}
 {{ end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: LuisAppIdFR
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAppIdFR
-          - name: LuisAPIKeyFR
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAPIKeyFR
-          - name: LuisAPIHostNameFR
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAPIHostNameFR
-          - name: LuisAppIdEN
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAppIdEN
-          - name: LuisAPIKeyEN
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAPIKeyEN
-          - name: LuisAPIHostNameEN
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: LuisAPIHostNameEN
-          - name: MicrosoftAppId
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: MicrosoftAppId
-          - name: MicrosoftAppPassword
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "fullname" . }}
-                key: MicrosoftAppPassword
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 10 }}
 {{- end }}
