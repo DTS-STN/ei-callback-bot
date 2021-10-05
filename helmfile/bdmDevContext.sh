@@ -8,4 +8,6 @@ export KEYVAULT_READ_PASSWORD=$(az keyvault secret show --vault-name $KEYVAULT_N
 export K8S_CLUSTER_NAME=ESdCDPSBDMK8SDev-K8S
 export K8S_RG_NAME=ESdCDPSBDMK8SDev
 export BASE_DOMAIN=bdm-dev.dts-stn.com
+export PROJECT=dts-oas-callback-bot
+export BRANCH=main
 az aks get-credentials --name $K8S_CLUSTER_NAME --resource-group $K8S_RG_NAME
