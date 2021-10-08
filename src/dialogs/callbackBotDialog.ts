@@ -14,6 +14,9 @@ import { ConfirmCallbackDetailsStep, CONFIRM_CALLBACK_DETAILS_STEP } from './con
 import   i18n from './locales/i18nConfig';
 import { CallbackBotDetails } from './callbackBotDetails';
 import { StatePropertyAccessor,UserState } from 'botbuilder';
+import {  ConfirmEmailStep, CONFIRM_EMAIL_STEP } from './confirmEmailStep';
+import { GetPreferredMethodOfContactStep, GET_PREFERRED_METHOD_OF_CONTACT_STEP } from './getPreferredMethodOfContactStep';
+import { ConfirmPhoneStep, CONFIRM_PHONE_STEP } from './confirmPhoneStep';
 
 export const CALLBACK_BOT_DIALOG = 'CALLBACK_BOT_DIALOG';
 const MAIN_CALLBACK_BOT_WATERFALL_DIALOG = 'MAIN_CALLBACK_BOT_WATERFALL_DIALOG';
@@ -25,18 +28,26 @@ export class CallbackBotDialog extends ComponentDialog {
 
         // Add the ConfirmLookIntoStep dialog to the dialog stack
         this.addDialog(new ConfirmCallbackStep());
-        this.addDialog(new GetUserPhoneNumberStep());
-        this.addDialog(new GetPreferredCallbackDateAndTimeStep());
+       // this.addDialog(new ConfirmConfirmationStep());
+        this.addDialog(new GetPreferredMethodOfContactStep());
+        this.addDialog(new ConfirmEmailStep());
+        this.addDialog(new ConfirmPhoneStep());
+       // this.addDialog(new GetUserPhoneNumberStep());
+       // this.addDialog(new GetPreferredCallbackDateAndTimeStep());
         this.addDialog(new ConfirmAuthWordStep());
-        this.addDialog(new ConfirmCallbackDetailsStep());
+       // this.addDialog(new ConfirmCallbackDetailsStep());
 
         this.addDialog(new WaterfallDialog(MAIN_CALLBACK_BOT_WATERFALL_DIALOG, [
             this.welcomeStep.bind(this),
             this.confirmCallbackStep.bind(this),
-            this.getUserPhoneNumberStep.bind(this),
-            this.getPreferredCallbackDateAndTimeStep.bind(this),
+           // this.confirmConfirmationStep.bind(this),
+            this.getPreferredMethodOfContactStep.bind(this),
+            this.confirmEmailStep.bind(this),
+            this.confirmPhoneStep.bind(this),
+         //   this.getUserPhoneNumberStep.bind(this),
+          //  this.getPreferredCallbackDateAndTimeStep.bind(this),
             this.confirmAuthWordStep.bind(this),
-            this.ConfirmCallbackDetailsStep.bind(this),
+            // this.ConfirmCallbackDetailsStep.bind(this),
             this.finalStep.bind(this)
         ]));
 
@@ -54,9 +65,9 @@ export class CallbackBotDialog extends ComponentDialog {
         // Get the callback Bot details / state machine for the current user
          const callbackBotDetails = stepContext.options;
 
-        const welcomeMsg = i18n.__('callbackBotDialogWelcomeMsg');
+       // const welcomeMsg = i18n.__('callbackBotDialogWelcomeMsg');
 
-        await stepContext.context.sendActivity(welcomeMsg);
+        // await stepContext.context.sendActivity(welcomeMsg);
 
         return await stepContext.next(callbackBotDetails);
 
@@ -143,6 +154,48 @@ export class CallbackBotDialog extends ComponentDialog {
         }
     }
 
+
+
+
+
+    async confirmPhoneStep(stepContext) {
+    // Get the state machine from the last step
+    const callbackBotDetails = stepContext.result;
+
+    // DEBUG
+    // console.log('DEBUG: getAndSendEmailStep:', unblockBotDetails, stepContext.result);
+    if (callbackBotDetails.masterError) {
+      return await stepContext.endDialog(callbackBotDetails);
+    } else {
+      switch (callbackBotDetails.confirmPhoneStep) {
+        // The confirmNotifyROEReceivedStep flag in the state machine isn't set
+        // so we are sending the user to that step
+        case null:
+          // ADD CHECKS TO SEE IF THE FIRST THREE STEPS ARE TRUE
+          // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
+          return await stepContext.beginDialog(
+            CONFIRM_PHONE_STEP,
+            callbackBotDetails
+          );
+
+        // The confirmNotifyROEReceivedStep flag in the state machine is set to true
+        // so we are sending the user to next step
+        case true:
+          // console.log('DEBUG', unblockBotDetails);
+          return await stepContext.next(callbackBotDetails);
+
+        // The confirmNotifyROEReceivedStep flag in the state machine is set to false
+        // so we are sending to the end because they need to hit the next step
+        case false:
+          // code block
+          return await stepContext.endDialog(callbackBotDetails);
+
+        // Default catch all but we should never get here
+        default:
+          return await stepContext.endDialog(callbackBotDetails);
+      }
+    }
+    }
     /**
      * Third Step
      *
@@ -242,7 +295,7 @@ export class CallbackBotDialog extends ComponentDialog {
         // The GetPreferredMethodOfContactStep flag in the state machine isn't set
         // so we are sending the user to that step
         case null:
-            if (callbackBotDetails.getPreferredCallbackDateAndTimeStep === true) {
+            if (callbackBotDetails.confirmEmailStep === true || callbackBotDetails.confirmPhoneStep === true) {
                 return await stepContext.beginDialog(CONFIRM_AUTH_WORD_STEP, callbackBotDetails);
             }
             else {
@@ -264,6 +317,81 @@ export class CallbackBotDialog extends ComponentDialog {
         default:
             return await stepContext.endDialog(callbackBotDetails);
         }
+    }
+
+    async confirmEmailStep(stepContext) {
+        // Get the state machine from the last step
+        const callbackBotDetails = stepContext.result;
+
+        // DEBUG
+        // console.log('DEBUG: getAndSendEmailStep:', unblockBotDetails, stepContext.result);
+        if (callbackBotDetails.masterError) {
+          return await stepContext.endDialog(callbackBotDetails);
+        } else {
+          switch (callbackBotDetails.confirmEmailStep) {
+            // The confirmNotifyROEReceivedStep flag in the state machine isn't set
+            // so we are sending the user to that step
+            case null:
+              // ADD CHECKS TO SEE IF THE FIRST THREE STEPS ARE TRUE
+              // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
+              return await stepContext.beginDialog(
+                CONFIRM_EMAIL_STEP,
+                callbackBotDetails
+              );
+
+            // The confirmNotifyROEReceivedStep flag in the state machine is set to true
+            // so we are sending the user to next step
+            case true:
+              // console.log('DEBUG', unblockBotDetails);
+              return await stepContext.next(callbackBotDetails);
+
+            // The confirmNotifyROEReceivedStep flag in the state machine is set to false
+            // so we are sending to the end because they need to hit the next step
+            case false:
+              // code block
+              return await stepContext.endDialog(callbackBotDetails);
+
+            // Default catch all but we should never get here
+            default:
+              return await stepContext.endDialog(callbackBotDetails);
+          }
+        }
+      }
+    async getPreferredMethodOfContactStep(stepContext) {
+ // Get the state machine from the last step
+ const callbackBotDetails = stepContext.result;
+
+ // DEBUG
+ // console.log('DEBUG: getAndSendEmailStep:', unblockBotDetails, stepContext.result);
+
+ switch (callbackBotDetails.getPreferredMethodOfContactStep) {
+   // The GetPreferredMethodOfContactStep flag in the state machine isn't set
+   // so we are sending the user to that step
+   case null:
+     if (callbackBotDetails.confirmCallbackStep === true) {
+       return await stepContext.beginDialog(
+         GET_PREFERRED_METHOD_OF_CONTACT_STEP,
+         callbackBotDetails
+       );
+     } else {
+       return await stepContext.endDialog(callbackBotDetails);
+     }
+
+   // The confirmNotifyROEReceivedStep flag in the state machine is set to true
+   // so we are sending the user to next step
+   case true:
+     return await stepContext.next(callbackBotDetails);
+
+   // The confirmNotifyROEReceivedStep flag in the state machine is set to false
+   // so we are sending to the end because they need to hit the next step
+   case false:
+     // code block
+     return await stepContext.endDialog(callbackBotDetails);
+
+   // Default catch all but we should never get here
+   default:
+     return await stepContext.endDialog(callbackBotDetails);
+ }
     }
 
     /**

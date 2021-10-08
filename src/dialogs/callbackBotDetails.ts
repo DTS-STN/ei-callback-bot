@@ -10,10 +10,14 @@ export class CallbackBotDetails {
         public getUserEmailStep;
         public errorCount;
         public getPreferredCallbackDateAndTimeStep;
+        public getPreferredMethodOfContactStep;
         public phoneNumber;
         public date;
         public time;
         public authCode;
+        public confirmConfirmationStep;
+        public confirmEmailStep;
+        public confirmPhoneStep;
 
     constructor() {
         // Master error - flag that is thrown when we hit a critical error in the conversation flow
@@ -32,8 +36,10 @@ export class CallbackBotDetails {
 
         this.getUserEmailStep = null;
         this.confirmAuthWordStep = null;
-
-
+        this.confirmConfirmationStep = null;
+        this.getPreferredMethodOfContactStep = null;
+        this.confirmEmailStep = null;
+        this.confirmPhoneStep = null;
         // [STEP 5] Display of the final call back date time
         this.confirmCallbackDetailsStep = null;
         this.date = '';
@@ -48,7 +54,12 @@ export class CallbackBotDetails {
             getPreferredCallbackDateAndTimeStep: 0,
             confirmCallbackDetailsStep: 0,
             confirmAuthWordStep:0,
-            getUserEmailStep:0
+            getUserEmailStep:0,
+            confirmConfirmationStep: 0,
+            getPreferredMethodOfContactStep :0,
+            confirmEmailStep:0,
+            confirmPhoneStep:0
+
         };
 
         // TODO: Refactor and add an object that tracks status perhaps something like below

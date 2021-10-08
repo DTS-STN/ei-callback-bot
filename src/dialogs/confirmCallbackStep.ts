@@ -177,22 +177,22 @@ export class ConfirmCallbackStep extends ComponentDialog {
             endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
         }
 
-        // LUIZ Recogniser processing
-        // const recognizer = new LuisRecognizer({
-       //     applicationId: applicationId,
-        //    endpointKey: endpointKey,
-       //     endpoint: endpoint
-       // }, {
-       //     includeAllIntents: true,
-       //     includeInstanceData: true
-      //  }, true);
+         // LUIZ Recogniser processing
+         const recognizer = new LuisRecognizer({
+            applicationId: applicationId,
+            endpointKey: endpointKey,
+            endpoint: endpoint
+        }, {
+            includeAllIntents: true,
+            includeInstanceData: true
+        }, true);
 
         // Call prompts recognizer
-       // const recognizerResult = await recognizer.recognize(stepContext.context);
+        const recognizerResult = await recognizer.recognize(stepContext.context);
 
         // Top intent tell us which cognitive service to use.
-        // const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
-        const intent: string ='promptConfirmYes';
+         const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
+
         const closeMsg = i18n.__('confirmCallbackStepCloseMsg');
 
         switch (intent) {

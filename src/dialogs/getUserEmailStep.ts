@@ -5,7 +5,7 @@ import  {
   } from "botbuilder-dialogs";
 
   // This is for the i18n stuff
-  const { i18n } = require("./locales/i18nConfig");
+  import  i18n  from "./locales/i18nConfig";
 
   const TEXT_PROMPT = "TEXT_PROMPT";
   const GET_AND_SEND_EMAIL_STEP = "GET_AND_SEND_EMAIL_STEP";

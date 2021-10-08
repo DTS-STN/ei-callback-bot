@@ -22,6 +22,7 @@ import {
 } from "./getPreferredMethodOfContactStep";
 
 import i18n  from "../locales/i18nConfig";
+import { CallbackBotDialog } from "../callbackBotDialog";
 
 export const UNBLOCK_BOT_DIALOG = "UNBLOCK_BOT_DIALOG";
  const MAIN_UNBLOCK_BOT_WATERFALL_DIALOG = "MAIN_UNBLOCK_BOT_WATERFALL_DIALOG";
@@ -36,6 +37,7 @@ export class UnblockBotDialog extends ComponentDialog {
     this.addDialog(new GetAndSendEmailStep());
     this.addDialog(new ConfirmNotifyROEReceivedStep());
     this.addDialog(new GetPreferredMethodOfContactStep());
+    this.addDialog(new CallbackBotDialog());
 
     this.addDialog(
       new WaterfallDialog(MAIN_UNBLOCK_BOT_WATERFALL_DIALOG, [

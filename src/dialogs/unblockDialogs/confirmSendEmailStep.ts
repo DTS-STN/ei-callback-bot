@@ -10,6 +10,12 @@ import { LuisRecognizer } from "botbuilder-ai";
 // This is for the i18n stuff
 import  i18n  from "../locales/i18nConfig";
 
+import {
+  CallbackBotDialog,
+  CALLBACK_BOT_DIALOG
+} from '../callbackBotDialog';
+
+import  { CallbackBotDetails } from '../callbackBotDetails';
 const TEXT_PROMPT = "TEXT_PROMPT";
 export const CONFIRM_SEND_EMAIL_STEP = "CONFIRM_SEND_EMAIL_STEP";
 const CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP =
@@ -167,7 +173,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
 
     // This message is sent if the user selects that they don't want to continue
     const closeMsg = i18n.__("confirmSendEmailStepCloseMsg");
-
+    // const callbackConfirmMsg = i18n.__("callbackBotDialogStepStandardMsg");
     switch (intent) {
       // Proceed
       case "promptConfirmYes":
@@ -181,11 +187,14 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       case "promptConfirmSendEmailNo":
         console.log("INTENT: ", intent);
         unblockBotDetails.confirmSendEmailStep = false;
+      // this should be switch to callback flow
+       // await stepContext.context.sendActivity(callbackConfirmMsg);
 
-        await stepContext.context.sendActivity(closeMsg);
-
-        return await stepContext.endDialog(unblockBotDetails);
-
+       // return await stepContext.endDialog(unblockBotDetails);
+       return await stepContext.replaceDialog(
+        CALLBACK_BOT_DIALOG,
+        new CallbackBotDetails()
+      );
       // Could not understand / None intent
       default: {
         // Catch all

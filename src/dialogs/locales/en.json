@@ -1,5 +1,10 @@
 {
-    "callbackBotDialogWelcomeMsg": "Looks like you need more help.",
+    "callbackBotDialogWelcomeMsg": " Great - One of our officers will give you a call within the next 48 hours to help you with your missing record of employment.",
+    "confirmConfirmationStepStandardPromptOptions": [
+      "Yes, email",
+      "yes, text",
+      "Both"
+    ],
     "callbackBotDialogMasterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
     "callbackBotDialogStepStandardMsg": "Ok, no problem. We are able to set up a callback with an officer from Service Canada, who'd be able to help you with your block over the phone. Does that sound good to you?",
 
@@ -10,6 +15,7 @@
         "Yes please!",
         "No thanks"
     ],
+
     "confirmCallbackStandardMsg": "Can you tell me your phone number that the agent can reach you?",
     "confirmCallbackStepRetryMsg": "Sorry, do you want me to setup a callback?",
 
@@ -22,9 +28,10 @@
 
     "confirmCallbackDetailsStepStandardMsg": "So, here is your callback appointment details:",
 
-    "confirmAuthWordStepStandardMsg": "This is your auth token for verification",
-    "confirmAuthWordMsg": "Please remember this code",
-
+    "confirmAuthWordStepStandardMsg": "Ok - here's your confirmation code: XXX-XXXXXXXXXXXXXXX.",
+    "confirmAuthWordMsg": "You will be contacted by an officer from Service Canada within the next 48 hours between 9-5pm EST.",
+    "confirmAuthStepMsg": "We'll also email/text your confirmation code to [EMAIL/INSERT PHONE]. When the Service Canada representative calls you, they'll read this code in order to prove they are not a spam caller.",
+    "confirmAuthWordStepRetryMsg":"sorry, I dont understand what do you mean?",
     "getUserPhoneNumberStepStandardMsg": "Ok, what phone number that the agent can reach you?",
     "getUserPhoneNumberStepRetryMsg": "Sorry, do you want me to record your phone number?",
     "getUserPhoneNumberStepConfirmMsg": "Ok, received your phone number!",
@@ -44,12 +51,31 @@
       "Text message",
       "Both"
     ],
+    "confirmEmailStepStandMsg":"The e-mail we have on file is test@test.com. Is this the correct e-mail address?",
+    "confirmEmailStepRetryMsg": "Sorry, is this your email address?",
+    "confirmEmailStepStandardPromptOptions": [
+      "Yes correct!",
+      "No it's not"
+  ],
+  "confirmPhoneStepStandMsg":"The phone number we have on file is XXX-XXX-XXXX. Is this the correct phone number?",
+  "confirmPhoneStepRetryMsg": "Sorry, is this your phone number?",
+  "confirmPhoneStepStandardPromptOptions": [
+    "Yes correct!",
+    "No it's not"
+],
+"callbackGoodByeGreetingMsg":"   Is there anything else we can help you out with today?",
+"callbackGoodByeGreetingStandardPromptOptions": [
+  "Yes ",
+  "No "
+],
+"callbackCloseMsg" :"Ok, no problem. I'll be here if you need me!",
+
     "getAndSendEmailStepStandardMsg": "Ok, what email address should I send it to?",
     "getAndSendEmailStepRetryMsg": "Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again.",
     "getAndSendEmailStepConfirmMsg": "Ok, email sent!",
     "masterErrorMsg": "Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].",
 
-    "unBlockBotDialogWelcomeMsg": "Hi Mary, I’m your virtual concierge!",
+    "unBlockBotDialogWelcomeMsg": "Hi Mary, I’m your virtual assistant!",
 
 
     "confirmLookIntoStepStandardMsg": "I looked at your application and I can see there’s a block on your file. Do you want me to look into that?",
@@ -73,9 +99,9 @@
       "Yes, notify me",
       "No, don't notify me"
     ],
-    "confirmNotifyROEReceivedStepCloseMsg": "Ok, no problem!"
+    "confirmNotifyROEReceivedStepCloseMsg": "Ok, no problem!",
 
-
+   "callbackConfirmationQueryMsg": "Would you like us to send you a confirmation through text or e-mail?"
 
 
 }

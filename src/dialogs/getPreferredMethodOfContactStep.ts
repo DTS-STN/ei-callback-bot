@@ -11,28 +11,28 @@ import {
   import   i18n from './locales/i18nConfig'
 
   const TEXT_PROMPT = "TEXT_PROMPT";
-  export const GET_PREFFERED_METHOD_OF_CONTACT_STEP =
-    "GET_PREFFERED_METHOD_OF_CONTACT_STEP";
-  const GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP =
-    "GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP";
+  export const GET_PREFERRED_METHOD_OF_CONTACT_STEP =
+    "GET_PREFERRED_METHOD_OF_CONTACT_STEP";
+  const GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP =
+    "GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP";
 
   const MAX_ERROR_COUNT = 3;
 
   export class GetPreferredMethodOfContactStep extends ComponentDialog {
     constructor() {
-      super(GET_PREFFERED_METHOD_OF_CONTACT_STEP);
+      super(GET_PREFERRED_METHOD_OF_CONTACT_STEP);
 
       // Add a text prompt to the dialog stack
       this.addDialog(new TextPrompt(TEXT_PROMPT));
 
       this.addDialog(
-        new WaterfallDialog(GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP, [
+        new WaterfallDialog(GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP, [
           this.initialStep.bind(this),
           this.finalStep.bind(this),
         ])
       );
 
-      this.initialDialogId = GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP;
+      this.initialDialogId = GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP;
     }
 
     /**
@@ -54,7 +54,7 @@ import {
       // console.log('DEBUG UNBLOCKBOTDETAILS:', unblockBotDetails);
 
       // Set the text for the prompt
-      const standardMsg = i18n.__("getPreferredMethodOfContactStepStandardMsg");
+      const standardMsg = i18n.__("callbackBotDialogWelcomeMsg");
 
       // Set the text for the retry prompt
       const retryMsg = i18n.__("getPreferredMethodOfContactStepRetryMsg");
@@ -77,14 +77,20 @@ import {
         callbackDetails.getPreferredMethodOfContactStep === null ||
         callbackDetails.getPreferredMethodOfContactStep === -1
       ) {
-        // Setup the prompt message
-        var promptMsg = "";
 
+           // If the flag is set to null then the step hasn't run before
+           if (callbackDetails.getPreferredMethodOfContactStep === null) {
+            await stepContext.context.sendActivity(standardMsg);
+           }
+
+        // Setup the prompt message
+        let promptMsg = "";
+        const queryMsg = i18n.__("callbackConfirmationQueryMsg");
         // The current step is an error state
         if (callbackDetails.getPreferredMethodOfContactStep === -1) {
           promptMsg = retryMsg;
         } else {
-          promptMsg = standardMsg;
+          promptMsg = queryMsg;
         }
 
         // Set the options for the quick reply buttons
@@ -152,8 +158,8 @@ import {
       const recognizerResult = await recognizer.recognize(stepContext.context);
 
       // Setup the possible messages that could go out
-      const sendEmailMsg = i18n.__("getPreferredMethodOfContactStepSendEmailMsg");
-      const sendTextMsg = i18n.__("getPreferredMethodOfContactStepSendTextMsg");
+      const sendEmailMsg = i18n.__("confirmEmailStepStandMsg");
+      const sendTextMsg = i18n.__("confirmPhoneStepStandMsg");
       const sendBothMsg = i18n.__("getPreferredMethodOfContactStepSendBothMsg");
 
       // Top intent tell us which cognitive service to use.
@@ -166,7 +172,7 @@ import {
           console.log("INTENT: ", intent);
           callbackBotDetails.getPreferredMethodOfContactStep = true;
 
-          await stepContext.context.sendActivity(sendEmailMsg);
+         // await stepContext.context.sendActivity(sendEmailMsg);
 
           return await stepContext.endDialog(callbackBotDetails);
 
@@ -175,7 +181,7 @@ import {
           console.log("INTENT: ", intent);
           callbackBotDetails.getPreferredMethodOfContactStep = true;
 
-          await stepContext.context.sendActivity(sendTextMsg);
+         // await stepContext.context.sendActivity(sendTextMsg);
 
           return await stepContext.endDialog(callbackBotDetails);
 
@@ -196,7 +202,7 @@ import {
           callbackBotDetails.errorCount.getPreferredMethodOfContactStep++;
 
           return await stepContext.replaceDialog(
-            GET_PREFFERED_METHOD_OF_CONTACT_STEP,
+            GET_PREFERRED_METHOD_OF_CONTACT_STEP,
             callbackBotDetails
           );
         }

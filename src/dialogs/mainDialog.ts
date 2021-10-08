@@ -74,8 +74,9 @@ export class MainDialog extends ComponentDialog {
      */
     async initialStep(stepContext: WaterfallStepContext) : Promise<DialogTurnResult> {
         // const callBackBotDetails = new CallbackBotDetails();
-        const unblockBotDetails = new UnblockBotDetails();
-        return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, unblockBotDetails);
+        // return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, callBackBotDetails);
+       const unblockBotDetails = new UnblockBotDetails();
+       return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, unblockBotDetails);
     }
 
     /**

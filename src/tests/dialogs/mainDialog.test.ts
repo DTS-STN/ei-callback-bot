@@ -3,7 +3,7 @@ import { MessageFactory } from 'botbuilder';
 import { ComponentDialog, TextPrompt, WaterfallDialog } from 'botbuilder-dialogs';
 import { DialogTestClient, DialogTestLogger } from 'botbuilder-testing';
 import { MainDialog } from '../../dialogs/mainDialog';
-
+import  i18n  from "../../dialogs/locales/i18nConfig";
 const assert = require('assert');
 
 /**
@@ -17,8 +17,8 @@ describe('MainDialog', () => {
         const sut = new MainDialog();
       // Create array with test case data.
       const testCases = [
-        { utterance: 'Yes, please', intent: '', invokedDialogResponse: 'bookingDialog mock invoked', taskConfirmationMessage: 'I have you booked to Seattle from New York' },
-        { utterance: 'bananas', intent: 'None', invokedDialogResponse: `Sorry, I didn't get that. Please try asking in a different way (intent was None)`, taskConfirmationMessage: undefined }
+        { utterance: 'Yes, please', intent: '', invokedDialogResponse: 'mainDialog mock invoked', taskConfirmationMessage: 'I have you booked to Seattle from New York' },
+        { utterance: 'bananas', intent: 'None', invokedDialogResponse: ``, taskConfirmationMessage: undefined }
     ];
         testCases.map((testData) => {
             it(testData.intent, async () => {
@@ -28,8 +28,9 @@ describe('MainDialog', () => {
                 // Execute the test case
                 console.log('test 2',client.conversationState)
                 console.log('test 3',client.dialogTurnResult.result)
+                const standardMsg = i18n.__("confirmSendEmailStepStandardMsg");
                 let reply = await client.sendActivity('Yes Please!');
-                assert.strictEqual(reply.text, 'Hi there');
+                assert.strictEqual(reply.text, standardMsg);
                 assert.strictEqual(client.dialogTurnResult.status, 'waiting');
 
                 reply = await client.sendActivity(testData.invokedDialogResponse);
