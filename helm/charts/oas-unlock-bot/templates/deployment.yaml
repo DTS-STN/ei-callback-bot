@@ -9,7 +9,7 @@ metadata:
   {{ with .Values.deployment.annotations }}
   annotations:
     {{ toYaml . | nindent 4 }}
-  {{ end }}   
+  {{ end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -30,7 +30,7 @@ spec:
           {{- if .Values.secrets.env }}
           env:
 {{ toYaml .Values.secrets.env | indent 10 }}
-          {{ end }}     
+          {{ end }}
 {{ end }}
       containers:
         - name: {{ .Chart.Name }}
@@ -64,4 +64,4 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      
+
