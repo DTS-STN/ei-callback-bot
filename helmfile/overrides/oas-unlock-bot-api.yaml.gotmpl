@@ -1,6 +1,6 @@
 image:
   repository: mtscontainers.azurecr.io/{{ requiredEnv "PROJECT" }}
-  tag: "{{ env "DOCKER_TAG" | default "latest" }}" 
+  tag: "{{ env "DOCKER_TAG" | default "latest" }}"
   pullPolicy: Always
 ingress:
     enabled: true
@@ -11,7 +11,7 @@ ingress:
           - {{ requiredEnv "PROJECT" }}.{{ requiredEnv "BASE_DOMAIN" }}
     {{ else }}
           - {{ requiredEnv "PROJECT" }}-{{ requiredEnv "BRANCH" }}.{{ requiredEnv "BASE_DOMAIN" }}
-    {{ end }} 
+    {{ end }}
 resources:
   requests:
     cpu: 200m
@@ -47,4 +47,4 @@ secrets:
       - name: SINGLE_SECRET_NAME
         value: oas-unlock-api-az-credentials
       - name: SECRET_LIST
-        value: "bdm-dev-terraform-sp-id,bdm-dev-terraform-sp-pass"
+        value: "bdm-dev-terraform-sp-id,bdm-dev-terraform-sp-pass,bdm-dev-terraform-LuisAppIdEN,bdm-dev-terraform-LuisAPIKeyEN,bdm-dev-terraform-LuisAPIHostNameEN,bdm-dev-terraform-LuisCallbackAppIdEN,bdm-dev-terraform-LuisCallbackAPIKeyEN,bdm-dev-terraform-LuisCallbackAPIHostNameEN"
