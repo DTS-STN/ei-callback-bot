@@ -131,13 +131,13 @@ import {
         stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
         stepContext.context.activity.locale.toLowerCase() === "fr-fr"
       ) {
-        applicationId = process.env.LuisAppIdFR;
-        endpointKey = process.env.LuisAPIKeyFR;
-        endpoint = `https://${process.env.LuisAPIHostNameFR}.api.cognitive.microsoft.com`;
+        applicationId = process.env.LuisCallbackAppIdFR;
+        endpointKey = process.env.LuisCallbackAPIKeyFR;
+        endpoint = `https://${process.env.LuisCallbackAPIHostNameFR}.api.cognitive.microsoft.com`;
       } else {
-        applicationId = process.env.LuisAppIdEN;
-        endpointKey = process.env.LuisAPIKeyEN;
-        endpoint = `https://${process.env.LuisAPIHostNameEN}.api.cognitive.microsoft.com`;
+        applicationId = process.env.LuisCallbackAppIdEN;
+        endpointKey = process.env.LuisCallbackAPIKeyEN;
+        endpoint = `https://${process.env.LuisCallbackAPIHostNameEN}.api.cognitive.microsoft.com`;
       }
 
       // LUIZ Recogniser processing
@@ -171,7 +171,7 @@ import {
         case "promptConfirmChoiceEmail":
           console.log("INTENT: ", intent);
           callbackBotDetails.getPreferredMethodOfContactStep = true;
-
+          callbackBotDetails.preferredEmail = true;
          // await stepContext.context.sendActivity(sendEmailMsg);
 
           return await stepContext.endDialog(callbackBotDetails);
@@ -180,7 +180,7 @@ import {
         case "promptConfirmChoiceText":
           console.log("INTENT: ", intent);
           callbackBotDetails.getPreferredMethodOfContactStep = true;
-
+          callbackBotDetails.preferredText = true;
          // await stepContext.context.sendActivity(sendTextMsg);
 
           return await stepContext.endDialog(callbackBotDetails);
@@ -189,8 +189,8 @@ import {
         case "promptConfirmChoiceBoth":
           console.log("INTENT: ", intent);
           callbackBotDetails.getPreferredMethodOfContactStep = true;
-
-          await stepContext.context.sendActivity(sendBothMsg);
+          callbackBotDetails.preferredEmailAndText = true;
+         // await stepContext.context.sendActivity(sendBothMsg);
 
           return await stepContext.endDialog(callbackBotDetails);
 

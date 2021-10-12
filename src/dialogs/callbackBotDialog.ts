@@ -173,11 +173,14 @@ export class CallbackBotDialog extends ComponentDialog {
         case null:
           // ADD CHECKS TO SEE IF THE FIRST THREE STEPS ARE TRUE
           // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
+         if(callbackBotDetails.preferredText == true || callbackBotDetails.preferredEmailAndText === true)  {
           return await stepContext.beginDialog(
             CONFIRM_PHONE_STEP,
             callbackBotDetails
           );
+         }
 
+         return await stepContext.next(callbackBotDetails);
         // The confirmNotifyROEReceivedStep flag in the state machine is set to true
         // so we are sending the user to next step
         case true:
@@ -334,11 +337,14 @@ export class CallbackBotDialog extends ComponentDialog {
             case null:
               // ADD CHECKS TO SEE IF THE FIRST THREE STEPS ARE TRUE
               // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
+              if(callbackBotDetails.preferredEmail == true || callbackBotDetails.preferredEmailAndText === true)  {
               return await stepContext.beginDialog(
                 CONFIRM_EMAIL_STEP,
                 callbackBotDetails
               );
+              }
 
+         return await stepContext.next(callbackBotDetails);
             // The confirmNotifyROEReceivedStep flag in the state machine is set to true
             // so we are sending the user to next step
             case true:

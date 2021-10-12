@@ -6,7 +6,7 @@
  import { ComponentDialog, Dialog, DialogSet, DialogTurnStatus } from 'botbuilder-dialogs';
  import { VirtualAssistantCallbackBot  } from '../../bots/virtualAssistantCallbackBot';
  const assert = require('assert');
-
+ import  i18n  from "../../dialogs/locales/i18nConfig";
  // TODO: change assert to chai or other third part lib instead of use nodejs default one
 
  /**
@@ -35,7 +35,7 @@
      }
  }
 
- describe('CallbackBot', () => {
+ describe('CallbackBot Initial', () => {
      const testAdapter = new TestAdapter(async (context) => undefined);
 
      async function processActivity(activity, bot) {
@@ -70,9 +70,11 @@
 
          // Assert we got the welcome statement
          let reply = testAdapter.activityBuffer.shift();
-         assert.strictEqual(reply.text, 'Looks like you need more help.');
+         const expectedMsg = i18n.__("unBlockBotDialogWelcomeMsg");
+         assert.strictEqual(reply.text, expectedMsg);
          reply =  testAdapter.activityBuffer.shift();
-         assert.strictEqual(reply.text, 'Would you like to schedule a callback? (1) Yes please! or (2) No thanks');
+         const confirmMsg = i18n.__("confirmLookIntoStepStandardMsg");
+         assert.strictEqual(reply.text, confirmMsg+" (1) Yes please! or (2) No thanks");
 
          // Assert that we started the main dialog.
          // TODO: fix this unit test

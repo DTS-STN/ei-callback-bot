@@ -18,14 +18,18 @@ export class CallbackBotDetails {
         public confirmConfirmationStep;
         public confirmEmailStep;
         public confirmPhoneStep;
-
+        public preferredEmail ;
+        public preferredText ;
+        public preferredEmailAndText ;
     constructor() {
         // Master error - flag that is thrown when we hit a critical error in the conversation flow
         this.masterError = null;
 
         // [STEP 1] Flag that confirms the user wants to set up a callback
         this.confirmCallbackStep = null;
-
+        this.preferredEmail = null;
+        this.preferredText = null;
+        this.preferredEmailAndText = null;
 
         // [STEP 3] Get user prefer date and time for the callback
         this.getPreferredCallbackDateAndTimeStep = null;

@@ -58,6 +58,7 @@
         "ts-node": "~10.2.1"
     },
     "devDependencies": {
+        "@types/chai": "~4.2.22",
         "@types/dotenv": "~8.2.0",
         "@types/mocha": "~9.0.0",
         "@types/node": "^10.17.27",
