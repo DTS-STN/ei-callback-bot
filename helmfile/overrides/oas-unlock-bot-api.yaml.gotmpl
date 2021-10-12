@@ -23,26 +23,28 @@ healthChecks:
     readinessPath: /
 port: 3978
 secrets:
-   enabled: true 
+   enabled: true
    image: mtscontainers.azurecr.io/azurekvsidecar:latest
-   env: 
-    - name: KEYVAULT_READ_USER
-      value: {{ requiredEnv "KEYVAULT_READ_USER" }}
-    - name: KEYVAULT_READ_PASSWORD
-      value: {{ requiredEnv "KEYVAULT_READ_PASSWORD" }}  
-    - name: SUBSCRIPTION_ID
-      value: {{ requiredEnv "SUBSCRIPTION_ID" }}  
-    - name: TENANT_ID
-      value: {{ requiredEnv "TENANT_ID" }}  
-    - name: KEYVAULT_NAME
-      value: {{ requiredEnv "KEYVAULT_NAME" }}  
-    - name: K8S_CLUSTER_NAME
-      value: {{ requiredEnv "K8S_CLUSTER_NAME" }}             
-    - name: K8S_RG_NAME
-      value: {{ requiredEnv "K8S_RG_NAME" }}   
-    - name: SECRET_MOUNT_PATH
-      value: "asdfdsaf"
-    - name: NAMESPACE
-      value: {{ .Release.Namespace }}
-    - name: SECRET_LIST
-      value: "confluence-database-password,confluence-license"      
+   env:
+      - name: KEYVAULT_READ_USER
+        value: {{ requiredEnv "KEYVAULT_READ_USER" }}
+      - name: KEYVAULT_READ_PASSWORD
+        value: {{ requiredEnv "KEYVAULT_READ_PASSWORD" }}
+      - name: SUBSCRIPTION_ID
+        value: {{ requiredEnv "SUBSCRIPTION_ID" }}
+      - name: TENANT_ID
+        value: {{ requiredEnv "TENANT_ID" }}
+      - name: KEYVAULT_NAME
+        value: {{ requiredEnv "KEYVAULT_NAME" }}
+      - name: K8S_CLUSTER_NAME
+        value: {{ requiredEnv "K8S_CLUSTER_NAME" }}
+      - name: K8S_RG_NAME
+        value: {{ requiredEnv "K8S_RG_NAME" }}
+      - name: NAMESPACE
+        value: {{ .Release.Namespace }}
+      - name: SINGLE_SECRET
+        value: "true"
+      - name: SINGLE_SECRET_NAME
+        value: oas-unlock-api-az-credentials
+      - name: SECRET_LIST
+        value: "bdm-dev-terraform-sp-id,bdm-dev-terraform-sp-pass"
