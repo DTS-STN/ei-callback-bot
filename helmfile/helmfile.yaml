@@ -9,8 +9,6 @@ environments:
 
 releases:
 
-# Namespace ingress
-
   - name: oasubapi-{{ requiredEnv "BRANCH" }}
     chart: ../helm/charts/oas-unlock-bot
     namespace: oas-ub-{{ requiredEnv "BRANCH" }}
