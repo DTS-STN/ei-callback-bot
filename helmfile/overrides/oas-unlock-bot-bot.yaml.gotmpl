@@ -38,7 +38,7 @@ extraEnv:
       valueFrom:
         secretKeyRef:
           name: oas-unlock-bot-az-credentials
-          key: bdm-dev-terraform-sp-id
+          key: bdm-dev-terraform-sp-pass
     - name: LuisAppIdFR
       valueFrom:
         secretKeyRef:
@@ -64,11 +64,41 @@ extraEnv:
         secretKeyRef:
           name: oas-unlock-bot-az-credentials
           key: bdm-dev-terraform-LuisAPIKeyEN
+    - name: LuisCallbackAppIdFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAppIdFR
     - name: LuisAPIHostNameEN
       valueFrom:
         secretKeyRef:
           name: oas-unlock-bot-az-credentials
           key: bdm-dev-terraform-LuisAPIHostNameEN
+    - name: LuisCallbackAPIKeyFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIKeyFR
+    - name: LuisCallbackAPIHostNameFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIHostNameFR
+    - name: LuisCallbackAppIdEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAppIdEN
+    - name: LuisCallbackAPIKeyEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIKeyEN
+    - name: LuisCallbackAPIHostNameEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIHostNameEN
 ingress:
     enabled: false
 resources:
