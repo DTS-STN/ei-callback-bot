@@ -21,16 +21,3 @@ releases:
     wait: false
     installed: true
     force: false
-
-  - name: oasubbot-{{ requiredEnv "BRANCH" }}
-    chart: ../helm/charts/oas-unlock-bot
-    namespace: oas-ub-{{ requiredEnv "BRANCH" }}
-    values:
-      - overrides/oas-unlock-bot-bot.yaml.gotmpl
-    labels:
-        category: prototype
-        app: oas-unlock-bot
-        tier: bot
-    wait: false
-    installed: true
-    force: false
