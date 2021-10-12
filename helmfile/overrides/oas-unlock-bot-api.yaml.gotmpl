@@ -24,6 +24,7 @@ healthChecks:
 port: 3978
 secrets:
    enabled: true 
+   image: mtscontainers.azurecr.io/azurekvsidecar:latest
    env: 
     - name: KEYVAULT_READ_USER
       value: {{ requiredEnv "KEYVAULT_READ_USER" }}
