@@ -3,4 +3,7 @@ node_modules/
 .env
 .history
 .config/.env.local
-/dist
+build
+dist
+**/.DS_Store
+.nyc_output

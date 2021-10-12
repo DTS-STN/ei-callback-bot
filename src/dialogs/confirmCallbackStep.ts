@@ -168,31 +168,31 @@ export class ConfirmCallbackStep extends ComponentDialog {
         // Then change LUIZ appID
         if (stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
             stepContext.context.activity.locale.toLowerCase() === 'fr-fr') {
-            applicationId = process.env.LuisAppIdFR;
-            endpointKey = process.env.LuisAPIKeyFR;
-            endpoint = `https://${ process.env.LuisAPIHostNameFR }.api.cognitive.microsoft.com`;
+            applicationId = process.env.LuisCallbackAppIdFR;
+            endpointKey = process.env.LuisCallbackAPIKeyFR;
+            endpoint = `https://${ process.env.LuisCallbackAPIHostNameFR }.api.cognitive.microsoft.com`;
         } else {
-            applicationId = process.env.LuisAppIdEN;
-            endpointKey = process.env.LuisAPIKeyEN;
-            endpoint = `https://${ process.env.LuisAPIHostNameEN }.api.cognitive.microsoft.com`;
+            applicationId = process.env.LuisCallbackAppIdEN;
+            endpointKey = process.env.LuisCallbackAPIKeyEN;
+            endpoint = `https://${ process.env.LuisCallbackAPIHostNameEN }.api.cognitive.microsoft.com`;
         }
 
-        // LUIZ Recogniser processing
-        // const recognizer = new LuisRecognizer({
-       //     applicationId: applicationId,
-        //    endpointKey: endpointKey,
-       //     endpoint: endpoint
-       // }, {
-       //     includeAllIntents: true,
-       //     includeInstanceData: true
-      //  }, true);
+         // LUIZ Recogniser processing
+         const recognizer = new LuisRecognizer({
+            applicationId: applicationId,
+            endpointKey: endpointKey,
+            endpoint: endpoint
+        }, {
+            includeAllIntents: true,
+            includeInstanceData: true
+        }, true);
 
         // Call prompts recognizer
-       // const recognizerResult = await recognizer.recognize(stepContext.context);
+        const recognizerResult = await recognizer.recognize(stepContext.context);
 
         // Top intent tell us which cognitive service to use.
-        // const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
-        const intent: string ='promptConfirmYes';
+         const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
+
         const closeMsg = i18n.__('confirmCallbackStepCloseMsg');
 
         switch (intent) {

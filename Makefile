@@ -67,23 +67,23 @@ print-status: ## Print status of deployment environment variables
 
 setup-local-env: ## Preparing project for local environment
 	@echo "+\n++ Make: Preparing project for local environment...\n+"
-	@cp .config/.env.local src/.env
+	@cp .config/.env.local ./.env
 
 setup-test-env: ## Preparing project for test environment
 	@echo "+\n++ Make: Preparing project for test environment...\n+"
-	@cp .config/.env.test src/.env
+	@cp .config/.env.test ./.env
 
 setup-development-env: ## Preparing project for dev environment
 	@echo "+\n++ Make: Preparing project for dev environment...\n+"
-	@cp .config/.env.dev src/.env
+	@cp .config/.env.dev ./.env
 
 setup-staging-env: ## Preparing project for staging environment
 	@echo "+\n++ Make: Preparing project for staging environment...\n+"
-	@cp .config/.env.staging src/.env
+	@cp .config/.env.staging ./.env
 
 setup-production-env: ## Preparing project for production environment
 	@echo "+\n++ Make: Preparing project for production environment...\n+"
-	@cp .config/.env.production src/.env
+	@cp .config/.env.production ./.env
 
 # ------------------------------------------------------------------------------
 # Local development commands

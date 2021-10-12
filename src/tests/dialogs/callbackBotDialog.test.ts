@@ -1,13 +1,15 @@
 
+/*
 import { MessageFactory } from 'botbuilder';
 import { ComponentDialog, TextPrompt, WaterfallDialog } from 'botbuilder-dialogs';
 import { DialogTestClient, DialogTestLogger } from 'botbuilder-testing';
 import { CallbackBotDialog } from '../../dialogs/callbackBotDialog';
 const assert = require('assert');
-
+*/
 /**
  * An waterfall dialog derived from CancelAndHelpDialog for testing
  */
+/*
 class TestCallbackBotDialog extends CallbackBotDialog {
     constructor() {
         super( 'TestCallbackBotDialog');
@@ -130,3 +132,4 @@ describe('CallbackDialog', () => {
         });
     });
 });
+*/

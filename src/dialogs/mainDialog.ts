@@ -21,6 +21,8 @@ import { TurnContext, StatePropertyAccessor, UserState } from 'botbuilder';
 
 // This is for the i18n stuff
 import   i18n from './locales/i18nConfig';
+import { UnblockBotDetails } from './unblockDialogs/unblockBotDetails';
+import { UNBLOCK_BOT_DIALOG, UnblockBotDialog } from './unblockDialogs/unblockBotDialog';
 
 
 
@@ -38,7 +40,7 @@ export class MainDialog extends ComponentDialog {
         super(MAIN_DIALOG);
 
         // Add the callBackBot dialog to the dialog
-        this.addDialog(new CallbackBotDialog());
+        this.addDialog(new UnblockBotDialog());
         this.addDialog(new ChoicePrompt(CHOICE_PROMPT));
 
         this.addDialog(new WaterfallDialog(MAIN_WATERFALL_DIALOG, [
@@ -71,8 +73,10 @@ export class MainDialog extends ComponentDialog {
      * Initial step in the waterfall. This will kick of the callbackBot dialog
      */
     async initialStep(stepContext: WaterfallStepContext) : Promise<DialogTurnResult> {
-        const callBackBotDetails = new CallbackBotDetails();
-        return await stepContext.beginDialog(CALLBACK_BOT_DIALOG, callBackBotDetails);
+        // const callBackBotDetails = new CallbackBotDetails();
+        // return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, callBackBotDetails);
+       const unblockBotDetails = new UnblockBotDetails();
+       return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, unblockBotDetails);
     }
 
     /**
