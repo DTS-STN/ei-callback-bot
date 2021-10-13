@@ -26,6 +26,7 @@ fullnameOverride: ""
 service:
   type: ClusterIP
   port: 80
+  securePort: 443
 
 ingress:
   enabled: true
@@ -73,6 +74,12 @@ secret:
   LuisAppIdFR:
   LuisAPIKeyFR:
   LuisAPIHostNameFR:
+  LuisCallbackAppIdFR:
+  LuisCallbackAPIKeyFR:
+  LuisCallbackAPIHostNameFR:
+  LuisCallbackAppIdEN:
+  LuisCallbackAPIKeyEN:
+  LuisCallbackAPIHostNameEN:
   LuisAppIdEN:
   LuisAPIKeyEN:
   LuisAPIHostNameEN:
