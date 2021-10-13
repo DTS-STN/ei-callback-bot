@@ -48,10 +48,6 @@ secrets:
         value: oas-unlock-api-az-credentials
       - name: SECRET_LIST
         value: "bdm-dev-oas-callback-luis-sp-id,bdm-dev-oas-callback-luis-sp-pass,bdm-dev-terraform-LuisAppIdEN,bdm-dev-terraform-LuisAPIKeyEN,bdm-dev-terraform-LuisAPIHostNameEN,bdm-dev-terraform-LuisCallbackAppIdEN,bdm-dev-terraform-LuisCallbackAPIKeyEN,bdm-dev-terraform-LuisCallbackAPIHostNameEN"
-image:
-  repository: mtscontainers.azurecr.io/oas-bot
-  tag: "{{ env "DOCKER_TAG" | default "latest" }}"
-  pullPolicy: Always
 extraEnv:
     - name: MicrosoftAppId
       valueFrom:
@@ -123,13 +119,3 @@ extraEnv:
         secretKeyRef:
           name: oas-unlock-bot-az-credentials
           key: bdm-dev-terraform-LuisCallbackAPIHostNameEN
-resources:
-  requests:
-    cpu: 200m
-    memory: 512Mi
-healthChecks:
-    livenessDelay: 15
-    readinessDelay: 15
-    livenessPath: /
-    readinessPath: /
-port: 3978
