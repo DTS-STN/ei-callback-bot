@@ -53,12 +53,12 @@ extraEnv:
       valueFrom:
         secretKeyRef:
           name: oas-unlock-api-az-credentials
-          key: bdm-dev-terraform-sp-id
+          key: bdm-dev-oas-callback-luis-sp-id
     - name: MicrosoftAppPassword
       valueFrom:
         secretKeyRef:
           name: oas-unlock-api-az-credentials
-          key: bdm-dev-terraform-sp-pass
+          key: bdm-dev-oas-callback-luis-sp-pass
     - name: LuisAppIdFR
       valueFrom:
         secretKeyRef:
