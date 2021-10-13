@@ -48,3 +48,90 @@ secrets:
         value: oas-unlock-api-az-credentials
       - name: SECRET_LIST
         value: "bdm-dev-oas-callback-luis-sp-id,bdm-dev-oas-callback-luis-sp-pass,bdm-dev-terraform-LuisAppIdEN,bdm-dev-terraform-LuisAPIKeyEN,bdm-dev-terraform-LuisAPIHostNameEN,bdm-dev-terraform-LuisCallbackAppIdEN,bdm-dev-terraform-LuisCallbackAPIKeyEN,bdm-dev-terraform-LuisCallbackAPIHostNameEN"
+image:
+  repository: mtscontainers.azurecr.io/oas-bot
+  tag: "{{ env "DOCKER_TAG" | default "latest" }}"
+  pullPolicy: Always
+extraEnv:
+    - name: MicrosoftAppId
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-sp-id
+    - name: MicrosoftAppPassword
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-sp-pass
+    - name: LuisAppIdFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAppIdFR
+    - name: LuisAPIKeyFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAPIKeyFR
+    - name: LuisAPIHostNameFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAPIHostNameFR
+    - name: LuisAppIdEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAppIdEN
+    - name: LuisAPIKeyEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAPIKeyEN
+    - name: LuisCallbackAppIdFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAppIdFR
+    - name: LuisAPIHostNameEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisAPIHostNameEN
+    - name: LuisCallbackAPIKeyFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIKeyFR
+    - name: LuisCallbackAPIHostNameFR
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIHostNameFR
+    - name: LuisCallbackAppIdEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAppIdEN
+    - name: LuisCallbackAPIKeyEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIKeyEN
+    - name: LuisCallbackAPIHostNameEN
+      valueFrom:
+        secretKeyRef:
+          name: oas-unlock-bot-az-credentials
+          key: bdm-dev-terraform-LuisCallbackAPIHostNameEN
+ingress:
+    enabled: false
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+healthChecks:
+    livenessDelay: 15
+    readinessDelay: 15
+    livenessPath: /
+    readinessPath: /
+port: 3978
