@@ -10,4 +10,5 @@ export K8S_RG_NAME=ESdCDPSBDMK8SDev
 export BASE_DOMAIN=bdm-dev.dts-stn.com
 export PROJECT=dts-oas-callback-bot
 export BRANCH=main
+export RBAC_TEAM_ID=$(az ad group show --group bdm-dps-fujitsu-si --query 'objectId' -o tsv)
 az aks get-credentials --name $K8S_CLUSTER_NAME --resource-group $K8S_RG_NAME
