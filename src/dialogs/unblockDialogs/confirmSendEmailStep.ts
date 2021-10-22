@@ -3,23 +3,19 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-} from "botbuilder-dialogs";
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-// This is for the i18n stuff
-import  i18n  from "../locales/i18nConfig";
+import i18n from '../locales/i18nConfig';
 
-import {
-  CallbackBotDialog,
-  CALLBACK_BOT_DIALOG
-} from '../callbackBotDialog';
+import { CallbackBotDialog, CALLBACK_BOT_DIALOG } from '../callbackBotDialog';
 
-import  { CallbackBotDetails } from '../callbackBotDetails';
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CONFIRM_SEND_EMAIL_STEP = "CONFIRM_SEND_EMAIL_STEP";
+import { CallbackBotDetails } from '../callbackBotDetails';
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CONFIRM_SEND_EMAIL_STEP = 'CONFIRM_SEND_EMAIL_STEP';
 const CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP =
-  "CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP";
+  'CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -34,7 +30,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       new WaterfallDialog(CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
         this.finalStep.bind(this),
-      ])
+      ]),
     );
 
     this.initialDialogId = CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP;
@@ -59,13 +55,13 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     // console.log('DEBUG UNBLOCKBOTDETAILS:', unblockBotDetails.errorCount.confirmSendEmailStep);
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmSendEmailStepStandardMsg");
+    const standardMsg = i18n.__('confirmSendEmailStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("confirmSendEmailStepRetryMsg");
+    const retryMsg = i18n.__('confirmSendEmailStepRetryMsg');
 
     // Set the text for the prompt
-    const queryMsg = i18n.__("confirmSendEmailStepQueryMsg"); //'If you like, I can send Initech a follow-up email from the Government of Canada. That usually does the trick 😉';
+    const queryMsg = i18n.__('confirmSendEmailStepQueryMsg'); //'If you like, I can send Initech a follow-up email from the Government of Canada. That usually does the trick 😉';
 
     // Check if the error count is greater than the max threshold
     if (unblockBotDetails.errorCount.confirmSendEmailStep >= MAX_ERROR_COUNT) {
@@ -73,7 +69,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       unblockBotDetails.masterError = true;
 
       // Set error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send error message
       await stepContext.context.sendActivity(errorMsg);
@@ -96,7 +92,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       }
 
       // Setup the prompt message
-      var promptMsg = "";
+      var promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.confirmSendEmailStep === -1) {
@@ -106,14 +102,14 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       }
 
       const promptOptions = i18n.__(
-        "confirmSendEmailStepStandardPromptOptions"
+        'confirmSendEmailStepStandardPromptOptions',
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg
+          promptMsg,
         ),
       };
 
@@ -133,14 +129,14 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = "";
-    var endpointKey = "";
-    var endpoint = "";
+    var applicationId = '';
+    var endpointKey = '';
+    var endpoint = '';
 
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisAppIdFR;
       endpointKey = process.env.LuisAPIKeyFR;
@@ -162,53 +158,51 @@ export class ConfirmSendEmailStep extends ComponentDialog {
         includeAllIntents: true,
         includeInstanceData: true,
       },
-      true
+      true,
     );
 
     // Call prompts recognizer
     const recognizerResult = await recognizer.recognize(stepContext.context);
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
     // This message is sent if the user selects that they don't want to continue
-    const closeMsg = i18n.__("confirmSendEmailStepCloseMsg");
+    const closeMsg = i18n.__('confirmSendEmailStepCloseMsg');
     // const callbackConfirmMsg = i18n.__("callbackBotDialogStepStandardMsg");
     switch (intent) {
       // Proceed
-      case "promptConfirmYes":
-      case "promptConfirmSendEmailYes":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmYes':
+      case 'promptConfirmSendEmailYes':
+        console.log('INTENT: ', intent);
         unblockBotDetails.confirmSendEmailStep = true;
         return await stepContext.endDialog(unblockBotDetails);
 
       // Don't Proceed
-      case "promptConfirmNo":
-      case "promptConfirmSendEmailNo":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmNo':
+      case 'promptConfirmSendEmailNo':
+        console.log('INTENT: ', intent);
         unblockBotDetails.confirmSendEmailStep = false;
-      // this should be switch to callback flow
-       // await stepContext.context.sendActivity(callbackConfirmMsg);
+        // this should be switch to callback flow
+        // await stepContext.context.sendActivity(callbackConfirmMsg);
 
-       // return await stepContext.endDialog(unblockBotDetails);
-       return await stepContext.replaceDialog(
-        CALLBACK_BOT_DIALOG,
-        new CallbackBotDetails()
-      );
+        // return await stepContext.endDialog(unblockBotDetails);
+        return await stepContext.replaceDialog(
+          CALLBACK_BOT_DIALOG,
+          new CallbackBotDetails(),
+        );
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         unblockBotDetails.confirmSendEmailStep = -1;
         unblockBotDetails.errorCount.confirmSendEmailStep++;
 
         return await stepContext.replaceDialog(
           CONFIRM_SEND_EMAIL_STEP,
-          unblockBotDetails
+          unblockBotDetails,
         );
       }
     }
   }
 }
-
-

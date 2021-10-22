@@ -1,17 +1,14 @@
 // State machine to track a users progression through
 // the unblockbot dialog conversation flow
-//
 
- export class UnblockBotDetails {
-
- public masterError;
- public confirmLookIntoStep;
- public confirmSendEmailStep;
- public getAndSendEmailStep ;
- public confirmNotifyROEReceivedStep;
- public getPreferredMethodOfContactStep;
- public errorCount;
-
+export class UnblockBotDetails {
+  public masterError;
+  public confirmLookIntoStep;
+  public confirmSendEmailStep;
+  public getAndSendEmailStep;
+  public confirmNotifyROEReceivedStep;
+  public getPreferredMethodOfContactStep;
+  public errorCount;
 
   constructor() {
     // Master error - flag that is thrown when we hit a critical error in the conversation flow
@@ -53,4 +50,3 @@
         */
   }
 }
-

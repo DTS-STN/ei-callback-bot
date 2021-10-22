@@ -3,16 +3,16 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-} from"botbuilder-dialogs";
+} from 'botbuilder-dialogs';
+import { LuisRecognizer } from 'botbuilder-ai';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import i18n from '../locales/i18nConfig';
 
-import i18n  from "../locales/i18nConfig";
-
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CONFIRM_NOTIFY_ROE_RECEIVED_STEP = "CONFIRM_NOTIFY_ROE_RECEIVED_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CONFIRM_NOTIFY_ROE_RECEIVED_STEP =
+  'CONFIRM_NOTIFY_ROE_RECEIVED_STEP';
 const CONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP =
-  "GCONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP";
+  'GCONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -27,7 +27,7 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       new WaterfallDialog(CONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
         this.finalStep.bind(this),
-      ])
+      ]),
     );
 
     this.initialDialogId = CONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP;
@@ -45,10 +45,10 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
     // console.log('DEBUG UNBLOCKBOTDETAILS in confirmNotifyROEReceivedStep:', unblockBotDetails);
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmNotifyROEReceivedStepStandardMsg");
+    const standardMsg = i18n.__('confirmNotifyROEReceivedStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("confirmNotifyROEReceivedStepRetryMsg");
+    const retryMsg = i18n.__('confirmNotifyROEReceivedStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -59,7 +59,7 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       unblockBotDetails.masterError = true;
 
       // Set master error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -76,7 +76,7 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       unblockBotDetails.confirmNotifyROEReceivedStep === -1
     ) {
       // Setup the prompt message
-      var promptMsg = "";
+      var promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.confirmNotifyROEReceivedStep === -1) {
@@ -86,14 +86,14 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       }
 
       const promptOptions = i18n.__(
-        "confirmNotifyROEReceivedStepStandardPromptOptions"
+        'confirmNotifyROEReceivedStepStandardPromptOptions',
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg
+          promptMsg,
         ),
       };
 
@@ -112,14 +112,14 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = "";
-    var endpointKey = "";
-    var endpoint = "";
+    var applicationId = '';
+    var endpointKey = '';
+    var endpoint = '';
 
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisAppIdFR;
       endpointKey = process.env.LuisAPIKeyFR;
@@ -141,31 +141,31 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
         includeAllIntents: true,
         includeInstanceData: true,
       },
-      true
+      true,
     );
 
     // Call prompts recognizer
     const recognizerResult = await recognizer.recognize(stepContext.context);
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
-    const closeMsg = i18n.__("confirmNotifyROEReceivedStepCloseMsg");
+    const closeMsg = i18n.__('confirmNotifyROEReceivedStepCloseMsg');
 
     switch (intent) {
       // Proceed
       // Not - adding these extra intent checks because of a bug with the french happy path
-      case "promptConfirmSendEmailYes":
-      case "promptConfirmNotifyYes":
-      case "promptConfirmYes":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmSendEmailYes':
+      case 'promptConfirmNotifyYes':
+      case 'promptConfirmYes':
+        console.log('INTENT: ', intent);
         unblockBotDetails.confirmNotifyROEReceivedStep = true;
         return await stepContext.endDialog(unblockBotDetails);
 
       // Don't Proceed
-      case "promptConfirmNotifyNo":
-      case "promptConfirmNo":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmNotifyNo':
+      case 'promptConfirmNo':
+        console.log('INTENT: ', intent);
         unblockBotDetails.confirmNotifyROEReceivedStep = false;
 
         await stepContext.context.sendActivity(closeMsg);
@@ -175,17 +175,15 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         unblockBotDetails.confirmNotifyROEReceivedStep = -1;
         unblockBotDetails.errorCount.confirmNotifyROEReceivedStep++;
 
         return await stepContext.replaceDialog(
           CONFIRM_NOTIFY_ROE_RECEIVED_STEP,
-          unblockBotDetails
+          unblockBotDetails,
         );
       }
     }
   }
 }
-
-
