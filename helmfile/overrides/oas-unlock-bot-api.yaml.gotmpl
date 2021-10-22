@@ -2,6 +2,11 @@ image:
   repository: mtscontainers.azurecr.io/{{ requiredEnv "PROJECT" }}
   tag: "{{ env "DOCKER_TAG" | default "latest" }}"
   pullPolicy: Always
+rbac:
+  enabled: true
+  teamId: {{ requiredEnv "RBAC_TEAM_ID" }}
+  clusterRoleName: fujitsu-devs
+  
 ingress:
     enabled: true
     path: /

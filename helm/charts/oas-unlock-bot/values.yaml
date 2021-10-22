@@ -4,6 +4,9 @@
 secrets:
   enabled: false
 
+rbac:
+  enabled: true
+
 image:
   repository: nginx
   tag: stable
