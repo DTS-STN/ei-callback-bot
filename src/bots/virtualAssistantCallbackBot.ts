@@ -1,66 +1,77 @@
-
-import  { ActivityHandler, MessageFactory ,BotState, StatePropertyAccessor, UserState} from 'botbuilder';
+import {
+  ActivityHandler,
+  MessageFactory,
+  BotState,
+  StatePropertyAccessor,
+  UserState,
+} from 'botbuilder';
 // const { WaterfallDialog, WaterfallStepContext, ChoicePrompt, TextPrompt, DialogTurnStatus } = require('botbuilder-dialogs');
 import { MainDialog } from '../dialogs/mainDialog';
 
 import { Dialog, DialogState, DialogSet } from 'botbuilder-dialogs';
 const CALLBACK_BOT_DETAILS_PROPERTY = 'CALLBACK_BOT_DETAILS';
 export class VirtualAssistantCallbackBot extends ActivityHandler {
-    private conversationState: BotState;
-    private userState: BotState;
-    private dialog: Dialog;
-    private dialogSet: DialogSet;
-    private dialogState: StatePropertyAccessor<DialogState>;
+  private conversationState: BotState;
+  private userState: BotState;
+  private dialog: Dialog;
+  private dialogSet: DialogSet;
+  private dialogState: StatePropertyAccessor<DialogState>;
 
-    constructor(conversationState:BotState, userState:BotState, dialogSet:DialogSet) {
-        super();
+  constructor(
+    conversationState: BotState,
+    userState: BotState,
+    dialogSet: DialogSet,
+  ) {
+    super();
 
-        if (!conversationState) throw new Error('[DialogBot]: Missing parameter. conversationState is required');
-        if (!userState) throw new Error('[DialogBot]: Missing parameter. userState is required');
-        if (!dialogSet) throw new Error('[DialogBot]: Missing parameter. dialogSet is required');
+    if (!conversationState)
+      throw new Error(
+        '[DialogBot]: Missing parameter. conversationState is required',
+      );
+    if (!userState)
+      throw new Error('[DialogBot]: Missing parameter. userState is required');
+    if (!dialogSet)
+      throw new Error('[DialogBot]: Missing parameter. dialogSet is required');
 
-        // Initialise private members for the bot
-        this.conversationState = conversationState;
-        this.userState = userState;
-        this.dialogSet = dialogSet;
-        this.dialog = new MainDialog();
-        this.dialogState = this.conversationState.createProperty('DialogState');
-        // Add the main dialog to the dialog set for the bot
-        // this.addDialogs();
+    // Initialise private members for the bot
+    this.conversationState = conversationState;
+    this.userState = userState;
+    this.dialogSet = dialogSet;
+    this.dialog = new MainDialog();
+    this.dialogState = this.conversationState.createProperty('DialogState');
+    // Add the main dialog to the dialog set for the bot
+    // this.addDialogs();
 
-        this.onEvent(async (context, next) => {
-            if (context.activity.name === 'requestWelcomeDialog') {
-                await context.sendActivity('Back Channel Welcome Message!');
-            }
+    this.onEvent(async (context, next) => {
+      if (context.activity.name === 'requestWelcomeDialog') {
+        await context.sendActivity('Back Channel Welcome Message!');
+      }
 
-            await next();
-          });
+      await next();
+    });
 
+    this.onMembersAdded(async (context, next) => {
+      console.log('MEMBER ADDED:Running dialog with Message Activity.');
 
-        this.onMembersAdded(async (context, next) => {
-            console.log('MEMBER ADDED:Running dialog with Message Activity.');
+      // Send greeting and then activate dialog
+      // await context.sendActivity(`Hi Mary, I’m your virtual concierge!`);
 
-            // Send greeting and then activate dialog
-            // await context.sendActivity(`Hi Mary, I’m your virtual concierge!`);
+      // Run the Dialog with the new message Activity.
+      await (this.dialog as MainDialog).run(context, this.dialogState);
 
-            // Run the Dialog with the new message Activity.
-            await (this.dialog as MainDialog).run(context, this.dialogState);
+      // By calling next() you ensure that the next BotHandler is run.
+      await next();
+    });
 
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
-        });
+    this.onMessage(async (context, next) => {
+      console.log('Running dialog with Message Activity.');
+      // Run the Dialog with the new message Activity.
+      await (this.dialog as MainDialog).run(context, this.dialogState);
 
-        this.onMessage(async (context, next) => {
-
-            console.log('Running dialog with Message Activity.');
-            // Run the Dialog with the new message Activity.
-            await (this.dialog as MainDialog).run(context, this.dialogState);
-
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
-
-        });
-        /*
+      // By calling next() you ensure that the next BotHandler is run.
+      await next();
+    });
+    /*
         this.onDialog(async (context, next) => {
             // Save any state changes. The load happened during the execution of the Dialog.
             await this.conversationState.saveChanges(context, false);
@@ -69,10 +80,7 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
         });
   */
 
-
-
-
-        /*
+    /*
 
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
@@ -99,12 +107,12 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
         });
         */
 
-        /**
-         * https://github.com/microsoft/BotFramework-WebChat/blob/master/docs/WELCOME_MESSAGE.md#tokens-user-ids-and-iframes
-         *
-         *
-         */
-        /*
+    /**
+     * https://github.com/microsoft/BotFramework-WebChat/blob/master/docs/WELCOME_MESSAGE.md#tokens-user-ids-and-iframes
+     *
+     *
+     */
+    /*
         this.onMembersAdded(async (context, next) => {
             const { channelId, membersAdded } = context.activity;
 
@@ -126,7 +134,7 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
 
         */
 
-        /*
+    /*
         this.onMembersAdded(async (context, next) => {
 
             const membersAdded = context.activity.membersAdded;
@@ -149,17 +157,14 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
 
         });
         */
+  }
 
-    }
+  addDialogs() {
+    const mainDialog = new MainDialog();
 
+    this.dialogSet.add(mainDialog);
 
-
-    addDialogs() {
-        const mainDialog = new MainDialog();
-
-        this.dialogSet.add(mainDialog);
-
-        /*
+    /*
         this.dialogSet.add(new WaterfallDialog('help',[
             async (step) => {
                 const choices = ['yes', 'no'];
@@ -186,18 +191,16 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
         ]));
         this.dialogSet.add(new ChoicePrompt("choicePrompt"));
         */
-    }
+  }
 
-    /**
-     * Override the ActivityHandler.run() method to save state changes after the bot logic completes.
-     */
-   public async run(context) {
-        await super.run(context);
+  /**
+   * Override the ActivityHandler.run() method to save state changes after the bot logic completes.
+   */
+  public async run(context) {
+    await super.run(context);
 
-        // Save any state changes. The load happened during the execution of the Dialog.
-        await this.userState.saveChanges(context, false);
-        await this.conversationState.saveChanges(context, false);
-    }
+    // Save any state changes. The load happened during the execution of the Dialog.
+    await this.userState.saveChanges(context, false);
+    await this.conversationState.saveChanges(context, false);
+  }
 }
-
-

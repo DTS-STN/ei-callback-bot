@@ -3,18 +3,17 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-} from "botbuilder-dialogs";
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-// This is for the i18n stuff
-import  i18n  from "../locales/i18nConfig";
+import i18n from '../locales/i18nConfig';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
+const TEXT_PROMPT = 'TEXT_PROMPT';
 export const GET_PREFFERED_METHOD_OF_CONTACT_STEP =
-  "GET_PREFFERED_METHOD_OF_CONTACT_STEP";
+  'GET_PREFFERED_METHOD_OF_CONTACT_STEP';
 const GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP =
-  "GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP";
+  'GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -29,7 +28,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       new WaterfallDialog(GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP, [
         this.initialStep.bind(this),
         this.finalStep.bind(this),
-      ])
+      ]),
     );
 
     this.initialDialogId = GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP;
@@ -50,14 +49,11 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     // Get the user details / state machine
     const unblockBotDetails = stepContext.options;
 
-    // DEBUG
-    // console.log('DEBUG UNBLOCKBOTDETAILS:', unblockBotDetails);
-
     // Set the text for the prompt
-    const standardMsg = i18n.__("getPreferredMethodOfContactStepStandardMsg");
+    const standardMsg = i18n.__('getPreferredMethodOfContactStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("getPreferredMethodOfContactStepRetryMsg");
+    const retryMsg = i18n.__('getPreferredMethodOfContactStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -78,7 +74,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       unblockBotDetails.getPreferredMethodOfContactStep === -1
     ) {
       // Setup the prompt message
-      var promptMsg = "";
+      var promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.getPreferredMethodOfContactStep === -1) {
@@ -89,14 +85,14 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
       // Set the options for the quick reply buttons
       const promptOptions = i18n.__(
-        "getPreferredMethodOfContactStepStandardPromptOptions"
+        'getPreferredMethodOfContactStepStandardPromptOptions',
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg
+          promptMsg,
         ),
       };
 
@@ -116,14 +112,14 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = "";
-    var endpointKey = "";
-    var endpoint = "";
+    var applicationId = '';
+    var endpointKey = '';
+    var endpoint = '';
 
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisAppIdFR;
       endpointKey = process.env.LuisAPIKeyFR;
@@ -145,25 +141,25 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         includeAllIntents: true,
         includeInstanceData: true,
       },
-      true
+      true,
     );
 
     // Call prompts recognizer
     const recognizerResult = await recognizer.recognize(stepContext.context);
 
     // Setup the possible messages that could go out
-    const sendEmailMsg = i18n.__("getPreferredMethodOfContactStepSendEmailMsg");
-    const sendTextMsg = i18n.__("getPreferredMethodOfContactStepSendTextMsg");
-    const sendBothMsg = i18n.__("getPreferredMethodOfContactStepSendBothMsg");
+    const sendEmailMsg = i18n.__('getPreferredMethodOfContactStepSendEmailMsg');
+    const sendTextMsg = i18n.__('getPreferredMethodOfContactStepSendTextMsg');
+    const sendBothMsg = i18n.__('getPreferredMethodOfContactStepSendBothMsg');
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
     switch (intent) {
       // Proceed with Email
-      case "promptConfirmSendEmailYes":
-      case "promptConfirmChoiceEmail":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmSendEmailYes':
+      case 'promptConfirmChoiceEmail':
+        console.log('INTENT: ', intent);
         unblockBotDetails.getPreferredMethodOfContactStep = true;
 
         await stepContext.context.sendActivity(sendEmailMsg);
@@ -171,8 +167,8 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         return await stepContext.endDialog(unblockBotDetails);
 
       // Proceed with Text Message
-      case "promptConfirmChoiceText":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmChoiceText':
+        console.log('INTENT: ', intent);
         unblockBotDetails.getPreferredMethodOfContactStep = true;
 
         await stepContext.context.sendActivity(sendTextMsg);
@@ -180,8 +176,8 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         return await stepContext.endDialog(unblockBotDetails);
 
       // Proceed with Both Messages
-      case "promptConfirmChoiceBoth":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmChoiceBoth':
+        console.log('INTENT: ', intent);
         unblockBotDetails.getPreferredMethodOfContactStep = true;
 
         await stepContext.context.sendActivity(sendBothMsg);
@@ -191,17 +187,15 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         unblockBotDetails.getPreferredMethodOfContactStep = -1;
         unblockBotDetails.errorCount.getPreferredMethodOfContactStep++;
 
         return await stepContext.replaceDialog(
           GET_PREFFERED_METHOD_OF_CONTACT_STEP,
-          unblockBotDetails
+          unblockBotDetails,
         );
       }
     }
   }
 }
-
-

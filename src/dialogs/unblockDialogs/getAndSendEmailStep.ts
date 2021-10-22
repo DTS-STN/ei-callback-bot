@@ -2,14 +2,13 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-} from "botbuilder-dialogs";
+} from 'botbuilder-dialogs';
 
-// This is for the i18n stuff
-import  i18n  from "../locales/i18nConfig";
+import i18n from '../locales/i18nConfig';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
- export const GET_AND_SEND_EMAIL_STEP = "GET_AND_SEND_EMAIL_STEP";
-const GET_AND_SEND_EMAIL_WATERFALL_STEP = "GET_AND_SEND_EMAIL_WATERFALL_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const GET_AND_SEND_EMAIL_STEP = 'GET_AND_SEND_EMAIL_STEP';
+const GET_AND_SEND_EMAIL_WATERFALL_STEP = 'GET_AND_SEND_EMAIL_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -24,7 +23,7 @@ export class GetAndSendEmailStep extends ComponentDialog {
       new WaterfallDialog(GET_AND_SEND_EMAIL_WATERFALL_STEP, [
         this.initialStep.bind(this),
         this.finalStep.bind(this),
-      ])
+      ]),
     );
 
     this.initialDialogId = GET_AND_SEND_EMAIL_WATERFALL_STEP;
@@ -41,17 +40,17 @@ export class GetAndSendEmailStep extends ComponentDialog {
     // console.log('DEBUG UNBLOCKBOTDETAILS in GetAndSendEmailStep:', unblockBotDetails);
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("getAndSendEmailStepStandardMsg");
+    const standardMsg = i18n.__('getAndSendEmailStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("getAndSendEmailStepRetryMsg");
+    const retryMsg = i18n.__('getAndSendEmailStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (unblockBotDetails.errorCount.getAndSendEmailStep >= MAX_ERROR_COUNT) {
       // Throw the master error flag
       unblockBotDetails.masterError = true;
 
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -68,7 +67,7 @@ export class GetAndSendEmailStep extends ComponentDialog {
       unblockBotDetails.getAndSendEmailStep === -1
     ) {
       // Setup the prompt message
-      let promptMsg = "";
+      let promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.getAndSendEmailStep === -1) {
@@ -97,7 +96,7 @@ export class GetAndSendEmailStep extends ComponentDialog {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       // Email validation
       if (re.test(String(results).toLowerCase())) {
-        const confirmMsg = i18n.__("getAndSendEmailStepConfirmMsg");
+        const confirmMsg = i18n.__('getAndSendEmailStepConfirmMsg');
         await stepContext.context.sendActivity(confirmMsg);
         return await stepContext.endDialog(unblockBotDetails);
       } else {
@@ -107,8 +106,7 @@ export class GetAndSendEmailStep extends ComponentDialog {
     }
     return await stepContext.replaceDialog(
       GET_AND_SEND_EMAIL_STEP,
-      unblockBotDetails
+      unblockBotDetails,
     );
   }
 }
-
