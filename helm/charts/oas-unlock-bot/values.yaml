@@ -6,6 +6,8 @@ secrets:
 
 rbac:
   enabled: true
+  groupId: 3059f292-88c3-4a2d-b377-fd71a398d369
+  clusterRoleName: single-namespace-lock
 
 image:
   repository: nginx
