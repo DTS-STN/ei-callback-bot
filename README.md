@@ -1,4 +1,4 @@
-# OAS-Unblock-Bot
+# oas-callback-Bot
 
 ## Summary
 
@@ -16,7 +16,7 @@ The project is building a chatbot to help OAS user to understand and know their 
 
 ## Table of Contents
 
-- [OAS-unblock-Bot](#oas-unblock-bot)
+- [oas-callback-Bot](#oas-unblock-bot)
   - [Summary](#summary)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
@@ -63,11 +63,15 @@ Follow these steps to get started.
 
 - Clone the repository
 
-  ```bash
-  git clone https://github.com/DTS-STN/OAS-Unblock-Bot
-  or
-  git clone git@github.com:DTS-STN/OAS-Unblock-Bot.git
-  ```
+```bash
+git clone https://github.com/DTS-STN/oas-callback-bot
+```
+
+or
+
+```back
+git clone git@github.com:DTS-STN/oas-callback-bot.git
+```
 
 ### Running the project with docker
 
