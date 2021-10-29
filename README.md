@@ -137,6 +137,7 @@ Workspaces:
 - Enter a Dev Bot URL `https://dts-oas-callback-bot-dev.bdm-dev.dts-stn.com/api/messages`
 - if you are using docker container or connect to dev env from your local laptop, please download ngrok and config as below ![config-ngrok](config_ngrok.png)
 - otherwise do not need this step
+- Enter MicrosoftAppId and MicrosoftAppPassword from your .env file
 
 ## Interacting with the bot
 
