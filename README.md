@@ -1,4 +1,4 @@
-# OAS-Callback-Bot
+# OAS-Unblock-Bot
 
 ## Summary
 
@@ -16,7 +16,7 @@ The project is building a chatbot to help OAS user to understand and know their 
 
 ## Table of Contents
 
-- [OAS-Callback-Bot](#oas-callback-bot)
+- [OAS-unblock-Bot](#oas-unblock-bot)
   - [Summary](#summary)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
