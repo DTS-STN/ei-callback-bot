@@ -106,7 +106,7 @@ Workspaces:
 - Start the bot
 
   ```bash
-  npm start:dev
+  npm run start:dev
   ```
 
 ## Database and storage
