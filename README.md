@@ -64,9 +64,9 @@ Follow these steps to get started.
 - Clone the repository
 
   ```bash
-  git clone https://github.com/DTS-STN/OAS-Unblock-Bot
+  git clone https://github.com/DTS-STN/oas-callback-bot
   or
-  git clone git@github.com:DTS-STN/OAS-Unblock-Bot.git
+  git clone git@github.com:DTS-STN/oas-callback-bot.git
   ```
 
 ### Running the project with docker
