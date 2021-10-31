@@ -141,6 +141,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       // Not - adding these extra intent checks because of a bug with the french happy path
 
       case 'promptConfirmYes':
+      case 'promptConfirmPhoneYes':
         console.log('INTENT: ', intent);
         callbackBotDetails.confirmCallbackPhoneNumberStep = true;
         //  const confirmMsg = i18n.__('getUserPhoneConfirmMsg');
