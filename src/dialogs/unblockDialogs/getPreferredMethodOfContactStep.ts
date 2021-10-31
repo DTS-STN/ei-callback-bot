@@ -17,7 +17,7 @@ const GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP =
 
 const MAX_ERROR_COUNT = 3;
 
-export class GetPreferredMethodOfContactStep extends ComponentDialog {
+export class GetPrefferedMethodOfContactStep extends ComponentDialog {
   constructor() {
     super(GET_PREFFERED_METHOD_OF_CONTACT_STEP);
 

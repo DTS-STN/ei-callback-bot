@@ -135,6 +135,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     const sendEmailMsg = i18n.__('confirmEmailStepStandMsg');
     const sendTextMsg = i18n.__('confirmPhoneStepStandMsg');
     const sendBothMsg = i18n.__('getPreferredMethodOfContactStepSendBothMsg');
+    const NoNotificationMsg = i18n.__('NoNotificationMsg');
 
     // Top intent tell us which cognitive service to use.
     const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
@@ -148,7 +149,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         callbackBotDetails.preferredEmail = true;
         console.log('text retry 11111');
         // callbackBotDetails.confirmEmailStep = null;
-        // await stepContext.context.sendActivity(sendEmailMsg);
+
         return await stepContext.replaceDialog(
           CONFIRM_EMAIL_STEP,
           callbackBotDetails,
@@ -177,6 +178,11 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
         return await stepContext.endDialog(callbackBotDetails);
 
+      case 'promptConfirmChoiceNone':
+        // user don't want to receive notification. use this case
+        console.log('INTENT: ', intent);
+        await stepContext.context.sendActivity(NoNotificationMsg);
+        return await stepContext.endDialog(callbackBotDetails);
       // Could not understand / None intent
       default: {
         // Catch all

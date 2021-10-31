@@ -89,7 +89,7 @@ Workspaces:
 ### Running the project with npm
 
 - Add a `.env` file to `/src`
-- `cp server/.env.example src/.env`
+- `cp config/.env.example src/.env`
 - Update `src/.env` with variables provided by existing dev.
 - Install modules
 

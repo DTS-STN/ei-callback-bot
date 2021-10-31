@@ -35,6 +35,10 @@ import {
 } from './getPreferredMethodOfContactStep';
 import { ConfirmPhoneStep, CONFIRM_PHONE_STEP } from './confirmPhoneStep';
 import { GetUserEmailStep, GET_USER_EMAIL_STEP } from './getUserEmailStep';
+import {
+  ConfirmCallbackPhoneNumberStep,
+  CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
+} from './confirmCallbackPhoneNumberStep';
 
 export const CALLBACK_BOT_DIALOG = 'CALLBACK_BOT_DIALOG';
 const MAIN_CALLBACK_BOT_WATERFALL_DIALOG = 'MAIN_CALLBACK_BOT_WATERFALL_DIALOG';
@@ -45,8 +49,9 @@ export class CallbackBotDialog extends ComponentDialog {
 
     // Add the ConfirmCallbackStep dialog to the dialog stack
     this.addDialog(new ConfirmCallbackStep());
-    // this.addDialog(new ConfirmConfirmationStep());
+    this.addDialog(new ConfirmCallbackPhoneNumberStep());
     this.addDialog(new GetPreferredMethodOfContactStep());
+
     this.addDialog(new ConfirmEmailStep());
     this.addDialog(new ConfirmPhoneStep());
     this.addDialog(new GetUserEmailStep());
@@ -58,7 +63,7 @@ export class CallbackBotDialog extends ComponentDialog {
       new WaterfallDialog(MAIN_CALLBACK_BOT_WATERFALL_DIALOG, [
         this.welcomeStep.bind(this),
         this.confirmCallbackStep.bind(this),
-        // this.confirmConfirmationStep.bind(this),
+        this.confirmCallbackPhoneNumberStep.bind(this),
         this.getPreferredMethodOfContactStep.bind(this),
         this.confirmEmailStep.bind(this),
         this.confirmPhoneStep.bind(this),
@@ -416,6 +421,40 @@ export class CallbackBotDialog extends ComponentDialog {
         // so we are sending to the end because they need to hit the next step
         case false:
           console.log('hererere wrong');
+          return await stepContext.endDialog(callbackBotDetails);
+
+        // Default catch all but we should never get here
+        default:
+          return await stepContext.endDialog(callbackBotDetails);
+      }
+    }
+  }
+
+  async confirmCallbackPhoneNumberStep(stepContext) {
+    // Get the state machine from the last step
+    const callbackBotDetails = stepContext.result;
+
+    if (callbackBotDetails.masterError) {
+      return await stepContext.endDialog(callbackBotDetails);
+    } else {
+      switch (callbackBotDetails.confirmCallbackPhoneNumberStep) {
+        // The flag in the state machine isn't set
+        // so we are sending the user to that step
+        case null:
+          // only start the dialog if user choose email or both ways to notify them
+          return await stepContext.beginDialog(
+            CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
+            callbackBotDetails,
+          );
+
+        // The flag in the state machine is set to true
+        // so we are sending the user to next step
+        case true:
+          return await stepContext.next(callbackBotDetails);
+
+        // The flag in the state machine is set to false
+        // so we are sending to the end because they need to hit the next step
+        case false:
           return await stepContext.endDialog(callbackBotDetails);
 
         // Default catch all but we should never get here
