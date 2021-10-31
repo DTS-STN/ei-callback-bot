@@ -16,7 +16,7 @@ import {
   CONFIRM_NOTIFY_ROE_RECEIVED_STEP,
 } from './confirmNotifyROEReceivedStep';
 import {
-  GetPreferredMethodOfContactStep,
+  GetPrefferedMethodOfContactStep,
   GET_PREFFERED_METHOD_OF_CONTACT_STEP,
 } from './getPreferredMethodOfContactStep';
 
@@ -35,7 +35,7 @@ export class UnblockBotDialog extends ComponentDialog {
     this.addDialog(new ConfirmSendEmailStep());
     this.addDialog(new GetAndSendEmailStep());
     this.addDialog(new ConfirmNotifyROEReceivedStep());
-    this.addDialog(new GetPreferredMethodOfContactStep());
+    this.addDialog(new GetPrefferedMethodOfContactStep());
     this.addDialog(new CallbackBotDialog());
 
     this.addDialog(

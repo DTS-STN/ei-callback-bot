@@ -21,6 +21,7 @@ export class CallbackBotDetails {
   public preferredEmail;
   public preferredText;
   public preferredEmailAndText;
+  public confirmCallbackPhoneNumberStep;
   constructor() {
     // Master error - flag that is thrown when we hit a critical error in the conversation flow
     this.masterError = null;
@@ -45,6 +46,7 @@ export class CallbackBotDetails {
     this.phoneNumber = '';
     this.time = '';
     this.authCode = '';
+    this.confirmCallbackPhoneNumberStep = null;
 
     // State machine that stores the error counts of each step
     this.errorCount = {
@@ -58,6 +60,7 @@ export class CallbackBotDetails {
       getPreferredMethodOfContactStep: 0,
       confirmEmailStep: 0,
       confirmPhoneStep: 0,
+      confirmCallbackPhoneNumberStep: 0,
     };
 
     // TODO: Refactor and add an object that tracks status perhaps something like below

@@ -18,6 +18,7 @@ The project is building a chatbot to help OAS user to understand and know their 
 
 - [OAS-Callback-Bot](#oas-callback-bot)
   - [Summary](#summary)
+  - [Build Status](#build-status)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Technology stack](#technology-stack)
