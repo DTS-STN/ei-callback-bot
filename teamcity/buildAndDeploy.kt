@@ -17,7 +17,7 @@ object DeployBdmDev : BuildType({
         param("env.K8S_CLUSTER_NAME", "ESdCDPSBDMK8SDev-K8S-admin")
         param("env.DOCKER_TAG", "%build.number%")
         param("env.BASE_DOMAIN_DEV", "bdm-dev.dts-stn.com")
-        param("env.PROJECT", "dts-oas-callback-bot")
+        param("env.PROJECT", "dts-ei-callback-bot")
         param("env.TARGET", "dev")
         param("env.BRANCH", "%teamcity.build.branch%")
     }

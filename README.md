@@ -1,4 +1,4 @@
-# OAS-Callback-Bot
+# EI-Callback-Bot
 
 ## Summary
 
@@ -16,7 +16,7 @@ The project is building a chatbot to help OAS user to understand and know their 
 
 ## Table of Contents
 
-- [OAS-Callback-Bot](#oas-callback-bot)
+- [EI-Callback-Bot](#ei-callback-bot)
   - [Summary](#summary)
   - [Build Status](#build-status)
   - [Table of Contents](#table-of-contents)
@@ -65,9 +65,9 @@ Follow these steps to get started.
 - Clone the repository
 
   ```bash
-  git clone https://github.com/DTS-STN/oas-callback-bot
+  git clone https://github.com/DTS-STN/ei-callback-bot
   or
-  git clone git@github.com:DTS-STN/oas-callback-bot.git
+  git clone git@github.com:DTS-STN/ei-callback-bot.git
   ```
 
 ### Running the project with docker
