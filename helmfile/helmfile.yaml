@@ -1,22 +1,22 @@
 environments:
-  benrd: 
+  benrd:
   bingrd:
   dev:
   prod-blue:
-  prod-green: 
+  prod-green:
   prototype:
 
 
 releases:
 
-  - name: oasubapi-{{ requiredEnv "BRANCH" }}
-    chart: ../helm/charts/oas-unlock-bot
-    namespace: oas-ub-{{ requiredEnv "BRANCH" }}
+  - name: eicallbackapi-{{ requiredEnv "BRANCH" }}
+    chart: ../helm/charts/ei-callback-bot
+    namespace: ei-callback-{{ requiredEnv "BRANCH" }}
     values:
-      - overrides/oas-unlock-bot-api.yaml.gotmpl
+      - overrides/ei-callback-bot-api.yaml.gotmpl
     labels:
         category: prototype
-        app: oas-unlock-bot
+        app: ei-callback-bot
         tier: api
     wait: false
     installed: true
