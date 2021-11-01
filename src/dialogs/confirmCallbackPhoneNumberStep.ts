@@ -159,10 +159,8 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       case 'promptConfirmNo':
         console.log('INTENT: ', intent);
         callbackBotDetails.confirmCallbackPhoneNumberStep = false;
+        callbackBotDetails.confirmPhoneStep = false;
 
-        // await stepContext.context.sendActivity(closeMsg);
-
-        // return await stepContext.endDialog(callbackBotDetails);
         return await stepContext.replaceDialog(
           GET_USER_PHONE_NUMBER_STEP,
           callbackBotDetails,
