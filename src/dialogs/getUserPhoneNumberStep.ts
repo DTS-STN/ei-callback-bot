@@ -54,7 +54,7 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
     if (
       callbackBotDetails.errorCount.getUserPhoneNumberStep >= MAX_ERROR_COUNT
     ) {
-      const errorMsg = i18n.__('emailFormatMaxErrorMsg');
+      const errorMsg = i18n.__('phoneNumberFormatMaxErrorMsg');
 
       // Send master error message
       // await stepContext.context.sendActivity(errorMsg);
@@ -157,7 +157,8 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
             const confirmMsg = i18n.__('getUserPhoneConfirmMsg');
             callbackBotDetails.confirmPhoneStep = true;
             callbackBotDetails.getUserPhoneNumberStep = true;
-            await stepContext.context.sendActivity(confirmMsg);
+            if (callbackBotDetails.confirmCallbackPhoneNumberStep === true)
+              await stepContext.context.sendActivity(confirmMsg);
 
             return await stepContext.endDialog(callbackBotDetails);
           } else {

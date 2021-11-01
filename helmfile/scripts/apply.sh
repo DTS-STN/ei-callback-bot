@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ $BRANCH == *"/"* ]]; then
-  export BRANCH=$(echo $BRANCH | awk -F'/' '{print $3}')
+  export BRANCH=$(echo ${BRANCH#*/})
 fi
 echo "Deploying to: $BRANCH" 
 az account set -s $SUBSCRIPTION
