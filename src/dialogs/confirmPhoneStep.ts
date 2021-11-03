@@ -127,7 +127,7 @@ export class ConfirmPhoneStep extends ComponentDialog {
     // Top intent tell us which cognitive service to use.
     const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
-    const closeMsg = i18n.__('confirmNotifyROEReceivedStepCloseMsg');
+    const closeMsg = i18n.__('getUserBothContactsConfirmMsg');
 
     switch (intent) {
       // Proceed
@@ -137,7 +137,11 @@ export class ConfirmPhoneStep extends ComponentDialog {
         console.log('INTENT: ', intent);
         callbackBotDetails.confirmPhoneStep = true;
         const confirmMsg = i18n.__('getUserPhoneConfirmMsg');
-        await stepContext.context.sendActivity(confirmMsg);
+        if (callbackBotDetails.preferredEmailAndText === true) {
+          await stepContext.context.sendActivity(closeMsg);
+        } else {
+          await stepContext.context.sendActivity(confirmMsg);
+        }
         return await stepContext.endDialog(callbackBotDetails);
 
       // Don't Proceed
