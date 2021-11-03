@@ -51,7 +51,7 @@ export class ConfirmEmailStep extends ComponentDialog {
     const retryMsg = i18n.__('confirmEmailStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
-    if (callbackBotDetails.errorCount.confirmUserEmailStep >= MAX_ERROR_COUNT) {
+    if (callbackBotDetails.errorCount.confirmEmailStep >= MAX_ERROR_COUNT) {
       // Throw the master error flag
       callbackBotDetails.masterError = true;
 
