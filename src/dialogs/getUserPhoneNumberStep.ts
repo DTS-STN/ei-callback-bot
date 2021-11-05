@@ -54,7 +54,8 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
     if (
       callbackBotDetails.errorCount.getUserPhoneNumberStep >= MAX_ERROR_COUNT
     ) {
-      if (callbackBotDetails.errorCount.confirmCallbackPhoneNumber === false) {
+      if (callbackBotDetails.confirmCallbackPhoneNumberStep === false) {
+        console.log('test eeeeee');
         //   Throw the master error flag
         callbackBotDetails.masterError = true;
         //  Send master error message
