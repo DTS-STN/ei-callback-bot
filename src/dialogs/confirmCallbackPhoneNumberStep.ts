@@ -50,7 +50,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     const standardMsg = i18n.__('confirmCallbackPhoneNumberStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__('confirmCallbackStepRetryMsg');
+    const retryMsg = i18n.__('confirmCallbackPhoneNumberStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -79,17 +79,15 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     ) {
       // Setup the prompt message
       let promptMsg = '';
-
+      const promptOptions: any = i18n.__(
+        'confirmCallbackPhoneNumberStepStandardPromptOptions',
+      );
       // The current step is an error state
       if (callbackBotDetails.confirmCallbackPhoneNumberStep === -1) {
         promptMsg = retryMsg;
       } else {
         promptMsg = standardMsg;
       }
-
-      const promptOptions: any = i18n.__(
-        'confirmCallbackPhoneNumberStepStandardPromptOptions',
-      );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(

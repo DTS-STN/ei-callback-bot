@@ -78,6 +78,7 @@ export class MainDialog extends ComponentDialog {
     // const callBackBotDetails = new CallbackBotDetails();
     // return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, callBackBotDetails);
     const unblockBotDetails = new UnblockBotDetails();
+    console.log('Main dialog', unblockBotDetails);
     return await stepContext.beginDialog(UNBLOCK_BOT_DIALOG, unblockBotDetails);
   }
 
@@ -87,7 +88,7 @@ export class MainDialog extends ComponentDialog {
    */
   async rateStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
     const feedbackMsg = i18n.__('mainDialogFeedbackMsg');
-
+    console.log('ratestep ,', stepContext);
     // Running a prompt here means the next WaterfallStep will be run when the user's response is received.
     return await stepContext.prompt(CHOICE_PROMPT, {
       prompt: feedbackMsg,

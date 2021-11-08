@@ -1,20 +1,23 @@
 import { DialogTestClient, DialogTestLogger } from 'botbuilder-testing';
 
-import { CallbackRecognizer } from '../../dialogs/calllbackDialogs/callbackRecognizer';
-import { GetPreferredMethodOfContactStep } from '../../dialogs/getPreferredMethodOfContactStep';
+import { CallbackRecognizer } from '../../../dialogs/calllbackDialogs/callbackRecognizer';
+import { GetPreferredMethodOfContactStep } from '../../../dialogs/getPreferredMethodOfContactStep';
 const assert = require('assert');
 import * as tsSinon from 'ts-sinon';
 import { Activity } from 'botbuilder';
-import { ConfirmEmailStep } from '../../dialogs/confirmEmailStep';
-import { GetUserPhoneNumberStep } from '../../dialogs/getUserPhoneNumberStep';
-import { ConfirmPhoneStep } from '../../dialogs/confirmPhoneStep';
+import { ConfirmEmailStep } from '../../../dialogs/confirmEmailStep';
+import { ConfirmCallbackPhoneNumberStep } from '../../../dialogs/confirmCallbackPhoneNumberStep';
+import {
+  GetUserPhoneNumberStep,
+  GET_USER_PHONE_NUMBER_STEP,
+} from '../../../dialogs/getUserPhoneNumberStep';
 
-describe('GetPreferredMethodOfContactStep', () => {
-  const testCases = require('../testData/getPreferredMethodOfContactTestData');
-  const sut = new GetPreferredMethodOfContactStep();
-  sut.addDialog(new ConfirmEmailStep());
-  sut.addDialog(new GetUserPhoneNumberStep());
-  sut.addDialog(new ConfirmPhoneStep());
+describe('ConfirmCallbackPhoneNumberStep', () => {
+  const testCases = require('../../testData/confirmCallbackPhoneNumberStepTestData');
+  const sut = new ConfirmCallbackPhoneNumberStep();
+  const getUserPhoneNumberStep = new GetUserPhoneNumberStep();
+  sut.addDialog(getUserPhoneNumberStep);
+
   afterEach(function () {
     tsSinon.default.restore();
   });
@@ -23,11 +26,6 @@ describe('GetPreferredMethodOfContactStep', () => {
       const client = new DialogTestClient('test', sut, testData.initialData, [
         new DialogTestLogger(console),
       ]);
-
-      const stub = tsSinon.default
-        .stub()
-        .callsFake(() => new ConfirmEmailStep());
-      Object.setPrototypeOf(ConfirmEmailStep, stub);
 
       tsSinon.default
         .stub(CallbackRecognizer.prototype, 'executeLuisQuery')

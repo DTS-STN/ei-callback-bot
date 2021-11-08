@@ -188,7 +188,6 @@ export class CallbackBotDialog extends ComponentDialog {
         // The confirmPhoneStep flag in the state machine isn't set
         // so we are sending the user to that step
         case null:
-          console.log('test callback dialog confirm phone');
           // start this dialog if user want to receive text or both email and text
           if (
             callbackBotDetails.preferredText === true ||
@@ -210,7 +209,6 @@ export class CallbackBotDialog extends ComponentDialog {
         // so we are sending to the end because they need to hit the next step
         case false:
           // code block
-          console.log('test callback dialog confirm phone false');
           return await stepContext.endDialog(callbackBotDetails);
 
         // Default catch all but we should never get here
@@ -277,10 +275,6 @@ export class CallbackBotDialog extends ComponentDialog {
 
       switch (callbackBotDetails.getUserEmailStep) {
         case null:
-          console.log(
-            'test callback dialog get 2 email',
-            callbackBotDetails.confirmEmailStep,
-          );
           // bot only ask user input new email if they say current one is incorrect
           if (
             typeof callbackBotDetails.confirmEmailStep === 'boolean' &&
@@ -400,7 +394,6 @@ export class CallbackBotDialog extends ComponentDialog {
         // so we are sending the user to that step
         case null:
           // only start the dialog if user choose email or both ways to notify them
-          console.log('text callback dialog confirm email');
           if (
             callbackBotDetails.preferredEmail === true ||
             callbackBotDetails.preferredEmailAndText === true
@@ -420,7 +413,6 @@ export class CallbackBotDialog extends ComponentDialog {
         // The flag in the state machine is set to false
         // so we are sending to the end because they need to hit the next step
         case false:
-          console.log('hererere wrong');
           return await stepContext.endDialog(callbackBotDetails);
 
         // Default catch all but we should never get here
@@ -441,12 +433,15 @@ export class CallbackBotDialog extends ComponentDialog {
         // The flag in the state machine isn't set
         // so we are sending the user to that step
         case null:
-          // only start the dialog if user choose email or both ways to notify them
-          return await stepContext.beginDialog(
-            CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
-            callbackBotDetails,
-          );
-
+          // only start the dialog if user choose setup callback
+          if (callbackBotDetails.confirmCallbackStep === true) {
+            return await stepContext.beginDialog(
+              CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
+              callbackBotDetails,
+            );
+          } else {
+            return await stepContext.next(callbackBotDetails);
+          }
         // The flag in the state machine is set to true
         // so we are sending the user to next step
         case true:

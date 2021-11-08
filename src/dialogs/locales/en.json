@@ -65,6 +65,11 @@
     "Yes, correct",
     "No, it's not"
   ],
+  "confirmCallbackPhoneNumberStepRetryPromptOptions": [
+    "Yes, Please!",
+    "No, Thanks"
+  ],
+  "confirmCallbackPhoneNumberStepRetryMsg": "Oops - I'm not sure what you meant. Is XXX-XXX-XXXX still the best number to reach you?",
   "confirmSendEmailStepStandardMsg": "So, I can see that you completed your application on February 12, and the application itself looks good. However, we still haven’t received a Record of Employment from your previous employer, Initech.",
   "confirmSendEmailStepRetryMsg": "Oops - I'm not sure what you meant. Do you want me to send a follow-up e-mail to Initech?",
   "confirmSendEmailStepQueryMsg": "If you like, I can send Initech a follow-up email from the Government of Canada. That usually does the trick 😉",
