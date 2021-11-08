@@ -466,33 +466,36 @@ export class CallbackBotDialog extends ComponentDialog {
   async getPreferredMethodOfContactStep(stepContext) {
     // Get the state machine from the last step
     const callbackBotDetails = stepContext.result;
+    if (callbackBotDetails.masterError) {
+      return await stepContext.endDialog(callbackBotDetails);
+    } else {
+      switch (callbackBotDetails.getPreferredMethodOfContactStep) {
+        // The  flag in the state machine isn't set
+        // so we are sending the user to that step
+        case null:
+          if (callbackBotDetails.confirmCallbackStep === true) {
+            return await stepContext.beginDialog(
+              GET_PREFERRED_METHOD_OF_CONTACT_STEP,
+              callbackBotDetails,
+            );
+          } else {
+            return await stepContext.endDialog(callbackBotDetails);
+          }
 
-    switch (callbackBotDetails.getPreferredMethodOfContactStep) {
-      // The  flag in the state machine isn't set
-      // so we are sending the user to that step
-      case null:
-        if (callbackBotDetails.confirmCallbackStep === true) {
-          return await stepContext.beginDialog(
-            GET_PREFERRED_METHOD_OF_CONTACT_STEP,
-            callbackBotDetails,
-          );
-        } else {
+        // The flag in the state machine is set to true
+        // so we are sending the user to next step
+        case true:
+          return await stepContext.next(callbackBotDetails);
+
+        // The flag in the state machine is set to false
+        // so we are sending to the end because they need to hit the next step
+        case false:
           return await stepContext.endDialog(callbackBotDetails);
-        }
 
-      // The flag in the state machine is set to true
-      // so we are sending the user to next step
-      case true:
-        return await stepContext.next(callbackBotDetails);
-
-      // The flag in the state machine is set to false
-      // so we are sending to the end because they need to hit the next step
-      case false:
-        return await stepContext.endDialog(callbackBotDetails);
-
-      // Default catch all but we should never get here
-      default:
-        return await stepContext.endDialog(callbackBotDetails);
+        // Default catch all but we should never get here
+        default:
+          return await stepContext.endDialog(callbackBotDetails);
+      }
     }
   }
 
