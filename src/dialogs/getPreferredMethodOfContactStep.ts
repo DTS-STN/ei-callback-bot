@@ -66,6 +66,11 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       // Throw the master error flag
       callbackDetails.masterError = true;
       // End the dialog and pass the updated details state machine
+      // Set master error message to send
+      const errorMsg = i18n.__('masterErrorMsg');
+
+      // Send master error message
+      await stepContext.context.sendActivity(errorMsg);
       return await stepContext.endDialog(callbackDetails);
     }
 
@@ -147,14 +152,11 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         console.log('INTENT choose email: ', intent);
         callbackBotDetails.getPreferredMethodOfContactStep = true;
         callbackBotDetails.preferredEmail = true;
-        console.log('text retry 11111');
-        // callbackBotDetails.confirmEmailStep = null;
 
         return await stepContext.replaceDialog(
           CONFIRM_EMAIL_STEP,
           callbackBotDetails,
         );
-      // return await stepContext.endDialog(callbackBotDetails);
 
       // Proceed with Text Message
       case 'promptConfirmChoiceText':

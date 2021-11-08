@@ -89,7 +89,6 @@ export class GetUserEmailStep extends ComponentDialog {
       } else {
         promptMsg = standardMsg;
       }
-      console.log('come 222222');
       return await stepContext.prompt(TEXT_PROMPT, promptMsg);
     }
     return await stepContext.next(false);
