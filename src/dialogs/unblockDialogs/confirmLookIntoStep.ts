@@ -7,7 +7,8 @@ import {
 
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
+import { UnblockRecognizer } from './unblockRecognizer';
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
 export const CONFIRM_LOOK_INTO_STEP = 'CONFIRM_LOOK_INTO_STEP';
@@ -111,47 +112,30 @@ export class ConfirmLookIntoStep extends ComponentDialog {
     // Get the user details / state machine
     const unblockBotDetails = stepContext.options;
 
+    let luisRecognizer;
+    let lang = 'en';
     // Language check
-    var applicationId = '';
-    var endpointKey = '';
-    var endpoint = '';
-
-    console.log('ACTIVITY: ', stepContext.context.activity);
-    console.log('STEPCONTEXT: ', stepContext);
 
     // Then change LUIZ appID
     if (
       stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
       stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
-      applicationId = process.env.LuisAppIdFR;
-      endpointKey = process.env.LuisAPIKeyFR;
-      endpoint = `https://${process.env.LuisAPIHostNameFR}.api.cognitive.microsoft.com`;
-    } else {
-      applicationId = process.env.LuisAppIdEN;
-      endpointKey = process.env.LuisAPIKeyEN;
-      endpoint = `https://${process.env.LuisAPIHostNameEN}.api.cognitive.microsoft.com`;
+      lang = 'fr';
     }
 
     // LUIZ Recogniser processing
-    const recognizer = new LuisRecognizer(
-      {
-        applicationId: applicationId,
-        endpointKey: endpointKey,
-        endpoint: endpoint,
-      },
-      {
-        includeAllIntents: true,
-        includeInstanceData: true,
-      },
-      true,
-    );
-
+    luisRecognizer = new UnblockRecognizer(lang);
     // Call prompts recognizer
-    const recognizerResult = await recognizer.recognize(stepContext.context);
+    const recognizerResult = await luisRecognizer.executeLuisQuery(
+      stepContext.context,
+    );
 
     // Top intent tell us which cognitive service to use.
     const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
+
+    console.log('ACTIVITY: ', stepContext.context.activity);
+    console.log('STEPCONTEXT: ', stepContext);
 
     const closeMsg = i18n.__('confirmLookIntoStepCloseMsg');
 

@@ -7,7 +7,7 @@ import {
 
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
 export const GET_PREFFERED_METHOD_OF_CONTACT_STEP =

@@ -7,7 +7,7 @@ import {
 } from 'botbuilder-dialogs';
 import { DialogTestClient, DialogTestLogger } from 'botbuilder-testing';
 import { MainDialog } from '../../dialogs/mainDialog';
-import i18n from '../../dialogs/locales/i18nConfig';
+import { i18n } from '../../dialogs/locales/i18nConfig';
 const assert = require('assert');
 import chai from 'chai';
 import * as tsSinon from 'ts-sinon';
@@ -18,6 +18,8 @@ import {
 
 chai.use(require('sinon-chai'));
 import { expect } from 'chai';
+import { UnblockRecognizer } from '../../dialogs/unblockDialogs/unblockRecognizer';
+import { ConfirmLookIntoStep } from '../../dialogs/unblockDialogs/confirmLookIntoStep';
 /**
  * An waterfall dialog derived from MainDialog for testing
  */
@@ -26,34 +28,36 @@ describe('MainDialog', () => {
   describe('Should be able to initial callback dialog', () => {
     // const testCases = require('./testData/MainDialogTestData');
     const sut = new MainDialog();
-    sut.addDialog(new UnblockBotDialog());
+    const unblockBotDialog = new UnblockBotDialog();
 
-    // Create array with test case data.
+    const confirmLookInto = new ConfirmLookIntoStep();
+    sut.addDialog(unblockBotDialog);
+    unblockBotDialog.addDialog(confirmLookInto);
+    afterEach(function () {
+      tsSinon.default.restore();
+    });
+
     const standardMsg = i18n.__('confirmSendEmailStepStandardMsg');
     const firstMsg = i18n.__('unBlockBotDialogWelcomeMsg');
     const secondMsg = i18n.__('confirmLookIntoStepStandardMsg');
     const leaveMsg = i18n.__('confirmCallbackStepCloseMsg');
+    // Create array with test case data.
     const testCases = [
       {
         utterance: 'Yes, please',
         intent: 'go to unblock dialog',
+        name: 'initial unblock dialog',
         initialData: {
+          locale: 'en',
           masterError: null,
-          // [STEP 1] Flag that confirms the user wants us to look into their file
-          // [STEP 1] Flag that confirms the user wants us to look into their file
-          confirmLookIntoStep: null,
+          confirmLookIntoStep: false,
 
-          // [STEP 2] Flag that confirms the user wants us to send an email
-          // [STEP 2] Flag that confirms the user wants us to send an email
           confirmSendEmailStep: null,
 
-          // [STEP 3] Get and send an email
           getAndSendEmailStep: null,
 
-          // [STEP 4] Determine if the user wants to be notified
           confirmNotifyROEReceivedStep: null,
 
-          // [STEP 5] Get preferred method of contact
           getPreferredMethodOfContactStep: null,
 
           errorCount: {
@@ -70,17 +74,37 @@ describe('MainDialog', () => {
       {
         utterance: 'No,thanks',
         intent: 'Leave the dialog',
-        initialData: {},
+        name: 'Leave the dialog',
+        initialData: {
+          locale: 'en',
+        },
         invokedDialogResponse: ``,
         taskConfirmationMessage: leaveMsg,
       },
     ];
     testCases.map((testData) => {
-      it(testData.intent, async () => {
-        const client = new DialogTestClient('test', sut, null, [
+      it(testData.name, async () => {
+        const client = new DialogTestClient('test', sut, testData.initialData, [
           new DialogTestLogger(),
         ]);
+        tsSinon.default
+          .stub(UnblockRecognizer.prototype, 'executeLuisQuery')
+          .callsFake(() =>
+            JSON.parse(
+              `{"intents": {"${testData.intent}": {"score": 1}}, "entities": {"$instance": {}}}`,
+            ),
+          );
+        /*  tsSinon.default
+          .stub(unblockBotDialog, 'welcomeStep')
+          .callsFake(() => Promise.resolve('welcomeStep called'));
 
+        tsSinon.default
+          .stub(confirmLookInto, 'initialStep')
+          .callsFake(() => Promise.resolve('initialStep called'));
+
+        tsSinon.default
+          .stub(confirmLookInto, 'finalStep')
+          .callsFake(() => Promise.resolve('finalStep called')); */
         // Execute the test case
         let updatedActivity: Partial<Activity> = {
           text: '',
@@ -93,13 +117,16 @@ describe('MainDialog', () => {
         expect(secondReply.text).to.be.equal(
           secondMsg + ' (1) Yes please! or (2) No thanks',
         );
-        let realReply = await client.sendActivity(testData.utterance);
 
-        const initialStep = tsSinon.default.spy(sut.initialStep);
-
+        const initialStep = tsSinon.default.spy(sut, 'initialStep');
+        // const unblockBotWelcomeStep = tsSinon.default.spy(unblockBotDialog);
+        // const confirmLookIntoInitialStep = tsSinon.default.spy(confirmLookInto);
+        // const confirmLookIntoFinalStep = tsSinon.default.spy(confirmLookInto);
         //expect(realReply.text).to.be.equal('testData.taskConfirmationMessage');
-        expect(initialStep).to.have.been.calledOnce;
-
+        expect(initialStep).to.have.been.called;
+        //expect(unblockBotDialog.welcomeStep).to.have.been.calledOnce;
+        // expect(confirmLookInto.initialStep).to.have.been.calledOnce;
+        //  expect(confirmLookInto.finalStep).to.have.been.calledOnce;
         // reply = await client.sendActivity(testData.invokedDialogResponse);
         //   assert.strictEqual(reply.text, 'Cancelling...');
         //   assert.strictEqual(client.dialogTurnResult.status, 'complete');
@@ -113,18 +140,27 @@ describe('MainDialog', () => {
       {
         utterance: '1',
         intent: 'None',
+        initialData: {
+          locale: 'en',
+        },
         name: ' test rate Step',
         invokedDialogResponse: ``,
         taskConfirmationMessage: leaveMsg,
       },
     ];
-
+    const sut = new MainDialog();
+    sut.addDialog(new UnblockBotDialog());
+    afterEach(function () {
+      tsSinon.default.restore();
+    });
     testCases.map((testData) => {
-      const sut = new MainDialog();
-      const client = new DialogTestClient('test1', sut, null, [
-        new DialogTestLogger(console),
-      ]);
       it(testData.name, async () => {
+        const client = new DialogTestClient(
+          'test1',
+          sut,
+          testData.initialData,
+          [new DialogTestLogger(console)],
+        );
         // const stepContext: WaterfallStepContext = {};
         //  sut.rateStep(stepContext);
         // Execute the test case

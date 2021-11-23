@@ -20,7 +20,7 @@ import {
   GET_PREFFERED_METHOD_OF_CONTACT_STEP,
 } from './getPreferredMethodOfContactStep';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
 import { CallbackBotDialog } from '../callbackBotDialog';
 
 export const UNBLOCK_BOT_DIALOG = 'UNBLOCK_BOT_DIALOG';

@@ -7,7 +7,7 @@ import {
 } from 'botbuilder';
 // const { WaterfallDialog, WaterfallStepContext, ChoicePrompt, TextPrompt, DialogTurnStatus } = require('botbuilder-dialogs');
 import { MainDialog } from '../dialogs/mainDialog';
-
+import { setLocale } from '../dialogs/locales/i18nConfig';
 import { Dialog, DialogState, DialogSet } from 'botbuilder-dialogs';
 const CALLBACK_BOT_DETAILS_PROPERTY = 'CALLBACK_BOT_DETAILS';
 export class VirtualAssistantCallbackBot extends ActivityHandler {
@@ -53,9 +53,7 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
     this.onMembersAdded(async (context, next) => {
       console.log('MEMBER ADDED:Running dialog with Message Activity.');
 
-      // Send greeting and then activate dialog
-      // await context.sendActivity(`Hi Mary, I’m your virtual concierge!`);
-
+      setLocale(context.activity.locale);
       // Run the Dialog with the new message Activity.
       await (this.dialog as MainDialog).run(context, this.dialogState);
 
@@ -66,6 +64,7 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
     this.onMessage(async (context, next) => {
       console.log('Running dialog with Message Activity.');
       // Run the Dialog with the new message Activity.
+      setLocale(context.activity.locale);
       await (this.dialog as MainDialog).run(context, this.dialogState);
 
       // By calling next() you ensure that the next BotHandler is run.

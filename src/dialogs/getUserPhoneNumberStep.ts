@@ -10,7 +10,7 @@ import { CallbackBotDetails } from './callbackBotDetails';
 import { CallbackRecognizer } from './calllbackDialogs/callbackRecognizer';
 import { GET_PREFERRED_METHOD_OF_CONTACT_STEP } from './getPreferredMethodOfContactStep';
 
-import i18n from './locales/i18nConfig';
+import { i18n } from './locales/i18nConfig';
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
 export const GET_USER_PHONE_NUMBER_STEP = 'GET_USER_PHONE_NUMBER_STEP';
@@ -45,7 +45,10 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__('getUserPhoneStepStandardMsg');
+    let standardMsg;
+    if (callbackBotDetails.confirmCallbackPhoneNumberStep === false)
+      standardMsg = i18n.__('getCallbackPhoneNumberStandardMsg');
+    else standardMsg = i18n.__('getUserPhoneStepStandardMsg');
 
     // Set the text for the retry prompt
     const retryMsg = i18n.__('getUserPhoneNumberFormatErrorMsg');
@@ -55,7 +58,6 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
       callbackBotDetails.errorCount.getUserPhoneNumberStep >= MAX_ERROR_COUNT
     ) {
       if (callbackBotDetails.confirmCallbackPhoneNumberStep === false) {
-        console.log('test eeeeee');
         //   Throw the master error flag
         callbackBotDetails.masterError = true;
         //  Send master error message

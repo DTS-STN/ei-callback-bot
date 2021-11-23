@@ -4,7 +4,7 @@ import {
   WaterfallDialog,
 } from 'botbuilder-dialogs';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
 export const GET_AND_SEND_EMAIL_STEP = 'GET_AND_SEND_EMAIL_STEP';

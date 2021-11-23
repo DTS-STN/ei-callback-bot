@@ -7,7 +7,7 @@ import {
 
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
 
 import { CallbackBotDialog, CALLBACK_BOT_DIALOG } from '../callbackBotDialog';
 

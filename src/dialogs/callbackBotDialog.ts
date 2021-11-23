@@ -25,7 +25,7 @@ import {
   ConfirmCallbackDetailsStep,
   CONFIRM_CALLBACK_DETAILS_STEP,
 } from './confirmCallbackDetailsStep';
-import i18n from './locales/i18nConfig';
+import { i18n } from './locales/i18nConfig';
 import { CallbackBotDetails } from './callbackBotDetails';
 import { StatePropertyAccessor, UserState } from 'botbuilder';
 import { ConfirmEmailStep, CONFIRM_EMAIL_STEP } from './confirmEmailStep';
@@ -472,8 +472,12 @@ export class CallbackBotDialog extends ComponentDialog {
       switch (callbackBotDetails.getPreferredMethodOfContactStep) {
         // The  flag in the state machine isn't set
         // so we are sending the user to that step
+
         case null:
-          if (callbackBotDetails.confirmCallbackStep === true) {
+          if (
+            callbackBotDetails.confirmCallbackStep === true &&
+            callbackBotDetails.confirmCallbackPhoneNumberStep === true
+          ) {
             return await stepContext.beginDialog(
               GET_PREFERRED_METHOD_OF_CONTACT_STEP,
               callbackBotDetails,
