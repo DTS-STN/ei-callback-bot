@@ -8,7 +8,7 @@ import {
 
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from './locales/i18nConfig';
+import { i18n } from './locales/i18nConfig';
 import { CallbackBotDetails } from './callbackBotDetails';
 import { CallbackRecognizer } from './calllbackDialogs/callbackRecognizer';
 
@@ -124,6 +124,7 @@ export class ConfirmCallbackStep extends ComponentDialog {
       stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
       stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
+      console.log('here');
       lang = 'fr';
     }
 
@@ -142,14 +143,14 @@ export class ConfirmCallbackStep extends ComponentDialog {
     switch (intent) {
       // Proceed
       case 'promptConfirmYes':
-        console.log('INTENT: ', intent);
+        console.log('INTENT 1: ', intent);
         callbackDetails.confirmCallbackStep = true;
 
         return await stepContext.endDialog(callbackDetails);
 
       // Don't Proceed
       case 'promptConfirmNo':
-        console.log('INTENT: ', intent);
+        console.log('INTENT 1 : ', intent);
 
         await stepContext.context.sendActivity(closeMsg);
 
@@ -159,7 +160,7 @@ export class ConfirmCallbackStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log('NONE INTENT');
+        console.log('NONE INTENT 1');
         callbackDetails.confirmCallbackStep = -1;
         callbackDetails.errorCount.confirmCallbackStep++;
 

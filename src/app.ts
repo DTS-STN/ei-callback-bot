@@ -18,7 +18,7 @@ import { DialogSet } from 'botbuilder-dialogs';
 
 // This bot's main dialog.
 import { VirtualAssistantCallbackBot } from './bots/virtualAssistantCallbackBot';
-// import i18n from './dialogs/locales/i18nConfig';
+// import { i18n} from './dialogs/locales/i18nConfig';
 
 // Create HTTP server
 const server = restify.createServer();

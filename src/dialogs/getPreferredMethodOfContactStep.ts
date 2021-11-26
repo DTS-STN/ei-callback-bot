@@ -7,7 +7,7 @@ import {
 
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from './locales/i18nConfig';
+import { i18n } from './locales/i18nConfig';
 import { CallbackRecognizer } from './calllbackDialogs/callbackRecognizer';
 import { CONFIRM_PHONE_STEP } from './confirmPhoneStep';
 import { CONFIRM_EMAIL_STEP } from './confirmEmailStep';

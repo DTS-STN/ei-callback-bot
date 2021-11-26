@@ -1,7 +1,7 @@
 import { CallbackRecognizer } from '../../dialogs/calllbackDialogs/callbackRecognizer';
 
 /**
- * A mock FlightBookingRecognizer for our main dialog tests that takes
+ * A mock CallbackBotRecognizer for our main dialog tests that takes
  * a mock luis result and can set as isConfigured === false.
  */
 class MockCallbackRecognizer extends CallbackRecognizer {

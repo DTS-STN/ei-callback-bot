@@ -18,7 +18,7 @@ import {
 } from 'botbuilder-dialogs';
 import { VirtualAssistantCallbackBot } from '../../bots/virtualAssistantCallbackBot';
 const assert = require('assert');
-import i18n from '../../dialogs/locales/i18nConfig';
+import { i18n } from '../../dialogs/locales/i18nConfig';
 // TODO: change assert to chai or other third part lib instead of use nodejs default one
 
 /**

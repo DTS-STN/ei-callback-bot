@@ -126,7 +126,10 @@ module.exports = [
         `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
         `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
-      ['Yes, correct', `No problem - what's your new phone number?`],
+      [
+        'Yes, correct',
+        `No problem , let's update your profile.  What's your new phone number?`,
+      ],
     ],
   },
 

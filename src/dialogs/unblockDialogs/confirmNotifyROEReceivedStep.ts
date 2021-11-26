@@ -6,7 +6,7 @@ import {
 } from 'botbuilder-dialogs';
 import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from '../locales/i18nConfig';
+import { i18n } from '../locales/i18nConfig';
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
 export const CONFIRM_NOTIFY_ROE_RECEIVED_STEP =
