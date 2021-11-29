@@ -3,7 +3,7 @@ import {
   MessageFactory,
   BotState,
   StatePropertyAccessor,
-  UserState,
+  UserState
 } from 'botbuilder';
 // const { WaterfallDialog, WaterfallStepContext, ChoicePrompt, TextPrompt, DialogTurnStatus } = require('botbuilder-dialogs');
 import { MainDialog } from '../dialogs/mainDialog';
@@ -20,18 +20,21 @@ export class VirtualAssistantCallbackBot extends ActivityHandler {
   constructor(
     conversationState: BotState,
     userState: BotState,
-    dialogSet: DialogSet,
+    dialogSet: DialogSet
   ) {
     super();
 
-    if (!conversationState)
+    if (!conversationState) {
       throw new Error(
-        '[DialogBot]: Missing parameter. conversationState is required',
+        '[DialogBot]: Missing parameter. conversationState is required'
       );
-    if (!userState)
+    }
+    if (!userState) {
       throw new Error('[DialogBot]: Missing parameter. userState is required');
-    if (!dialogSet)
+    }
+    if (!dialogSet) {
       throw new Error('[DialogBot]: Missing parameter. dialogSet is required');
+    }
 
     // Initialise private members for the bot
     this.conversationState = conversationState;

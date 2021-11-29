@@ -2,7 +2,7 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -27,8 +27,8 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = GET_PREFFERED_METHOD_OF_CONTACT_WATERFALL_STEP;
@@ -74,7 +74,7 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
       unblockBotDetails.getPreferredMethodOfContactStep === -1
     ) {
       // Setup the prompt message
-      var promptMsg = '';
+      let promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.getPreferredMethodOfContactStep === -1) {
@@ -85,15 +85,15 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
 
       // Set the options for the quick reply buttons
       const promptOptions = i18n.__(
-        'getPreferredMethodOfContactStepStandardPromptOptions',
+        'getPreferredMethodOfContactStepStandardPromptOptions'
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -112,9 +112,9 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = '';
-    var endpointKey = '';
-    var endpoint = '';
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIZ appID
     if (
@@ -133,15 +133,15 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
     // LUIZ Recogniser processing
     const recognizer = new LuisRecognizer(
       {
-        applicationId: applicationId,
-        endpointKey: endpointKey,
-        endpoint: endpoint,
+        applicationId,
+        endpointKey,
+        endpoint
       },
       {
         includeAllIntents: true,
-        includeInstanceData: true,
+        includeInstanceData: true
       },
-      true,
+      true
     );
 
     // Call prompts recognizer
@@ -193,7 +193,7 @@ export class GetPrefferedMethodOfContactStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           GET_PREFFERED_METHOD_OF_CONTACT_STEP,
-          unblockBotDetails,
+          unblockBotDetails
         );
       }
     }

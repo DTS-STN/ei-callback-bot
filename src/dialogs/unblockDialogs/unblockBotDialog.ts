@@ -1,23 +1,23 @@
 import { ComponentDialog, WaterfallDialog } from 'botbuilder-dialogs';
 import {
   ConfirmLookIntoStep,
-  CONFIRM_LOOK_INTO_STEP,
+  CONFIRM_LOOK_INTO_STEP
 } from './confirmLookIntoStep';
 import {
   ConfirmSendEmailStep,
-  CONFIRM_SEND_EMAIL_STEP,
+  CONFIRM_SEND_EMAIL_STEP
 } from './confirmSendEmailStep';
 import {
   GetAndSendEmailStep,
-  GET_AND_SEND_EMAIL_STEP,
+  GET_AND_SEND_EMAIL_STEP
 } from './getAndSendEmailStep';
 import {
   ConfirmNotifyROEReceivedStep,
-  CONFIRM_NOTIFY_ROE_RECEIVED_STEP,
+  CONFIRM_NOTIFY_ROE_RECEIVED_STEP
 } from './confirmNotifyROEReceivedStep';
 import {
   GetPrefferedMethodOfContactStep,
-  GET_PREFFERED_METHOD_OF_CONTACT_STEP,
+  GET_PREFFERED_METHOD_OF_CONTACT_STEP
 } from './getPreferredMethodOfContactStep';
 
 import { i18n } from '../locales/i18nConfig';
@@ -46,8 +46,8 @@ export class UnblockBotDialog extends ComponentDialog {
         this.getAndSendEmailStep.bind(this),
         this.confirmNotifyROEReceivedStep.bind(this),
         this.getPreferredMethodOfContactStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = MAIN_UNBLOCK_BOT_WATERFALL_DIALOG;
@@ -89,7 +89,7 @@ export class UnblockBotDialog extends ComponentDialog {
       case null:
         return await stepContext.beginDialog(
           CONFIRM_LOOK_INTO_STEP,
-          unblockBotDetails,
+          unblockBotDetails
         );
 
       // The confirmLookIntoStep flag in the state machine is set to true
@@ -133,7 +133,7 @@ export class UnblockBotDialog extends ComponentDialog {
           if (unblockBotDetails.confirmLookIntoStep) {
             return await stepContext.beginDialog(
               CONFIRM_SEND_EMAIL_STEP,
-              unblockBotDetails,
+              unblockBotDetails
             );
           } else {
             return await stepContext.endDialog(unblockBotDetails);
@@ -182,7 +182,7 @@ export class UnblockBotDialog extends ComponentDialog {
           ) {
             return await stepContext.beginDialog(
               GET_AND_SEND_EMAIL_STEP,
-              unblockBotDetails,
+              unblockBotDetails
             );
           } else {
             return await stepContext.endDialog(unblockBotDetails);
@@ -228,7 +228,7 @@ export class UnblockBotDialog extends ComponentDialog {
           // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
           return await stepContext.beginDialog(
             CONFIRM_NOTIFY_ROE_RECEIVED_STEP,
-            unblockBotDetails,
+            unblockBotDetails
           );
 
         // The confirmNotifyROEReceivedStep flag in the state machine is set to true
@@ -268,7 +268,7 @@ export class UnblockBotDialog extends ComponentDialog {
         if (unblockBotDetails.confirmNotifyROEReceivedStep === true) {
           return await stepContext.beginDialog(
             GET_PREFFERED_METHOD_OF_CONTACT_STEP,
-            unblockBotDetails,
+            unblockBotDetails
           );
         } else {
           return await stepContext.endDialog(unblockBotDetails);

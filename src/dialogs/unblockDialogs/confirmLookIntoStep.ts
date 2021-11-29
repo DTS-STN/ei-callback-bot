@@ -2,7 +2,7 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -26,8 +26,8 @@ export class ConfirmLookIntoStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_LOOK_INTO_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = CONFIRM_LOOK_INTO_WATERFALL_STEP;
@@ -80,7 +80,7 @@ export class ConfirmLookIntoStep extends ComponentDialog {
       unblockBotDetails.confirmLookIntoStep === -1
     ) {
       // Setup the prompt message
-      var promptMsg = standardMsg;
+      let promptMsg = standardMsg;
 
       // The current step is an error state
       if (unblockBotDetails.confirmLookIntoStep === -1) {
@@ -93,8 +93,8 @@ export class ConfirmLookIntoStep extends ComponentDialog {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -128,7 +128,7 @@ export class ConfirmLookIntoStep extends ComponentDialog {
     luisRecognizer = new UnblockRecognizer(lang);
     // Call prompts recognizer
     const recognizerResult = await luisRecognizer.executeLuisQuery(
-      stepContext.context,
+      stepContext.context
     );
 
     // Top intent tell us which cognitive service to use.
@@ -165,7 +165,7 @@ export class ConfirmLookIntoStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_LOOK_INTO_STEP,
-          unblockBotDetails,
+          unblockBotDetails
         );
       }
     }

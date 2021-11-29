@@ -2,7 +2,7 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 import { LuisRecognizer } from 'botbuilder-ai';
 
@@ -26,8 +26,8 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = CONFIRM_NOTIFY_ROE_RECEIVED_STEP_WATERFALL_STEP;
@@ -76,7 +76,7 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       unblockBotDetails.confirmNotifyROEReceivedStep === -1
     ) {
       // Setup the prompt message
-      var promptMsg = '';
+      let promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.confirmNotifyROEReceivedStep === -1) {
@@ -86,15 +86,15 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
       }
 
       const promptOptions = i18n.__(
-        'confirmNotifyROEReceivedStepStandardPromptOptions',
+        'confirmNotifyROEReceivedStepStandardPromptOptions'
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -112,9 +112,9 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = '';
-    var endpointKey = '';
-    var endpoint = '';
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIZ appID
     if (
@@ -133,15 +133,15 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
     // LUIZ Recogniser processing
     const recognizer = new LuisRecognizer(
       {
-        applicationId: applicationId,
-        endpointKey: endpointKey,
-        endpoint: endpoint,
+        applicationId,
+        endpointKey,
+        endpoint
       },
       {
         includeAllIntents: true,
-        includeInstanceData: true,
+        includeInstanceData: true
       },
-      true,
+      true
     );
 
     // Call prompts recognizer
@@ -181,7 +181,7 @@ export class ConfirmNotifyROEReceivedStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_NOTIFY_ROE_RECEIVED_STEP,
-          unblockBotDetails,
+          unblockBotDetails
         );
       }
     }

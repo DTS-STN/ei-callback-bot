@@ -12,7 +12,7 @@ import {
   BotFrameworkAdapter,
   ConversationState,
   MemoryStorage,
-  UserState,
+  UserState
 } from 'botbuilder';
 import { DialogSet } from 'botbuilder-dialogs';
 
@@ -26,7 +26,7 @@ const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, () => {
   console.log(`\n${server.name} listening to ${server.url}`);
   console.log(
-    '\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator',
+    '\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator'
   );
   console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
 });
@@ -35,7 +35,7 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 // See https://aka.ms/about-bot-adapter to learn more about how bots work.
 const adapter = new BotFrameworkAdapter({
   appId: process.env.MicrosoftAppId,
-  appPassword: process.env.MicrosoftAppPassword,
+  appPassword: process.env.MicrosoftAppPassword
 });
 
 // Catch-all for errors.
@@ -51,13 +51,13 @@ const onTurnErrorHandler = async (context, error) => {
     'OnTurnError Trace',
     `${error}`,
     'https://www.botframework.com/schemas/error',
-    'TurnError',
+    'TurnError'
   );
 
   // Send a message to the user
   await context.sendActivity('The bot encountered an error or bug.');
   await context.sendActivity(
-    'To continue to run this bot, please fix the bot source code.',
+    'To continue to run this bot, please fix the bot source code.'
   );
 };
 
@@ -82,7 +82,7 @@ const userState = new UserState(memoryStorage);
 const myVirtualAssistantBot = new VirtualAssistantCallbackBot(
   conversationState,
   userState,
-  dialogs,
+  dialogs
 );
 
 // Listen for incoming requests.
@@ -105,7 +105,7 @@ server.on('upgrade', (req, socket, head) => {
   // Create an adapter scoped to this WebSocket connection to allow storing session data.
   const streamingAdapter = new BotFrameworkAdapter({
     appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword,
+    appPassword: process.env.MicrosoftAppPassword
   });
   // Set onTurnError for the BotFrameworkAdapter created for each connection.
   streamingAdapter.onTurnError = onTurnErrorHandler;

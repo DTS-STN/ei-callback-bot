@@ -35,7 +35,7 @@ export class UnblockBotDetails {
       confirmSendEmailStep: 0,
       getAndSendEmailStep: 0,
       confirmNotifyROEReceivedStep: 0,
-      getPreferredMethodOfContactStep: 0,
+      getPreferredMethodOfContactStep: 0
     };
 
     // TODO: Refactor and add an object that tracks status perhaps something like below

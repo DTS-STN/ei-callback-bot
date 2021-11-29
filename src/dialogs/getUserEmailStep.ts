@@ -4,7 +4,7 @@ import {
   ComponentDialog,
   WaterfallDialog,
   WaterfallStepContext,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 
 import { CallbackBotDetails } from './callbackBotDetails';
@@ -28,8 +28,8 @@ export class GetUserEmailStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_USER_EMAIL_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = GET_USER_EMAIL_WATERFALL_STEP;
@@ -63,8 +63,8 @@ export class GetUserEmailStep extends ComponentDialog {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          errorMsg,
-        ),
+          errorMsg
+        )
       };
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
       // End the dialog and pass the updated details state machine
@@ -117,7 +117,7 @@ export class GetUserEmailStep extends ComponentDialog {
 
     // Call prompts recognizer
     const recognizerResult = await luisRecognizer.executeLuisQuery(
-      stepContext.context,
+      stepContext.context
     );
 
     // Top intent tell us which cognitive service to use.
@@ -137,7 +137,7 @@ export class GetUserEmailStep extends ComponentDialog {
         callbackBotDetails.errorCount.getUserEmailStep = 0;
         return await stepContext.replaceDialog(
           GET_PREFERRED_METHOD_OF_CONTACT_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
 
       // Don't Proceed
@@ -171,7 +171,7 @@ export class GetUserEmailStep extends ComponentDialog {
         }
         return await stepContext.replaceDialog(
           GET_USER_EMAIL_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       }
     }

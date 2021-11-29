@@ -31,8 +31,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     expectedStatus: 'complete',
     intent: 'promptConfirmYes',
@@ -67,20 +67,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'confirm Yes',
     steps: [
       [
         null,
-        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'Yes, correct',
-        'Great! A Service Canada representative will call you within the next 48 hours, between 9 a.m. and 5 p.m. (EST).',
-      ],
-    ],
+        'Great! A Service Canada representative will call you within the next 48 hours, between 9 a.m. and 5 p.m. (EST).'
+      ]
+    ]
   },
   {
     expectedResult: undefined,
@@ -117,20 +117,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Choose No',
     steps: [
       [
         null,
-        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'Yes, correct',
-        `No problem , let's update your profile.  What's your new phone number?`,
-      ],
-    ],
+        `No problem , let's update your profile.  What's your new phone number?`
+      ]
+    ]
   },
 
   {
@@ -168,20 +168,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input once',
     steps: [
       [
         null,
-        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
-      ],
-    ],
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
+      ]
+    ]
   },
   {
     expectedResult: {
@@ -215,8 +215,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     intent: 'NONE',
     expectedStatus: 'complete',
@@ -251,27 +251,27 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input more than 3 times',
     steps: [
       [
         null,
-        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`
       ],
       [
         'haha',
-        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`,
-      ],
-    ],
-  },
+        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`
+      ]
+    ]
+  }
 ];

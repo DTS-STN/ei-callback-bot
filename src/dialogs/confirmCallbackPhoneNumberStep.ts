@@ -3,7 +3,7 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
+  WaterfallStepContext
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -31,8 +31,8 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP;
@@ -80,7 +80,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       // Setup the prompt message
       let promptMsg = '';
       const promptOptions: any = i18n.__(
-        'confirmCallbackPhoneNumberStepStandardPromptOptions',
+        'confirmCallbackPhoneNumberStepStandardPromptOptions'
       );
       // The current step is an error state
       if (callbackBotDetails.confirmCallbackPhoneNumberStep === -1) {
@@ -93,8 +93,8 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -126,7 +126,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
 
     // Call prompts recognizer
     const recognizerResult = await luisRecognizer.executeLuisQuery(
-      stepContext.context,
+      stepContext.context
     );
 
     // Top intent tell us which cognitive service to use.
@@ -160,7 +160,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           GET_USER_PHONE_NUMBER_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       // Could not understand / None intent
       default: {
@@ -171,7 +171,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       }
     }

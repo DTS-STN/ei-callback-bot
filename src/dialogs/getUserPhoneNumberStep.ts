@@ -4,7 +4,7 @@ import {
   ComponentDialog,
   WaterfallDialog,
   WaterfallStepContext,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 import { CallbackBotDetails } from './callbackBotDetails';
 import { CallbackRecognizer } from './calllbackDialogs/callbackRecognizer';
@@ -29,8 +29,8 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_USER_PHONE_NUMBER_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = GET_USER_PHONE_NUMBER_WATERFALL_STEP;
@@ -46,8 +46,9 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
 
     // Set the text for the prompt
     let standardMsg;
-    if (callbackBotDetails.confirmCallbackPhoneNumberStep === false)
+    if (callbackBotDetails.confirmCallbackPhoneNumberStep === false) {
       standardMsg = i18n.__('getCallbackPhoneNumberStandardMsg');
+    }
     else standardMsg = i18n.__('getUserPhoneStepStandardMsg');
 
     // Set the text for the retry prompt
@@ -75,8 +76,8 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
           prompt: ChoiceFactory.forChannel(
             stepContext.context,
             promptOptions,
-            errorMsg,
-          ),
+            errorMsg
+          )
         };
         return await stepContext.prompt(TEXT_PROMPT, promptDetails);
       }
@@ -128,7 +129,7 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
 
     // Call prompts recognizer
     const reRefactorRes = await luisRecognizer.executeLuisQuery(
-      stepContext.context,
+      stepContext.context
     );
 
     // Top intent tell us which cognitive service to use.
@@ -147,7 +148,7 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
         callbackBotDetails.errorCount.getUserPhoneNumberStep = 0;
         return await stepContext.replaceDialog(
           GET_PREFERRED_METHOD_OF_CONTACT_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       case 'promptConfirmNo':
         console.log('INTENT getUserPhone: ', intent);
@@ -175,7 +176,7 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
               const firstWelcomeMsg = i18n.__('getCallbackScheduleStandardMsg');
               const standardMsgContinue = i18n.__('confirmAuthStepMsg');
               const confirmationCodeMsg = i18n.__(
-                'confirmAuthWordStepStandardMsg',
+                'confirmAuthWordStepStandardMsg'
               );
               await stepContext.context.sendActivity(firstWelcomeMsg);
               await stepContext.context.sendActivity(standardMsgContinue);
@@ -191,7 +192,7 @@ export class GetUserPhoneNumberStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           GET_USER_PHONE_NUMBER_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       }
     }

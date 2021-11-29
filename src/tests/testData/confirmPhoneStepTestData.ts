@@ -31,8 +31,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     expectedStatus: 'complete',
     intent: 'promptConfirmYes',
@@ -67,20 +67,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'confirm Yes, this is the correct phone number',
     steps: [
       [
         null,
-        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`,
+        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`
       ],
       [
         'Yes, correct',
-        `Ok, I'll text your confirmation code to [PHONE NUMBER].`,
-      ],
-    ],
+        `Ok, I'll text your confirmation code to [PHONE NUMBER].`
+      ]
+    ]
   },
   {
     expectedResult: undefined,
@@ -117,20 +117,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Choose No, not correct phone number',
     steps: [
       [
         null,
-        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`,
+        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`
       ],
       [
         'no, not correct',
-        `Can you give me a cell phone number where I can send you the text message?`,
-      ],
-    ],
+        `Can you give me a cell phone number where I can send you the text message?`
+      ]
+    ]
   },
 
   {
@@ -168,20 +168,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input once',
     steps: [
       [
         null,
-        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`,
+        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`,
-      ],
-    ],
+        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`
+      ]
+    ]
   },
   {
     expectedResult: {
@@ -215,8 +215,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 3,
-      },
+        confirmPhoneStep: 3
+      }
     },
     intent: 'NONE',
     expectedStatus: 'complete',
@@ -251,27 +251,27 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input more than 3 times',
     steps: [
       [
         null,
-        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`,
+        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct phone number? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`,
-      ],
-    ],
-  },
+        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`
+      ]
+    ]
+  }
 ];

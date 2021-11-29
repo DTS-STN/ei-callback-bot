@@ -2,28 +2,28 @@ import {
   ComponentDialog,
   TextPrompt,
   WaterfallDialog,
-  WaterfallStepContext,
+  WaterfallStepContext
 } from 'botbuilder-dialogs';
 
 import {
   ConfirmCallbackStep,
-  CONFIRM_CALLBACK_STEP,
+  CONFIRM_CALLBACK_STEP
 } from './confirmCallbackStep';
 import {
   GetUserPhoneNumberStep,
-  GET_USER_PHONE_NUMBER_STEP,
+  GET_USER_PHONE_NUMBER_STEP
 } from './getUserPhoneNumberStep';
 import {
   ConfirmAuthWordStep,
-  CONFIRM_AUTH_WORD_STEP,
+  CONFIRM_AUTH_WORD_STEP
 } from './confirmAuthWordStep';
 import {
   GetPreferredCallbackDateAndTimeStep,
-  GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP,
+  GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP
 } from './getPreferredCallbackDateAndTimeStep';
 import {
   ConfirmCallbackDetailsStep,
-  CONFIRM_CALLBACK_DETAILS_STEP,
+  CONFIRM_CALLBACK_DETAILS_STEP
 } from './confirmCallbackDetailsStep';
 import { i18n } from './locales/i18nConfig';
 import { CallbackBotDetails } from './callbackBotDetails';
@@ -31,13 +31,13 @@ import { StatePropertyAccessor, UserState } from 'botbuilder';
 import { ConfirmEmailStep, CONFIRM_EMAIL_STEP } from './confirmEmailStep';
 import {
   GetPreferredMethodOfContactStep,
-  GET_PREFERRED_METHOD_OF_CONTACT_STEP,
+  GET_PREFERRED_METHOD_OF_CONTACT_STEP
 } from './getPreferredMethodOfContactStep';
 import { ConfirmPhoneStep, CONFIRM_PHONE_STEP } from './confirmPhoneStep';
 import { GetUserEmailStep, GET_USER_EMAIL_STEP } from './getUserEmailStep';
 import {
   ConfirmCallbackPhoneNumberStep,
-  CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
+  CONFIRM_CALLBACK_PHONE_NUMBER_STEP
 } from './confirmCallbackPhoneNumberStep';
 
 export const CALLBACK_BOT_DIALOG = 'CALLBACK_BOT_DIALOG';
@@ -72,8 +72,8 @@ export class CallbackBotDialog extends ComponentDialog {
         this.getUserEmailStep.bind(this),
         this.getUserPhoneNumberStep.bind(this),
         // this.confirmCallbackDetailsStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = MAIN_CALLBACK_BOT_WATERFALL_DIALOG;
@@ -108,7 +108,7 @@ export class CallbackBotDialog extends ComponentDialog {
       case null:
         return await stepContext.beginDialog(
           CONFIRM_CALLBACK_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
 
       // The confirmCallbackStep flag in the state machine is set to true
@@ -133,7 +133,7 @@ export class CallbackBotDialog extends ComponentDialog {
    *
    */
   async confirmCallbackDetailsStep(
-    stepContext: WaterfallStepContext<CallbackBotDetails>,
+    stepContext: WaterfallStepContext<CallbackBotDetails>
   ) {
     // Get the state machine from the last step
     const callbackBotDetails = stepContext.result;
@@ -151,7 +151,7 @@ export class CallbackBotDialog extends ComponentDialog {
           if (callbackBotDetails.confirmAuthWordStep === true) {
             return await stepContext.beginDialog(
               CONFIRM_CALLBACK_DETAILS_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           } else {
             return await stepContext.endDialog(callbackBotDetails);
@@ -195,7 +195,7 @@ export class CallbackBotDialog extends ComponentDialog {
           ) {
             return await stepContext.beginDialog(
               CONFIRM_PHONE_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           }
 
@@ -239,7 +239,7 @@ export class CallbackBotDialog extends ComponentDialog {
           ) {
             return await stepContext.beginDialog(
               GET_USER_PHONE_NUMBER_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           } else {
             return await stepContext.next(callbackBotDetails);
@@ -279,11 +279,12 @@ export class CallbackBotDialog extends ComponentDialog {
           if (
             typeof callbackBotDetails.confirmEmailStep === 'boolean' &&
             callbackBotDetails.confirmEmailStep === false
-          )
+          ) {
             return await stepContext.beginDialog(
               GET_USER_EMAIL_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
+          }
           else return await stepContext.next(callbackBotDetails);
         // The Step flag in the state machine is set to true
         // so we are sending the user to next step
@@ -318,7 +319,7 @@ export class CallbackBotDialog extends ComponentDialog {
         // IF ANY STEPS WERE FALSE OR ANYTHING ELSE THAN JUST END DIALOG
         return await stepContext.beginDialog(
           GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
 
       // The confirmNotifyROEReceivedStep flag in the state machine is set to true
@@ -356,7 +357,7 @@ export class CallbackBotDialog extends ComponentDialog {
         ) {
           return await stepContext.beginDialog(
             CONFIRM_AUTH_WORD_STEP,
-            callbackBotDetails,
+            callbackBotDetails
           );
         } else {
           return await stepContext.endDialog(callbackBotDetails);
@@ -400,7 +401,7 @@ export class CallbackBotDialog extends ComponentDialog {
           ) {
             return await stepContext.beginDialog(
               CONFIRM_EMAIL_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           }
 
@@ -437,7 +438,7 @@ export class CallbackBotDialog extends ComponentDialog {
           if (callbackBotDetails.confirmCallbackStep === true) {
             return await stepContext.beginDialog(
               CONFIRM_CALLBACK_PHONE_NUMBER_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           } else {
             return await stepContext.next(callbackBotDetails);
@@ -480,7 +481,7 @@ export class CallbackBotDialog extends ComponentDialog {
           ) {
             return await stepContext.beginDialog(
               GET_PREFERRED_METHOD_OF_CONTACT_STEP,
-              callbackBotDetails,
+              callbackBotDetails
             );
           } else {
             return await stepContext.endDialog(callbackBotDetails);

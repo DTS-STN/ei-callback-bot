@@ -1,7 +1,7 @@
 import {
   TextPrompt,
   ComponentDialog,
-  WaterfallDialog,
+  WaterfallDialog
 } from 'botbuilder-dialogs';
 
 import { i18n } from '../locales/i18nConfig';
@@ -22,8 +22,8 @@ export class GetAndSendEmailStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_AND_SEND_EMAIL_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = GET_AND_SEND_EMAIL_WATERFALL_STEP;
@@ -106,7 +106,7 @@ export class GetAndSendEmailStep extends ComponentDialog {
     }
     return await stepContext.replaceDialog(
       GET_AND_SEND_EMAIL_STEP,
-      unblockBotDetails,
+      unblockBotDetails
     );
   }
 }

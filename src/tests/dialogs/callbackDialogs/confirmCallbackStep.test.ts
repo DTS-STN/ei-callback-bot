@@ -11,7 +11,7 @@ import { ConfirmEmailStep } from '../../../dialogs/confirmEmailStep';
 import { ConfirmCallbackPhoneNumberStep } from '../../../dialogs/confirmCallbackPhoneNumberStep';
 import {
   GetUserPhoneNumberStep,
-  GET_USER_PHONE_NUMBER_STEP,
+  GET_USER_PHONE_NUMBER_STEP
 } from '../../../dialogs/getUserPhoneNumberStep';
 import { ConfirmCallbackStep } from '../../../dialogs/confirmCallbackStep';
 chai.use(require('sinon-chai'));
@@ -20,27 +20,27 @@ describe('ConfirmCallbackStep', () => {
   const testCases = require('../../testData/confirmCallbackStepTestData');
   const sut = new ConfirmCallbackStep();
 
-  afterEach(function () {
+  afterEach(() => {
     tsSinon.default.restore();
   });
   testCases.map((testData) => {
     it(testData.name, async () => {
       const client = new DialogTestClient('test', sut, testData.initialData, [
-        new DialogTestLogger(console),
+        new DialogTestLogger(console)
       ]);
 
       tsSinon.default
         .stub(CallbackRecognizer.prototype, 'executeLuisQuery')
         .callsFake(() =>
           JSON.parse(
-            `{"intents": {"${testData.intent}": {"score": 1}}, "entities": {"$instance": {}}}`,
-          ),
+            `{"intents": {"${testData.intent}": {"score": 1}}, "entities": {"$instance": {}}}`
+          )
         );
 
       if (testData.intent === 'InitialDialog') {
-        let updatedActivity: Partial<Activity> = {
+        const updatedActivity: Partial<Activity> = {
           text: testData.steps[0][0],
-          locale: 'en',
+          locale: 'en'
         };
         const replyFirst = await client.sendActivity(updatedActivity);
 
@@ -48,16 +48,16 @@ describe('ConfirmCallbackStep', () => {
         assert.strictEqual(
           replyFirst ? replyFirst.text : null,
           testData.steps[0][1],
-          `${replyFirst ? replyFirst.text : null} != ${testData.steps[0][1]}`,
+          `${replyFirst ? replyFirst.text : null} != ${testData.steps[0][1]}`
         );
         assert.strictEqual(
           replySecond ? replySecond.text : null,
           testData.steps[1][1],
-          `${replySecond ? replySecond.text : null} != ${testData.steps[1][1]}`,
+          `${replySecond ? replySecond.text : null} != ${testData.steps[1][1]}`
         );
-        let updateAgainActivity: Partial<Activity> = {
+        const updateAgainActivity: Partial<Activity> = {
           text: testData.steps[2][0],
-          locale: 'en',
+          locale: 'en'
         };
       } else {
         // Execute the test case
@@ -65,9 +65,9 @@ describe('ConfirmCallbackStep', () => {
         console.log(`Dialog Input ${testData.initialData}`);
 
         for (const step of testData.steps) {
-          let updatedActivity: Partial<Activity> = {
+          const updatedActivity: Partial<Activity> = {
             text: step[0],
-            locale: 'en',
+            locale: 'en'
           };
 
           const reply = await client.sendActivity(updatedActivity);
@@ -75,26 +75,26 @@ describe('ConfirmCallbackStep', () => {
           assert.strictEqual(
             reply ? reply.text : null,
             step[1],
-            `${reply ? reply.text : null} != ${step[1]}`,
+            `${reply ? reply.text : null} != ${step[1]}`
           );
         }
       }
       console.log(
-        `Dialog result: ${JSON.stringify(client.dialogTurnResult.result)}`,
+        `Dialog result: ${JSON.stringify(client.dialogTurnResult.result)}`
       );
       if (typeof client.dialogTurnResult.result === 'object') {
         assert.strictEqual(
           JSON.stringify(client.dialogTurnResult.result),
           JSON.stringify(testData.expectedResult),
           `${JSON.stringify(testData.expectedResult)} != ${JSON.stringify(
-            client.dialogTurnResult.result,
-          )}`,
+            client.dialogTurnResult.result
+          )}`
         );
       } else {
         assert.strictEqual(
           client.dialogTurnResult.result,
           testData.expectedResult,
-          `${testData.expectedResult} != ${client.dialogTurnResult.result}`,
+          `${testData.expectedResult} != ${client.dialogTurnResult.result}`
         );
       }
     });

@@ -31,8 +31,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     expectedStatus: 'complete',
     intent: 'promptConfirmYes',
@@ -67,17 +67,17 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'confirm Yes, this is the correct email address',
     steps: [
       [
         null,
-        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
-      ['Yes, correct', `Ok, I'll email your confirmation code to [EMAIL].`],
-    ],
+      ['Yes, correct', `Ok, I'll email your confirmation code to [EMAIL].`]
+    ]
   },
   {
     expectedResult: undefined,
@@ -114,20 +114,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Choose No, not correct email',
     steps: [
       [
         null,
-        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
       [
         'no, not correct',
-        `No problem, let's update your profile. What's your new email address?`,
-      ],
-    ],
+        `No problem, let's update your profile. What's your new email address?`
+      ]
+    ]
   },
 
   {
@@ -165,20 +165,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input once',
     steps: [
       [
         null,
-        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
-      ],
-    ],
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`
+      ]
+    ]
   },
   {
     expectedResult: {
@@ -212,8 +212,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 3,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     intent: 'NONE',
     expectedStatus: 'complete',
@@ -248,27 +248,27 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input more than 3 times',
     steps: [
       [
         null,
-        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`
       ],
       [
         'haha',
-        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`,
-      ],
-    ],
-  },
+        `Hmm, I'm having a hard time understanding you. Sorry about that! Try visiting our Help Center or give us a call at (XXX-XXX-XXXX).`
+      ]
+    ]
+  }
 ];
