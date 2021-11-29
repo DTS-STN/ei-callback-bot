@@ -44,7 +44,7 @@ module.exports = [
       ],
       [
         'Yes, email please',
-        `The e-mail we have on file is test@test.com. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
     ],
   },
@@ -93,7 +93,7 @@ module.exports = [
       ],
       [
         `yes, text message`,
-        `The phone number we have on file is XXX-XXX-XXXX. Is this the correct phone number? (1) Yes correct! or (2) No it's not`,
+        `The phone number I have for you is [XXX-XXX-XXXX]. Can this number receive text messages? (1) Yes correct! or (2) No it's not`,
       ],
     ],
   },
@@ -298,7 +298,7 @@ module.exports = [
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Do you prefer to receive your confirmation code via e-mail, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
+        `Hmm, I'm not sure what you meant. Do you prefer to receive your confirmation code via email, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
       ],
     ],
   },
@@ -379,11 +379,11 @@ module.exports = [
       ],
       [
         `hha`,
-        `Oops - I'm not sure what you meant. Do you prefer to receive your confirmation code via e-mail, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
+        `Hmm, I'm not sure what you meant. Do you prefer to receive your confirmation code via email, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
       ],
       [
         `hahaha`,
-        `Oops - I'm not sure what you meant. Do you prefer to receive your confirmation code via e-mail, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
+        `Hmm, I'm not sure what you meant. Do you prefer to receive your confirmation code via email, text message, or both?\n\n   1. Email\n   2. Text message\n   3. Both\n   4. No need at all`,
       ],
       [
         'aaaa',

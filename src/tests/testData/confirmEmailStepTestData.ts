@@ -74,9 +74,9 @@ module.exports = [
     steps: [
       [
         null,
-        `The e-mail we have on file is test@test.com. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
-      ['Yes, correct', `We'll email your confirmation code to [EMAIL].`],
+      ['Yes, correct', `Ok, I'll email your confirmation code to [EMAIL].`],
     ],
   },
   {
@@ -121,9 +121,12 @@ module.exports = [
     steps: [
       [
         null,
-        `The e-mail we have on file is test@test.com. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
-      ['no, not correct', `No problem - what's your new email address?`],
+      [
+        'no, not correct',
+        `No problem, let's update your profile. What's your new email address?`,
+      ],
     ],
   },
 
@@ -169,11 +172,11 @@ module.exports = [
     steps: [
       [
         null,
-        `The e-mail we have on file is test@test.com. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
     ],
   },
@@ -252,15 +255,15 @@ module.exports = [
     steps: [
       [
         null,
-        `The e-mail we have on file is test@test.com. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `The email address I have for you is [test@test.com]. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is this the correct e-mail address? (1) Yes correct! or (2) No it's not`,
+        `Hmm, I'm not sure what you meant. Is this the correct email address? (1) Yes correct! or (2) No it's not`,
       ],
       [
         'haha',

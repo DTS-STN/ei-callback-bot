@@ -71,10 +71,10 @@ module.exports = [
     name: 'Initial the getUserEmail dialog successful',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`,
       ],
-      ['test@test1.com', `We'll email your confirmation code to [EMAIL].`],
+      ['test@test1.com', `Ok, I'll email your confirmation code to [EMAIL].`],
     ],
   },
   {
@@ -117,12 +117,12 @@ module.exports = [
     name: 'Input wrong format email address',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`,
       ],
     ],
   },
@@ -199,10 +199,10 @@ module.exports = [
     name: 'enter correct user email address',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`,
       ],
-      ['test@test1.com', `We'll email your confirmation code to [EMAIL].`],
+      ['test@test1.com', `Ok, I'll email your confirmation code to [EMAIL].`],
     ],
   },
   {
@@ -245,12 +245,12 @@ module.exports = [
     name: 'input invalid user email address once',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`,
       ],
     ],
   },
@@ -294,20 +294,20 @@ module.exports = [
     name: 'input invalid email address more than 3 times',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`,
       ],
       [
         `hha`,
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`,
       ],
       [
         `hahaha`,
-        `Looks like the emails you've entered aren't the correct format. Please double check your email before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`,
+        `Looks like the email addresses you've entered aren't the correct format. Please double check your email before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`,
       ],
     ],
   },

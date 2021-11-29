@@ -78,6 +78,7 @@ describe('CallbackBot Initial', () => {
       },
       membersAdded: [{ id: 'theUser' }],
       recipient: { id: 'theBot' },
+      locale: 'en',
       type: ActivityTypes.ConversationUpdate,
     };
 

@@ -73,12 +73,12 @@ module.exports = [
     name: 'confirm Yes',
     steps: [
       [
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        null,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'Yes, correct',
-        'Great - I can have someone call you within the next 48 hours,between 9-5 EST.',
+        'Great! A Service Canada representative will call you within the next 48 hours, between 9 a.m. and 5 p.m. (EST).',
       ],
     ],
   },
@@ -123,8 +123,8 @@ module.exports = [
     name: 'Choose No',
     steps: [
       [
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        null,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'Yes, correct',
@@ -174,12 +174,12 @@ module.exports = [
     name: 'Error input once',
     steps: [
       [
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        null,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
     ],
   },
@@ -257,16 +257,16 @@ module.exports = [
     name: 'Error input more than 3 times',
     steps: [
       [
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
-        `Ok, is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        null,
+        `Ok, is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Is XXX-XXX-XXXX still the best number to reach you? (1) Yes, correct or (2) No, it's not`,
+        `Hmm, I'm not sure what you meant. Is [XXX-XXX-XXXX] still the best phone number to reach you? (1) Yes, correct or (2) No, it's not`,
       ],
       [
         'haha',

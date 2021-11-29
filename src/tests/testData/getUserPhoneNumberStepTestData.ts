@@ -72,9 +72,9 @@ module.exports = [
     steps: [
       [
         null,
-        `No problem , let's update your profile.  What's your new phone number?`,
+        `Can you give me a cell phone number where I can send you the text message?`,
       ],
-      ['1234567890', `We'll text your confirmation code to [PHONE].`],
+      ['1234567890', `Ok, I'll text your confirmation code to [PHONE NUMBER].`],
     ],
   },
   {
@@ -118,11 +118,11 @@ module.exports = [
     steps: [
       [
         null,
-        `No problem , let's update your profile.  What's your new phone number?`,
+        `Can you give me a cell phone number where I can send you the text message?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the phone number you entered isn’t formatted correctly (here’s an example: XXX-XXX-XXXX). Let’s try again.`,
+        `Oops, looks like the phone number you entered isn’t formatted correctly (here’s an example: 123-456-7890). Let’s try again.`,
       ],
     ],
   },
@@ -200,9 +200,9 @@ module.exports = [
     steps: [
       [
         null,
-        `No problem , let's update your profile.  What's your new phone number?`,
+        `Can you give me a cell phone number where I can send you the text message?`,
       ],
-      ['1234567890', `We'll text your confirmation code to [PHONE].`],
+      ['1234567890', `Ok, I'll text your confirmation code to [PHONE NUMBER].`],
     ],
   },
   {
@@ -246,11 +246,11 @@ module.exports = [
     steps: [
       [
         null,
-        `No problem , let's update your profile.  What's your new phone number?`,
+        `Can you give me a cell phone number where I can send you the text message?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the phone number you entered isn’t formatted correctly (here’s an example: XXX-XXX-XXXX). Let’s try again.`,
+        `Oops, looks like the phone number you entered isn’t formatted correctly (here’s an example: 123-456-7890). Let’s try again.`,
       ],
     ],
   },
@@ -295,19 +295,19 @@ module.exports = [
     steps: [
       [
         null,
-        `No problem , let's update your profile.  What's your new phone number?`,
+        `Can you give me a cell phone number where I can send you the text message?`,
       ],
       [
         'testtest1.com',
-        `Oops - looks like the phone number you entered isn’t formatted correctly (here’s an example: XXX-XXX-XXXX). Let’s try again.`,
+        `Oops, looks like the phone number you entered isn’t formatted correctly (here’s an example: 123-456-7890). Let’s try again.`,
       ],
       [
         `hha`,
-        `Oops - looks like the phone number you entered isn’t formatted correctly (here’s an example: XXX-XXX-XXXX). Let’s try again.`,
+        `Oops, looks like the phone number you entered isn’t formatted correctly (here’s an example: 123-456-7890). Let’s try again.`,
       ],
       [
         `hahaha`,
-        `Looks like the phone numbers you've entered aren't the correct format. Please double check your number before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`,
+        `Looks like the phone numbers you've entered aren't the correct format. Please double check your phone number before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`,
       ],
     ],
   },

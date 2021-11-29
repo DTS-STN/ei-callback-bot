@@ -36,6 +36,7 @@ describe('ConfirmCallbackStep', () => {
             `{"intents": {"${testData.intent}": {"score": 1}}, "entities": {"$instance": {}}}`,
           ),
         );
+
       if (testData.intent === 'InitialDialog') {
         let updatedActivity: Partial<Activity> = {
           text: testData.steps[0][0],
@@ -69,34 +70,33 @@ describe('ConfirmCallbackStep', () => {
             locale: 'en',
           };
 
-          if (testData.intent === 'promptConfirmYes') {
-            const reply = await client.sendActivity(updatedActivity);
-            const endDialog = tsSinon.default.spy(
-              client.dialogContext.endDialog,
-            );
-            if (step[0] === 'Yes, please!') {
-              expect(client.dialogTurnResult, 'waiting');
-              // TODO: find a way to test replace dialog
-              // expect(endDialog).to.have.been.calledOnce;
-            }
-          } else {
-            const reply = await client.sendActivity(updatedActivity);
+          const reply = await client.sendActivity(updatedActivity);
 
-            assert.strictEqual(
-              reply ? reply.text : null,
-              step[1],
-              `${reply ? reply.text : null} != ${step[1]}`,
-            );
-          }
+          assert.strictEqual(
+            reply ? reply.text : null,
+            step[1],
+            `${reply ? reply.text : null} != ${step[1]}`,
+          );
         }
       }
-
-      console.log(`Dialog result: ${client.dialogTurnResult.result}`);
-      assert.strictEqual(
-        client.dialogTurnResult.result,
-        testData.expectedResult,
-        `${testData.expectedResult} != ${client.dialogTurnResult.result}`,
+      console.log(
+        `Dialog result: ${JSON.stringify(client.dialogTurnResult.result)}`,
       );
+      if (typeof client.dialogTurnResult.result === 'object') {
+        assert.strictEqual(
+          JSON.stringify(client.dialogTurnResult.result),
+          JSON.stringify(testData.expectedResult),
+          `${JSON.stringify(testData.expectedResult)} != ${JSON.stringify(
+            client.dialogTurnResult.result,
+          )}`,
+        );
+      } else {
+        assert.strictEqual(
+          client.dialogTurnResult.result,
+          testData.expectedResult,
+          `${testData.expectedResult} != ${client.dialogTurnResult.result}`,
+        );
+      }
     });
   });
 });
