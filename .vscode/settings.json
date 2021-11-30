@@ -1,7 +1,6 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/ae82d004-770a-4611-b09f-ad072d39552d/resourceGroups/virtual-assistant/providers/Microsoft.Web/sites/av-va-unblock-bot-web-app",
     "appService.deploySubpath": ".",
-    "editor.formatOnSave": true,
     "editor.guides.bracketPairs": true,
     "editor.bracketPairColorization.enabled": true
 }

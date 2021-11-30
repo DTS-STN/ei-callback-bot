@@ -8,13 +8,13 @@ import {
   MemoryStorage,
   TestAdapter,
   TurnContext,
-  UserState,
+  UserState
 } from 'botbuilder';
 import {
   ComponentDialog,
   Dialog,
   DialogSet,
-  DialogTurnStatus,
+  DialogTurnStatus
 } from 'botbuilder-dialogs';
 import { VirtualAssistantCallbackBot } from '../../bots/virtualAssistantCallbackBot';
 const assert = require('assert');
@@ -61,24 +61,25 @@ describe('CallbackBot Initial', () => {
     const conversationState = new ConversationState(memoryStorage);
 
     const dialogs = new DialogSet(
-      conversationState.createProperty('DialogState'),
+      conversationState.createProperty('DialogState')
     );
     dialogs.add(mockRootDialog);
     const sut = new VirtualAssistantCallbackBot(
       new ConversationState(memoryStorage),
       new UserState(memoryStorage),
-      dialogs,
+      dialogs
     );
 
     // Create conversationUpdate activity
     const conversationUpdateActivity = {
       channelId: 'test',
       conversation: {
-        id: 'someId',
+        id: 'someId'
       },
       membersAdded: [{ id: 'theUser' }],
       recipient: { id: 'theBot' },
-      type: ActivityTypes.ConversationUpdate,
+      locale: 'en',
+      type: ActivityTypes.ConversationUpdate
     };
 
     // Send the conversation update activity to the bot.
@@ -93,7 +94,7 @@ describe('CallbackBot Initial', () => {
     const confirmMsg = i18n.__('confirmLookIntoStepStandardMsg');
     assert.strictEqual(
       reply.text,
-      confirmMsg + ' (1) Yes please! or (2) No thanks',
+      confirmMsg + ' (1) Yes please! or (2) No thanks'
     );
 
     // Assert that we started the main dialog.

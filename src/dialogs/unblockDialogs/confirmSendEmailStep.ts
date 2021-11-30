@@ -2,7 +2,7 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -29,8 +29,8 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = CONFIRM_SEND_EMAIL_STEP_WATERFALL_STEP;
@@ -61,7 +61,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     const retryMsg = i18n.__('confirmSendEmailStepRetryMsg');
 
     // Set the text for the prompt
-    const queryMsg = i18n.__('confirmSendEmailStepQueryMsg'); //'If you like, I can send Initech a follow-up email from the Government of Canada. That usually does the trick 😉';
+    const queryMsg = i18n.__('confirmSendEmailStepQueryMsg'); // 'If you like, I can send Initech a follow-up email from the Government of Canada. That usually does the trick 😉';
 
     // Check if the error count is greater than the max threshold
     if (unblockBotDetails.errorCount.confirmSendEmailStep >= MAX_ERROR_COUNT) {
@@ -92,7 +92,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       }
 
       // Setup the prompt message
-      var promptMsg = '';
+      let promptMsg = '';
 
       // The current step is an error state
       if (unblockBotDetails.confirmSendEmailStep === -1) {
@@ -102,15 +102,15 @@ export class ConfirmSendEmailStep extends ComponentDialog {
       }
 
       const promptOptions = i18n.__(
-        'confirmSendEmailStepStandardPromptOptions',
+        'confirmSendEmailStepStandardPromptOptions'
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -129,9 +129,9 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     const unblockBotDetails = stepContext.options;
 
     // Language check
-    var applicationId = '';
-    var endpointKey = '';
-    var endpoint = '';
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIZ appID
     if (
@@ -150,15 +150,15 @@ export class ConfirmSendEmailStep extends ComponentDialog {
     // LUIZ Recogniser processing
     const recognizer = new LuisRecognizer(
       {
-        applicationId: applicationId,
-        endpointKey: endpointKey,
-        endpoint: endpoint,
+        applicationId,
+        endpointKey,
+        endpoint
       },
       {
         includeAllIntents: true,
-        includeInstanceData: true,
+        includeInstanceData: true
       },
-      true,
+      true
     );
 
     // Call prompts recognizer
@@ -189,7 +189,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
         // return await stepContext.endDialog(unblockBotDetails);
         return await stepContext.replaceDialog(
           CALLBACK_BOT_DIALOG,
-          new CallbackBotDetails(),
+          new CallbackBotDetails()
         );
       // Could not understand / None intent
       default: {
@@ -200,7 +200,7 @@ export class ConfirmSendEmailStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_SEND_EMAIL_STEP,
-          unblockBotDetails,
+          unblockBotDetails
         );
       }
     }

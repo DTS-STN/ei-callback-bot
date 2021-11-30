@@ -2,7 +2,7 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
+  ChoiceFactory
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -30,8 +30,8 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP;
@@ -93,15 +93,15 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
       // Set the options for the quick reply buttons
       const promptOptions = i18n.__(
-        'getPreferredMethodOfContactStepStandardPromptOptions',
+        'getPreferredMethodOfContactStepStandardPromptOptions'
       );
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
-          promptMsg,
-        ),
+          promptMsg
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -133,7 +133,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     luisRecognizer = new CallbackRecognizer(lang);
     // Call prompts recognizer
     const recognizerResult = await luisRecognizer.executeLuisQuery(
-      stepContext.context,
+      stepContext.context
     );
 
     // Setup the possible messages that could go out
@@ -155,7 +155,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_EMAIL_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
 
       // Proceed with Text Message
@@ -167,9 +167,9 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         // await stepContext.context.sendActivity(sendTextMsg);
         return await stepContext.replaceDialog(
           CONFIRM_PHONE_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
-      //return await stepContext.endDialog(callbackBotDetails);
+      // return await stepContext.endDialog(callbackBotDetails);
 
       // Proceed with Both Messages
       case 'promptConfirmChoiceBoth':
@@ -194,7 +194,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           GET_PREFERRED_METHOD_OF_CONTACT_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       }
     }

@@ -31,14 +31,15 @@
   "confirmNotifyROEReceivedStepCloseMsg": "FROk, no problem!",
 
   "getPreferredMethodOfContactStepStandardMsg": "Quel est le meilleur moyen de vous joindre? Je peux envoyer un courriel ou un message texte (ou les deux).",
-  "getPreferredMethodOfContactStepRetryMsg": "Désolé, vous préférez recevoir un courriel ou un message texte?",
+  "getPreferredMethodOfContactStepRetryMsg": "Hum, je ne comprends pas. Préférez-vous que je vous envoie votre code de confirmation par courriel, par message texte, ou les deux?",
   "getPreferredMethodOfContactStepSendEmailMsg": "D'accord, je vous enverrai un courriel à mary@adressefaux.com dès que nous aurons reçu votre relevé d'emploi.",
   "getPreferredMethodOfContactStepSendTextMsg": "D'accord, je vous enverrai un message texte à 123-456-789 dès que nous aurons reçu votre relevé d'emploi.",
   "getPreferredMethodOfContactStepSendBothMsg": "D'accord, je vous enverrai un courriel à mary@adressefaux.com et un message texte au 123-456-7890 dès que nous aurons reçu votre relevé d'emploi.",
   "getPreferredMethodOfContactStepStandardPromptOptions": [
     "courriel",
     "message texte",
-    "les deux"
+    "les deux",
+    "pas du tout"
   ],
 
   "callbackBotDialogWelcomeMsg": " Great - One of our officers will give you a call within the next 48 hours to help you with your missing record of employment.",

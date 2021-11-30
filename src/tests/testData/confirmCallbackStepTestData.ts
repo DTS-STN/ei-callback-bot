@@ -34,29 +34,29 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Initial confirm callback Dialog successful',
     steps: [
       [
-        'I see, looks like you need more help than I can provide at the moment.',
-        'I see, looks like you need more help than I can provide at the moment.',
+        null,
+        'I see, looks like you need more help than I can provide at the moment.'
       ],
       [
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        null,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`
       ],
       [
         'Yes, please!',
-        'Ok, is XXX-XXX-XXXX still the best number to reach you?',
-      ],
-    ],
+        'Ok, is [XXX-XXX-XXXX] still the best phone number to reach you?'
+      ]
+    ]
   },
   {
     expectedResult: undefined,
     expectedStatus: 'complete',
-    intent: 'promptConfirmYes',
+    intent: 'InitialDialog',
     initialData: {
       masterError: null,
       confirmCallbackStep: null,
@@ -88,24 +88,24 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'confirm  Callback Yes',
     steps: [
       [
-        'I see, looks like you need more help than I can provide at the moment.',
-        'I see, looks like you need more help than I can provide at the moment.',
+        null,
+        'I see, looks like you need more help than I can provide at the moment.'
       ],
       [
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        null,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`
       ],
       [
         'Yes, please!',
-        'Ok, is XXX-XXX-XXXX still the best number to reach you?',
-      ],
-    ],
+        'Ok, is [XXX-XXX-XXXX] still the best number to reach you?'
+      ]
+    ]
   },
   {
     expectedResult: undefined,
@@ -142,21 +142,21 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Choose No Callback',
     steps: [
       [
-        'I see, looks like you need more help than I can provide at the moment.',
-        'I see, looks like you need more help than I can provide at the moment.',
+        null,
+        'I see, looks like you need more help than I can provide at the moment.'
       ],
       [
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`
       ],
-      ['No, please', 'Ok, no problem. Let me know if you change your mind!'],
-    ],
+      ['No, please', `Ok, no problem. I'm here if you need me!`]
+    ]
   },
 
   {
@@ -194,24 +194,24 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input once',
     steps: [
       [
-        'I see, looks like you need more help than I can provide at the moment.',
-        'I see, looks like you need more help than I can provide at the moment.',
+        null,
+        'I see, looks like you need more help than I can provide at the moment.'
       ],
       [
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Do you want a Service Canada officer to call you about your application? (1) Yes please! or (2) No thanks`,
-      ],
-    ],
+        `Hmm, I'm not sure what you meant. Do you want a Service Canada representative to call you about your application? (1) Yes please! or (2) No thanks`
+      ]
+    ]
   },
   {
     expectedResult: undefined,
@@ -248,31 +248,31 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Error input more than 3 times',
     steps: [
       [
-        'I see, looks like you need more help than I can provide at the moment.',
-        'I see, looks like you need more help than I can provide at the moment.',
+        null,
+        'I see, looks like you need more help than I can provide at the moment.'
       ],
       [
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-        `I can have a Service Canada officer call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
-      ],
-      [
-        'haha',
-        `Oops - I'm not sure what you meant. Do you want a Service Canada officer to call you about your application? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`,
+        `I can have a Service Canada representative call you on the phone to help you with your missing record of employment. Does that sound good to you? (1) Yes please! or (2) No thanks`
       ],
       [
         'haha',
-        `Oops - I'm not sure what you meant. Do you want a Service Canada officer to call you about your application? (1) Yes please! or (2) No thanks`,
+        `Hmm, I'm not sure what you meant. Do you want a Service Canada representative to call you about your application? (1) Yes please! or (2) No thanks`
       ],
       [
         'haha',
-        `Sorry Mary, I’m not able to help you with that. If you want to schedule a call with one of our agents, you can access our callback service here: [insert link here].`,
+        `Hmm, I'm not sure what you meant. Do you want a Service Canada representative to call you about your application? (1) Yes please! or (2) No thanks`
       ],
-    ],
-  },
+      [
+        'haha',
+        `Hmm, I'm having a hard time understanding you. Sorry about that! Please visit our Help Centre or give us a call at [XXX-XXX-XXXX].`
+      ]
+    ]
+  }
 ];

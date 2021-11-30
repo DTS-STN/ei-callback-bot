@@ -30,8 +30,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     expectedStatus: 'complete',
     intent: 'None',
@@ -65,17 +65,17 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Initial the getUserEmail dialog successful',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`
       ],
-      ['test@test1.com', `We'll email your confirmation code to [EMAIL].`],
-    ],
+      ['test@test1.com', `Ok, I'll email your confirmation code to [EMAIL].`]
+    ]
   },
   {
     expectedResult: undefined,
@@ -111,20 +111,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'Input wrong format email address',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
-      ],
-    ],
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`
+      ]
+    ]
   },
 
   {
@@ -158,8 +158,8 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     expectedStatus: 'complete',
     intent: 'None',
@@ -193,17 +193,17 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'enter correct user email address',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`
       ],
-      ['test@test1.com', `We'll email your confirmation code to [EMAIL].`],
-    ],
+      ['test@test1.com', `Ok, I'll email your confirmation code to [EMAIL].`]
+    ]
   },
   {
     expectedResult: undefined,
@@ -239,20 +239,20 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'input invalid user email address once',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
-      ],
-    ],
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`
+      ]
+    ]
   },
   {
     expectedResult: undefined,
@@ -288,27 +288,27 @@ module.exports = [
         confirmConfirmationStep: 0,
         getPreferredMethodOfContactStep: 0,
         confirmEmailStep: 0,
-        confirmPhoneStep: 0,
-      },
+        confirmPhoneStep: 0
+      }
     },
     name: 'input invalid email address more than 3 times',
     steps: [
       [
-        `No problem - what's your new email address?`,
-        `No problem - what's your new email address?`,
+        null,
+        `No problem, let's update your profile. What's your new email address?`
       ],
       [
         'testtest1.com',
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`
       ],
       [
         `hha`,
-        `Oops - looks like the email address you entered isn’t formatted correctly (here’s an example: name@gmail.com). Let’s try again`,
+        `Oops, looks like the email address you entered isn’t formatted correctly (here’s an example: name@mail.com). Let’s try again.`
       ],
       [
         `hahaha`,
-        `Looks like the emails you've entered aren't the correct format. Please double check your email before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`,
-      ],
-    ],
-  },
+        `Looks like the email addresses you've entered aren't the correct format. Please double check your email before continuing. Do you want to try again? (1) Yes please! or (2) No thanks`
+      ]
+    ]
+  }
 ];

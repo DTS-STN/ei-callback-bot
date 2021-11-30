@@ -3,7 +3,7 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
+  WaterfallStepContext
 } from 'botbuilder-dialogs';
 
 import { LuisRecognizer } from 'botbuilder-ai';
@@ -29,8 +29,8 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
-      ]),
+        this.finalStep.bind(this)
+      ])
     );
 
     this.initialDialogId = CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP;
@@ -160,7 +160,7 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
 
         return await stepContext.replaceDialog(
           CONFIRM_CALLBACK_DETAILS_STEP,
-          callbackBotDetails,
+          callbackBotDetails
         );
       }
     }
