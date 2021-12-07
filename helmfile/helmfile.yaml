@@ -11,7 +11,7 @@ releases:
 
   - name: eicallbackapi-{{ requiredEnv "BRANCH" }}
     chart: ../helm/charts/ei-callback-bot
-    namespace: ei-callback-{{ requiredEnv "BRANCH" }}
+    namespace: ei-callback-BE-{{ requiredEnv "BRANCH" }}
     values:
       - overrides/ei-callback-bot-api.yaml.gotmpl
     labels:
